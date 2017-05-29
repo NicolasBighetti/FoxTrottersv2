@@ -1,7 +1,7 @@
 {
-  "name": "meanjs",
-  "description": "Fullstack JavaScript with MongoDB, Express, AngularJS, and Node.js.",
-  "homepage": "http://meanjs.org/",
+  "name": "FoxTrotters",
+  "description": "Notre application est une carte communautaire centrée autour de la nature, permettant à chacun de partager ses découvertes, que ce soit sentiers, points d’eau, plantes ou divers points d'intérêt.Notre application propose aussi une fonctionnalité permettant d’identifier des plantes à l’aide d’une photo. Une fois la plante identifié, une liste de ses utilisations possibles (nutritives et médicale) sont fournies.",
+  "homepage": "http://foxtrotters.org/",
   "license": "MIT",
   "dependencies": {
     "angular": "~1.5.0",

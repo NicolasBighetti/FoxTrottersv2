@@ -2,8 +2,8 @@
 
 module.exports = {
   app: {
-    title: 'MEAN.JS',
-    description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
+    title: 'FoxTrotters',
+    description: 'Notre application est une carte communautaire centrée autour de la nature, permettant à chacun de partager ses découvertes, que ce soit sentiers, points d eau, plantes ou divers points d intérêt.Notre application propose aussi une fonctionnalité permettant d’identifier des plantes à l’aide d’une photo. Une fois la plante identifié, une liste de ses utilisations possibles (nutritives et médicale) sont fournies.',
     keywords: 'mongodb, express, angularjs, node.js, mongoose, passport',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
@@ -28,7 +28,7 @@ module.exports = {
     secure: false
   },
   // sessionSecret should be changed for security measures and concerns
-  sessionSecret: process.env.SESSION_SECRET || 'MEAN',
+  sessionSecret: process.env.SESSION_SECRET || 'Heyaaaaa232',
   // sessionKey is the cookie session name
   sessionKey: 'sessionId',
   sessionCollection: 'sessions',
