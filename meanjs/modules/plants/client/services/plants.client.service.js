@@ -9,7 +9,7 @@
   PlantsService.$inject = ['$resource'];
 
   function PlantsService($resource) {
-    return $resource('api/plants/:plantId', {
+    return $resource('/api/plants/:plantId', {
       plantId: '@_id'
     }, {
       update: {
