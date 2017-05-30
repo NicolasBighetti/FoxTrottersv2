@@ -9,6 +9,9 @@
 /app/**/*.js
 /app/**/*.js.map
 
+#Ionic assets
+assets/
+
 # dependencies
 /node_modules
 /bower_components
