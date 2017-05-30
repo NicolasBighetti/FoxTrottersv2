@@ -7,14 +7,13 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
- * Plant Schema
+ * Use Schema
  */
 var UseSchema = new Schema({
   theme: {
-    type: String,
-    default: '',
-    required: 'Please fill theme',
-    trim: true
+    type: [Schema.ObjectId],
+    ref: 'Theme',
+    default: []
   },
   desc: {
     type: String,
@@ -32,4 +31,4 @@ var UseSchema = new Schema({
   }
 });
 
-mongoose.model('UseSchema', UseSchema);
+mongoose.model('Use', UseSchema);

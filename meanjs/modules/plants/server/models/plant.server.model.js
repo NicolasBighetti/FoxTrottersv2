@@ -19,6 +19,14 @@ var PlantSchema = new Schema({
     type: String,
     default: '',
     trim: true
+  }, family: {
+    type: String,
+    default: '',
+    trim: true
+  }, genre: {
+    type: String,
+    default: '',
+    trim: true
   }, uses: {
     type: [Schema.ObjectId],
     ref: 'Use',
@@ -27,11 +35,10 @@ var PlantSchema = new Schema({
     type: [Schema.ObjectId],
     ref: 'Poi',
     default: []
-
   },
   image:{
     type: [String],
-    default: './images/default.jpg'
+    default: './../img/errorIcon.svg'
   },
   created: {
     type: Date,
