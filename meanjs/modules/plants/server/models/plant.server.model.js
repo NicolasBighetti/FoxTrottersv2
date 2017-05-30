@@ -21,11 +21,17 @@ var PlantSchema = new Schema({
     trim: true
   }, uses: {
     type: [Schema.ObjectId],
+    ref: 'Use',
     default: []
   }, pois: {
     type: [Schema.ObjectId],
+    ref: 'Poi',
     default: []
 
+  },
+  image:{
+    type: [String],
+    default: './images/default.jpg'
   },
   created: {
     type: Date,

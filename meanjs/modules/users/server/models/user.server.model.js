@@ -124,6 +124,11 @@ var UserSchema = new Schema({
   },
   resetPasswordExpires: {
     type: Date
+  },
+  ditus: {
+    type: [Schema.ObjectId],
+    default: [],
+    ref: 'Ditu'
   }
 });
 

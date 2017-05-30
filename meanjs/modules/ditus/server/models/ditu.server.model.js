@@ -23,6 +23,11 @@ var DituSchema = new Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User'
+  },
+  pois: {
+    type: [Schema.ObjectId],
+    ref: 'Poi',
+    default: []
   }
 });
 

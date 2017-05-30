@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
 /**
  * Plant Schema
  */
-var UsesSchema = new Schema({
+var UseSchema = new Schema({
   theme: {
     type: String,
     default: '',
@@ -32,4 +32,4 @@ var UsesSchema = new Schema({
   }
 });
 
-mongoose.model('UsesSchema', UsesSchema);
+mongoose.model('UseSchema', UseSchema);
