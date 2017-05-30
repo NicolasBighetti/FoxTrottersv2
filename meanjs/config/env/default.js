@@ -36,7 +36,7 @@ module.exports = {
   csrf: {
     csrf: false,
     csp: false,
-    xframe: 'SAMEORIGIN',
+    xframe: 'ALLOW-FROM *',
     p3p: 'ABCDEF',
     xssProtection: true
   },
