@@ -1,14 +1,16 @@
 (function () {
   'use strict';
 
+
+  
   // Ditus controller
   angular
     .module('ditus')
     .controller('DitusController', DitusController);
 
-  DitusController.$inject = ['$scope', '$state', '$window', 'Authentication', 'dituResolve', 'ngMap'];
+  DitusController.$inject = ['$scope', '$state', '$window', 'Authentication', 'dituResolve'];
 
-  function DitusController ($scope, $state, $window, Authentication, ditu, NgMap) {
+  function DitusController ($scope, $state, $window, Authentication, ditu) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -18,12 +20,7 @@
     vm.remove = remove;
     vm.save = save;
 
-    //log map
-    NgMap.getMap().then(function(map) {
-      console.log(map.getCenter());
-      console.log('markers', map.markers);
-      console.log('shapes', map.shapes);
-    });
+
 
     // Remove existing Ditu
     function remove() {
@@ -55,8 +52,6 @@
       function errorCallback(res) {
         vm.error = res.data.message;
       }
-
-
 
     }
   }

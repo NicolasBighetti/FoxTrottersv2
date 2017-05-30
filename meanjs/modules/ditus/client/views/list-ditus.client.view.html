@@ -1,6 +1,3 @@
-
-  <script src="/bower_components/ngmap/build/scripts/ng-map.min.js"></script>
-   <script src="http://maps.google.com/maps/api/js"></script>
 <section>
   <div class="page-header">
     <h1>Ditus</h1>
@@ -22,4 +19,10 @@
   <div class="alert alert-warning text-center" ng-if="vm.ditus.$resolved && !vm.ditus.length">
     No Ditus yet, why don't you <a ui-sref="ditus.create">create one</a>?
   </div>
+  <p>ooo</p>
+
+<div>s    <ng-map class="gov-map" zoom="10" center="51.5112139, -0.1198244">
+    </ng-map>
+  </div>
+<p>eee</p>
 </section>

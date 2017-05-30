@@ -3,7 +3,7 @@
 module.exports = {
   app: {
     title: 'FoxTrotters',
-    description: 'Notre application est une carte communautaire centrée autour de la nature, permettant à chacun de partager ses découvertes, que ce soit sentiers, points d eau, plantes ou divers points d intérêt.Notre application propose aussi une fonctionnalité permettant d’identifier des plantes à l’aide d’une photo. Une fois la plante identifié, une liste de ses utilisations possibles (nutritives et médicale) sont fournies.',
+    description: 'Notre application est une carte communautaire',
     keywords: 'mongodb, express, angularjs, node.js, mongoose, passport',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },

@@ -1,15 +1,25 @@
 (function () {
   'use strict';
+  
 
+  
   angular
     .module('ditus')
     .controller('DitusListController', DitusListController);
 
-  DitusListController.$inject = ['DitusService'];
+  DitusListController.$inject = ['$scope','NgMap'];
 
-  function DitusListController(DitusService) {
+  function DitusListController($scope,NgMap) {
     var vm = this;
+    $scope.name='ok';
+    vm.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
 
-    vm.ditus = DitusService.query();
+    NgMap.getMap().then(function(map) {
+      console.log(map.getCenter());
+      console.log('markers', map.markers);
+      console.log('shapes', map.shapes);
+      
+    });
+    vm.ditus = [];
   }
 }());
