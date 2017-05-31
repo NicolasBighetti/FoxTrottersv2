@@ -27,18 +27,18 @@ var PlantSchema = new Schema({
     type: String,
     default: '',
     trim: true
-  }, uses: {
-    type: [Schema.ObjectId],
+  }, uses: [{
+    type: Schema.ObjectId,
     ref: 'Use',
     default: []
-  }, pois: {
-    type: [Schema.ObjectId],
+  }], pois: [{
+    type: Schema.ObjectId,
     ref: 'Poi',
     default: []
-  },
+  }],
   image:{
     type: [String],
-    default: './../img/errorIcon.svg'
+    default: ['./../img/errorIcon.svg']
   },
   created: {
     type: Date,

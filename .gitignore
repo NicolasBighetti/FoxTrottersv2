@@ -12,6 +12,9 @@
 #Ionic assets
 assets/
 
+#WebStorm bullshit
+.idea
+
 # dependencies
 /node_modules
 /bower_components

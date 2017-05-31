@@ -49,7 +49,10 @@
       // create mock article
       mockPlant = new PlantsService({
         _id: '525a8422f6d0f87f0e407a33',
-        name: 'Plant Name'
+        commonName: 'Plant Common name',
+        latinName: 'Plant Latin name',
+        family: 'Plant Family name',
+        genre: 'Plant Genre name'
       });
 
       // Mock logged in user

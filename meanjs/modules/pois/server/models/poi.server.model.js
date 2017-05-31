@@ -68,6 +68,9 @@ var PoiSchema = new Schema({
   },
   plant:{
     type: Schema.ObjectId
+  },
+  panorama:{
+    type: Schema.ObjectId
   }
 
 });
