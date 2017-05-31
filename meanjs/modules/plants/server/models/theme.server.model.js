@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
 var ThemeSchema = new Schema({
   icon:{
     type: String,
-    default: './../img/errorIcon.svg'
+    default: 'modules/plants/client/img/errorIcon.svg'
   },
   name: {
     type: String,

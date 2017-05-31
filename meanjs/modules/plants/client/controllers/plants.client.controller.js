@@ -6,11 +6,11 @@
     .module('plants')
     .controller('PlantsController', PlantsController);
 
-  PlantsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'plantResolve'];
+  PlantsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'plantResolve', '$http'];
 
-  function PlantsController ($scope, $state, $window, Authentication, plant) {
+  function PlantsController ($scope, $state, $window, Authentication, plant, $http) {
     var vm = this;
-
+    console.log("test");
     vm.authentication = Authentication;
     vm.plant = plant;
     vm.error = null;
@@ -51,31 +51,27 @@
     }
 
     // Gets the themes
-    $http.get(DB_PATH+'/api/themes').then(function (res) {
+    $http.get('/api/themes').then(function (res) {
       console.dir(res);
       vm.themes = res.body;
     },function (err) {
       console.error(err);
     });
+
+
+    // Dynamic plant use form
+    $scope.addNewUse = function() {
+      if (!vm.plant.uses){
+        vm.plant.uses = [];
+      }
+      vm.plant.uses.push({'theme':{'name':'edible'}, 'desc':''});
+    };
+
+    $scope.removeUse = function() {
+      var lastItem = vm.plant.uses.length-1;
+      vm.plant.uses.splice(lastItem);
+    };
   }
 }());
 
 
-//Dynamic form for plants uses
-var app = angular.module('angularjs-starter', []);
-
-app.controller('useFormCtrl', function($scope) {
-
-  $scope.useList = [];
-
-  $scope.addNewUse = function() {
-    var newItemNo = $scope.useList.length+1;
-    $scope.choices.push({'theme':'use'+newItemNo});
-  };
-
-  $scope.removeUse = function() {
-    var lastItem = $scope.useList.length-1;
-    $scope.choices.splice(lastItem);
-  };
-
-});

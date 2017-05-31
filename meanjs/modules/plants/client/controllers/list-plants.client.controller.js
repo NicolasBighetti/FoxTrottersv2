@@ -11,6 +11,7 @@
     var vm = this;
 
     vm.plants = PlantsService.query();
+    console.dir(vm.plants);
     var DB_PATH = "";
 
     // pour le convertisseur
