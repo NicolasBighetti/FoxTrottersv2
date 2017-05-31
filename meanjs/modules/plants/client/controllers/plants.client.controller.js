@@ -49,5 +49,33 @@
         vm.error = res.data.message;
       }
     }
+
+    // Gets the themes
+    $http.get(DB_PATH+'/api/themes').then(function (res) {
+      console.dir(res);
+      vm.themes = res.body;
+    },function (err) {
+      console.error(err);
+    });
   }
 }());
+
+
+//Dynamic form for plants uses
+var app = angular.module('angularjs-starter', []);
+
+app.controller('useFormCtrl', function($scope) {
+
+  $scope.useList = [];
+
+  $scope.addNewUse = function() {
+    var newItemNo = $scope.useList.length+1;
+    $scope.choices.push({'theme':'use'+newItemNo});
+  };
+
+  $scope.removeUse = function() {
+    var lastItem = $scope.useList.length-1;
+    $scope.choices.splice(lastItem);
+  };
+
+});

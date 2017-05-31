@@ -38,7 +38,7 @@ var PlantSchema = new Schema({
   },
   image:{
     type: [String],
-    default: './../img/errorIcon.svg'
+    default: ['./../img/errorIcon.svg']
   },
   created: {
     type: Date,
