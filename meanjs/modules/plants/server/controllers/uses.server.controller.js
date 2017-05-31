@@ -7,24 +7,69 @@ var path = require('path'),
   mongoose = require('mongoose'),
   Use = mongoose.model('Use'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
-  _ = require('lodash');
+  _ = require('lodash'), Theme = mongoose.model('Theme'),Q = require('Q');
 
 /**
  * Create a Use
  */
+function saveUse(use,res, prom){
+  use.save(function(err) {
+    if (err) {
+      if(res){
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });}
+      if(prom) {
+        prom.reject(err);
+      }
+    } else {
+      if(res)
+        res.jsonp(use);
+      if(prom){
+        console.log('okuse')
+        console.log(use);
+        prom.resolve(use);
+      }
+    }
+  });
+}
+
 exports.create = function(req, res) {
   var use = new Use(req.body);
   use.user = req.user;
+  var prom = Q.defer();
 
-  use.save(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(use);
-    }
-  });
+  console.log("create use");
+  console.log(req);
+  if(!mongoose.Types.ObjectId.isValid(req.body.theme.id)){
+    // créer le theme
+
+    console.log('creating a new theme');
+    var theme = new Theme(req.body.theme);
+
+    theme.save(function(err) {
+      if (err) {
+        if(!res){
+          prom.reject(err);
+        }
+        else {
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        }
+
+      } else {
+        use.theme=theme;
+        console.log('ok th');
+        saveUse(use,res,prom);
+      }
+    });
+
+  }
+  else{
+    saveUse(use,res,prom);
+  }
+  return prom.promise;
 };
 
 /**
@@ -103,7 +148,7 @@ exports.useByID = function(req, res, next, id) {
     });
   }
 
-  Use.findById(id).populate('user', 'displayName').exec(function (err, use) {
+  Use.findById(id).populate('user', 'displayName').populate('theme').exec(function (err, use) {
     if (err) {
       return next(err);
     } else if (!use) {

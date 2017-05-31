@@ -11,9 +11,9 @@ var mongoose = require('mongoose'),
  */
 var UseSchema = new Schema({
   theme: {
-    type: [Schema.ObjectId],
+    type: Schema.ObjectId,
     ref: 'Theme',
-    default: []
+    required: 'please associate use with a theme'
   },
   desc: {
     type: String,

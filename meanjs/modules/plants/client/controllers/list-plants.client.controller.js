@@ -13,6 +13,7 @@
     vm.plants = PlantsService.query();
     var DB_PATH = "";
 
+    // pour le convertisseur
     function goUp(plants){
       for(var pI in plants){
         $http.post(DB_PATH+'/api/plants',plants[pI]).then(function (ok) {
@@ -22,6 +23,7 @@
         });
       }
     };
+
 
     $scope.file_changed = function(element) {
 

@@ -11,13 +11,13 @@ var mongoose = require('mongoose'),
  */
 var ThemeSchema = new Schema({
   icon:{
-    type: [String],
+    type: String,
     default: './../img/errorIcon.svg'
   },
   name: {
     type: String,
     default: '',
-    required: 'Please fill name',
+    required: 'Please fill theme name',
     trim: true
   }
 });
