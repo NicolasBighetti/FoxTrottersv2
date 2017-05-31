@@ -17,8 +17,12 @@
           <input name="desc" type="text" ng-model="vm.poi.desc" id="desc" class="form-control" placeholder="Desc" required>
 
           <label class="control-label" for="typep">Description</label>
+          <input name="typep" type="text" ng-model="vm.poi.typep" id="typep" class="form-control" placeholder="Typep" required>
+
           <select>
-            <option></option>
+            <option value="eau">Point d'eau</option>
+            <option value="eau">Plante</option>
+            <option value="eau">Point de vue</option>
           </select>
           <div ng-messages="vm.form.poiForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Poi name is required.</p>

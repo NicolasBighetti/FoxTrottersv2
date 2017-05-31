@@ -22,6 +22,7 @@ exports.create = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      if(res)
       res.jsonp(theme);
     }
   });
