@@ -1,7 +1,16 @@
 <section>
   <div class="page-header">
-    <h1 ng-bind="vm.plant.name"></h1>
+    <h1 ng-bind="vm.plant.commonName"></h1>
   </div>
+  <h2 ng-bind="vm.plant.latinName"></h2>
+  <h2 ng-bind="vm.plant.family"></h2>
+  <h2 ng-bind="vm.plant.genre"></h2>
+  <!--
+  <div ng-repeat="useElem in vm.plant.uses">
+    <img ng-src="{{ useElem.theme.icon }}" />
+    <p>{{useElem.desc}}</p>
+  </div>
+  -->
   <div class="pull-right"
        ng-show="vm.plant.isCurrentUserOwner">
     <a class="btn btn-primary"
