@@ -2,12 +2,24 @@
   <div class="page-header">
     <h1>{{vm.poi._id ? 'Edit Poi' : 'New Poi'}}</h1>
   </div>
-  <div class="col-md-12">
+  <div class="col-md-8">
+
+  </div>
+  <div class="col-md-4">
     <form name="vm.form.poiForm" class="form-horizontal" ng-submit="vm.save(vm.form.poiForm.$valid)" novalidate>
       <fieldset>
         <div class="form-group" show-errors>
+
           <label class="control-label" for="name">Name</label>
           <input name="name" type="text" ng-model="vm.poi.name" id="name" class="form-control" placeholder="Name" required>
+
+          <label class="control-label" for="desc">Description</label>
+          <input name="desc" type="text" ng-model="vm.poi.desc" id="desc" class="form-control" placeholder="Desc" required>
+
+          <label class="control-label" for="typep">Description</label>
+          <select>
+            <option></option>
+          </select>
           <div ng-messages="vm.form.poiForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Poi name is required.</p>
           </div>

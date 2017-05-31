@@ -18,5 +18,11 @@
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.plants.$resolved && !vm.plants.length">
     No Plants yet, why don't you <a ui-sref="plants.create">create one</a>?
+
+  </div>
+  <div ng-if="vm.plants.$resolved && !vm.plants.length">
+    Load it
+    <ng-include src="'modules/plants/client/views/examples/conv.html'"></ng-include>
+    now
   </div>
 </section>
