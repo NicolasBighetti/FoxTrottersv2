@@ -1,86 +1,71 @@
 /*
- * Copyright (c) 2016 Intel Corporation.  All rights reserved.
- * See the bottom of this file for the license terms.
+ * Blink
+ * Turns on an LED on for one second,
+ * then off for one second, repeatedly.
  */
 
+#include <Arduino.h>
 #include <CurieBLE.h>
 
 BLEPeripheral blePeripheral;  // BLE Peripheral Device (the board you're programming)
-BLEService ledService("19B10000-E8F2-537E-4F6C-D104768A1214"); // BLE LED Service
+BLEService comService("e582195d-50e4-4fc0-8dca-a8b10704694d"); // Communication Service
+BLECharacteristic message("e582195d-50e4-4fc0-8dca-a8b10704694d", BLERead | BLEWrite,16);
 
-// BLE LED Switch Characteristic - custom 128-bit UUID, read and writable by central
-BLEUnsignedCharCharacteristic switchCharacteristic("19B10001-E8F2-537E-4F6C-D104768A1214", BLERead | BLEWrite);
+char typedMessage[32];
 
-const int ledPin = 13; // pin to use for the LED
+void setup()
+{
 
-void setup() {
   Serial.begin(9600);
+  while (!Serial);
+  Serial.println("Beginning");
+  blePeripheral.setLocalName("FoxTrotters_SmartWatch");
+  blePeripheral.setAdvertisedServiceUuid(comService.uuid());
 
-  // set LED pin to output mode
-  pinMode(ledPin, OUTPUT);
+  //add service and charac
+  blePeripheral.addAttribute(comService);
+  blePeripheral.addAttribute(message);
+  blePeripheral.setAppearance(true);
 
-  // set advertised local name and service UUID:
-  blePeripheral.setLocalName("LED");
-  blePeripheral.setAdvertisedServiceUuid(ledService.uuid());
+  message.setValue((unsigned char *)typedMessage,32); //set to default value
 
-  // add service and characteristic:
-  blePeripheral.addAttribute(ledService);
-  blePeripheral.addAttribute(switchCharacteristic);
 
-  // set the initial value for the characeristic:
-  switchCharacteristic.setValue(0);
+  // initialize LED digital pin as an output.
+  pinMode(LED_BUILTIN, OUTPUT);
 
-  // begin advertising BLE service:
+  Serial.println(comService.uuid());
+  Serial.println(String(BLENotify));
+
+  Serial.println("Ready to start BLE");
+
   blePeripheral.begin();
-
-  Serial.println("BLE LED Peripheral");
+  Serial.println("Starting bluetooth");
 }
 
-void loop() {
-  // listen for BLE peripherals to connect:
-  BLECentral central = blePeripheral.central();
+void loop()
+{
+  Serial.println("loop");
 
-  // if a central is connected to peripheral:
-  if (central) {
-    Serial.print("Connected to central: ");
-    // print the central's MAC address:
-    Serial.println(central.address());
+  /*BLECentral central = blePeripheral.central();
 
-    // while the central is still connected to peripheral:
+  if(central){
+    Serial.println("Connected to central");
+
     while (central.connected()) {
-      // if the remote device wrote to the characteristic,
-      // use the value to control the LED:
-      if (switchCharacteristic.written()) {
-        if (switchCharacteristic.value()) {   // any value other than 0
-          Serial.println("LED on");
-          digitalWrite(ledPin, HIGH);         // will turn the LED on
-        } else {                              // a 0 value
-          Serial.println(F("LED off"));
-          digitalWrite(ledPin, LOW);          // will turn the LED off
-        }
+      if(message.written()){
+        // turn the LED on (HIGH is the voltage level)
+        digitalWrite(LED_BUILTIN, HIGH);
+        // wait for a second
+        delay(1000);
+        // turn the LED off by making the voltage LOW
+        digitalWrite(LED_BUILTIN, LOW);
+         // wait for a second
+        sprintf(typedMessage,"%16c",NULL);
+        strncpy(typedMessage,(char*)message.value(),message.valueLength());
+        Serial.println(typedMessage);
       }
     }
+  }*/
 
-    // when the central disconnects, print it out:
-    Serial.print(F("Disconnected from central: "));
-    Serial.println(central.address());
-  }
+  delay(1000);
 }
-
-/*
-   Copyright (c) 2016 Intel Corporation.  All rights reserved.
-
-   This library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   This library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with this library; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
-*/
