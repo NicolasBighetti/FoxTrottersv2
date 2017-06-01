@@ -27,6 +27,7 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
@@ -39,6 +40,12 @@
     <script src="lib/ngmap/build/scripts/ng-map.min.js"></script>
     <!--<script src="/lib/angular-route/angular-route.js"></script> -->
 
+    <!-- controllers -->
+    <script src="js/controllers/GMapController.js"></script>
+    <script src="js/controllers/PhotoController.js"></script>
+
+    <!-- services -->
+    <script src="js/services/PhotoService.js"></script>
   </head>
   <body ng-app="foxapp">
 
@@ -47,8 +54,16 @@
         <h1 class="title">Ionic Blank Starter</h1>
       </ion-header-bar>
       <ion-content>
+        <div id="map" ng-controller="GMapController">
         <div map-lazy-load="https://maps.google.com/maps/api/js">
           <ng-map center="41,-87" zoom="3"></ng-map>
+          <div id="photo" ng-controller="PhotoController">
+            <button ng-click="takePicture({{options}})">Take Picture</button>
+            <img id="myImage" style="height:100px;width: 100px;">
+
+            </img>
+          </div>
+        </div>
         </div>
       </ion-content>
     </ion-pane>
