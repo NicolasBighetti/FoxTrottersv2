@@ -75,7 +75,6 @@
     "wiredep": "~4.0.0"
   },
   "devDependencies": {
-    "Q": "0.0.1",
     "coveralls": "~2.13.0",
     "del": "^2.2.2",
     "eslint": "~2.2.0",
