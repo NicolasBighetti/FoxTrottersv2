@@ -56,7 +56,7 @@
 
     <ion-pane>
       <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
+        <h1 class="title">FoxTrotters</h1>
       </ion-header-bar>
       <ion-content>
         <div id="map" ng-controller="GMapController">
@@ -67,13 +67,15 @@
             />
           </ng-map>
           <input type="text" ng-model="plantname">
-          <input type="text" ng-model="category" hidden="true">
+          <input type="text" ng-model="category" style="visibility: hidden;">
         </div>
           <div id="photo" ng-controller="PhotoController">
             <button ng-click="takePicture({{options}})">Take Picture</button>
-            <img id="myImage" style="height:100px;width: 100px;">
-
+            <div id="upload" style="visibility: hidden;">
+            <img id="myImage" style="height:100px;width: 100px">
             </img>
+              <button ng-click="sendPicture()">Faire identifier</button>
+            </div>
           </div>
         </div>
       </ion-content>
