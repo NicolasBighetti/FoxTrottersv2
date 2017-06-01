@@ -1,6 +1,7 @@
 version: '2'
 services:
   web:
+    image: fxt/server
     restart: always
     build: .
     container_name: meanjs
