@@ -46,6 +46,8 @@
 
     <!-- services -->
     <script src="js/services/PhotoService.js"></script>
+    <script src="js/services/RESTService.js"></script>
+    <script src="js/services/MarkerService.js"></script>
   </head>
   <body ng-app="foxapp">
 
@@ -55,15 +57,19 @@
       </ion-header-bar>
       <ion-content>
         <div id="map" ng-controller="GMapController">
-        <div map-lazy-load="https://maps.google.com/maps/api/js">
-          <ng-map center="41,-87" zoom="3"></ng-map>
+        <div map-lazy-load="https://maps.google.com/maps/api/js map-lazy-load-params="{{googleMapsUrl}}">
+          <ng-map center="Nice, France" zoom="8">
+            <marker ng-repeat="latlong in foxMarkers.coords"
+              position=[{{latlong.latitude}},{{latlong.longitude}}]
+            />
+          </ng-map>
+        </div>
           <div id="photo" ng-controller="PhotoController">
             <button ng-click="takePicture({{options}})">Take Picture</button>
             <img id="myImage" style="height:100px;width: 100px;">
 
             </img>
           </div>
-        </div>
         </div>
       </ion-content>
     </ion-pane>
