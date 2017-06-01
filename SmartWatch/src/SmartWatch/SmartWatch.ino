@@ -8,13 +8,46 @@
 #include <CurieBLE.h>
 #include <LiquidCrystal.h>
 
+
 BLEPeripheral blePeripheral;  // BLE Peripheral Device (the board you're programming)
 BLEService comService("e582195d-50e4-4fc0-8dca-a8b10704694d"); // Communication Service
 BLECharacteristic message("e582195d-50e4-4fc0-8dca-a8b10704694d", BLERead | BLEWrite,16);
 LiquidCrystal lcd(10, 11, 12, 13, 14, 15, 16);
 
 
-char typedMessage[32];
+char* typedMessage;
+const char nullchar[32] = {};
+byte buttonPin = 8;
+
+void smartAfficher(String msg, int size){
+
+ 
+  
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print(msg);
+      Serial.println("first line");
+
+  if(size > 15){
+    Serial.println("more than one line");
+    Serial.println("must print");
+    lcd.setCursor(0,1);
+    lcd.print(&msg[15]);
+  }
+
+
+  
+  
+}
+
+void backToMenu(){
+  noInterrupts();
+  lcd.clear();
+  smartAfficher((char *)"My FoxTrotters  watch",21);
+  interrupts();
+}
+
+
 
 void setup()
 {
@@ -30,26 +63,29 @@ void setup()
   blePeripheral.addAttribute(message);
   blePeripheral.setAppearance(true);
 
-  message.setValue((unsigned char *)typedMessage,32); //set to default value
+  message.setValue((unsigned char *)nullchar,32); //set to default value
 
 
   // initialize LED digital pin as an output.
   pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(buttonPin,INPUT);
 
-  Serial.println(comService.uuid());
-  Serial.println(String(BLENotify));
+  //Set button interruption
+  attachInterrupt(digitalPinToInterrupt(buttonPin), backToMenu, RISING);
 
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
-  // Print a message to the LCD.
-  lcd.print("My FoxTrotters");
-  lcd.setCursor(2,1); // set to the 3th column and 2nd row
-  lcd.print("watch");
+ 
+  
 
-  Serial.println("Ready to start BLE");
+  typedMessage = "";
+  message.setValue((unsigned char *)nullchar,32); //set to default value
+
 
   blePeripheral.begin();
-  Serial.println("Starting bluetooth");
+
+    // Print a message to the LCD.
+  backToMenu();
 }
 
 void loop()
@@ -61,15 +97,26 @@ void loop()
     Serial.println("Connected to central");
 
     while (central.connected()) {
+   
       if(message.written()){
+        Serial.println("Received");
+        Serial.println((char*)message.value());
        
-        sprintf(typedMessage,"%16c",NULL);
-        strncpy(typedMessage,(char*)message.value(),message.valueLength());
+       
         lcd.clear();
-        lcd.print(typedMessage);
+        delay(1000);
+        smartAfficher((char*)message.value(),message.valueLength());
+        memset((unsigned char *)nullchar, 0, 32);
+        message.setValue((unsigned char *)nullchar,32); //set to default value
+        Serial.println((char*)message.value());
+        Serial.println(digitalRead(buttonPin));
+        Serial.println("Done");
+        
       }
     }
   }
 
   delay(1000);
 }
+
+
