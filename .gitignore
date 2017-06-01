@@ -10,8 +10,10 @@
 /app/**/*.js.map
 
 #Ionic assets
-assets/
-
+foxapp/assets/
+foxapp/plugins/
+foxapp/platforms/
+foxapp/.gradle/
 #WebStorm bullshit
 .idea
 

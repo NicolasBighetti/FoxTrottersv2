@@ -8,9 +8,9 @@
 
   PlantsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'plantResolve', '$http'];
 
-  function PlantsController ($scope, $state, $window, Authentication, plant, $http) {
+  function PlantsController($scope, $state, $window, Authentication, plant, $http) {
     var vm = this;
-    console.log("test");
+    console.log('test');
     vm.authentication = Authentication;
     vm.plant = plant;
     vm.error = null;
@@ -54,24 +54,22 @@
     $http.get('/api/themes').then(function (res) {
       console.dir(res);
       vm.themes = res.body;
-    },function (err) {
+    }, function (err) {
       console.error(err);
     });
 
 
     // Dynamic plant use form
-    $scope.addNewUse = function() {
-      if (!vm.plant.uses){
+    $scope.addNewUse = function () {
+      if (!vm.plant.uses) {
         vm.plant.uses = [];
       }
-      vm.plant.uses.push({'theme':{'name':'edible'}, 'desc':''});
+      vm.plant.uses.push({ 'theme': { 'name': 'edible' }, 'desc': '' });
     };
 
-    $scope.removeUse = function() {
-      var lastItem = vm.plant.uses.length-1;
+    $scope.removeUse = function () {
+      var lastItem = vm.plant.uses.length - 1;
       vm.plant.uses.splice(lastItem);
     };
   }
 }());
-
-
