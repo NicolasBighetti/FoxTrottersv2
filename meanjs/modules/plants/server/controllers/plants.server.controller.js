@@ -8,8 +8,8 @@ var path = require('path'),
   Plant = mongoose.model('Plant'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash'),
-  uses = require('../controllers/uses.server.controller'),
-  Q = require('Q');
+  uses = require('../controllers/uses.server.controller');// ,
+ // Q = require('Q');
 
 
 function plantSave(plant, res) {
