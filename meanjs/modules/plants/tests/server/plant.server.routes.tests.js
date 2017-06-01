@@ -53,12 +53,12 @@ describe('Plant CRUD tests', function () {
     // Save a user to the test db and create new Plant
     user.save(function () {
       plant = {
-        "pois": [],
-        "uses": [],
-        "genre": "Zinnia",
-        "family": "Asteraceae",
-        "latinName": "Zinnia haageana Regel",
-        "commonName": "Zinnia"
+        'pois': [],
+        'uses': [],
+        'genre': 'Zinnia',
+        'family': 'Asteraceae',
+        'latinName': 'Zinnia haageana Regel',
+        'commonName': 'Zinnia'
       };
 
       done();
