@@ -45,7 +45,7 @@ exports.create = function (req, res) {
   console.log('create use');
   console.log(req);
 
-  if(req.body.theme!==undefined&&!mongoose.Types.ObjectId.isValid(req.body.theme)&&!mongoose.Types.ObjectId.isValid(req.body.theme.id)){
+  if (req.body.theme !== undefined && !mongoose.Types.ObjectId.isValid(req.body.theme) && !mongoose.Types.ObjectId.isValid(req.body.theme.id)) {
 
     // créer le theme
 
@@ -64,7 +64,7 @@ exports.create = function (req, res) {
         }
 
       } else {
-        use.theme=theme.id;
+        use.theme = theme.id;
 
         console.log('ok th');
         saveUse(use, res, prom);
