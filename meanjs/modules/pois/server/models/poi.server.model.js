@@ -25,52 +25,56 @@ var PoiSchema = new Schema({
     trim: true
   },
   coords: {
-    longitude:{
+    longitude: {
       type: Number,
       required: 'Please fill Poi longitude'
     },
-    latitude:{
+    latitude: {
       type: Number,
       required: 'Please fill Poi latitude'
     }
   },
-  icone:{
+  icon: {
     type: String,
     default: './images/default-marker.jpg'
   },
-  fillcolor:{
+  fillcolor: {
     type: String,
     default: '009900'
   },
-  strokecolor:{
+  strokecolor: {
     type: String,
     default: '000000'
   },
-  labelcolor:{
+  labelcolor: {
     type: String,
     default: '000000'
   },
-  label:{
+  label: {
     type: String,
     default: ''
   },
-  typep:{
+  typep: {
     type: String
   },
-
-  image:{
+  image: {
     type: String,
     default: './images/default.jpg'
   },
-  people:{
+  people: {
     type: Number,
-    default: Math.floor(Math.random()*1000)
+    default: Math.floor(Math.random() * 1000)
   },
-  plant:{
+  plant: {
+    type: Schema.ObjectId,
+    ref: 'Plant'
+  },
+  panorama: {
     type: Schema.ObjectId
   },
-  panorama:{
-    type: Schema.ObjectId
+  user: {
+    type: Schema.ObjectId,
+    ref: 'User'
   }
 
 });

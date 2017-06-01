@@ -46,7 +46,7 @@
       Authentication = _Authentication_;
       PlantsService = _PlantsService_;
 
-      // create mock article
+      // create mock plant
       mockPlant = new PlantsService({
         _id: '525a8422f6d0f87f0e407a33',
         commonName: 'Plant Common name',

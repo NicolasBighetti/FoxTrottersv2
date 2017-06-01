@@ -15,7 +15,7 @@ var path = require('path'),
 exports.create = function(req, res) {
   var ditu = new Ditu(req.body);
   ditu.user = req.user;
-
+  console.log('saving ditu');
   ditu.save(function(err) {
     if (err) {
       return res.status(400).send({

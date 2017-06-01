@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Theme Schema
  */
 var ThemeSchema = new Schema({
-  icon:{
+  icon: {
     type: String,
     default: 'modules/plants/client/img/errorIcon.svg'
   },
@@ -19,6 +19,10 @@ var ThemeSchema = new Schema({
     default: '',
     required: 'Please fill theme name',
     trim: true
+  },
+  user: {
+    type: Schema.ObjectId,
+    ref: 'User'
   }
 });
 

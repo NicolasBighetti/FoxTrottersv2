@@ -24,6 +24,15 @@ module.exports = {
         'public/lib/angular-ui-router/release/angular-ui-router.min.js',
         'public/lib/ng-file-upload/ng-file-upload.min.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
+        'public/lib/ngmap/build/scripts/ng-map.min.js',
+        'public/lib/angular-simple-logger/dist/angular-simple-logger.min.js',
+        'public/lib/lodash/lodash.js',
+        'public/lib/markerclustererplus/src/markerclusterer.min.js',
+        'public/lib/google-maps-utility-library-v3-markerwithlabel/dist/markerwithlabel.min.js',
+        'public/lib/google-maps-utility-library-v3-infobox/dist/infobox.min.js',
+        'public/lib/google-maps-utility-library-v3-keydragzoom/dist/keydragzoom.min.js',
+        'public/lib/js-rich-marker/src/richmarker.js',
+        'public/lib/angular-google-maps/dist/angular-google-maps.min.js',
         // endbower
       ]
     },

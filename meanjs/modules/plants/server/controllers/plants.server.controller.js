@@ -7,14 +7,13 @@ var path = require('path'),
   mongoose = require('mongoose'),
   Plant = mongoose.model('Plant'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
-  _ = require('lodash'), uses = require('../controllers/uses.server.controller'),Q = require('Q');
+  _ = require('lodash'),
+  uses = require('../controllers/uses.server.controller');// ,
+ // Q = require('Q');
 
 
-function plantSave(plant,res){
-  console.log('saving');
-  console.log(plant);
-  console.log(plant.uses[0]);
-  plant.save(function(err) {
+function plantSave(plant, res) {
+  plant.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -28,50 +27,33 @@ function plantSave(plant,res){
 /**
  * Create a Plant
  */
-exports.create = function(req, res) {
-  var waitUses =[];
-  var waitUsesIds =[];
-
-  console.log('verif uses');
-  console.log(req.body);
+exports.create = function (req, res) {
+  var waitUses = [];
+  var waitUsesIds = [];
 
   // vérifier que les usages existent
-  for(var us in req.body.uses){
-    var use = req.body.uses[us];
-    if(!mongoose.Types.ObjectId.isValid(use.id)){
+  for (var us in req.body.uses) {
+    if (!mongoose.Types.ObjectId.isValid(req.body.uses[us].id)) {
       // créer le use
       console.log('creating use');
-      var reqt = {"body":use,"user":req.user};
+      var reqt = { 'body': req.body.uses[us], 'user': req.user };
       waitUses.push(uses.create(reqt));
       waitUsesIds.push(us);
     }
   }
-  console.log('done');
 
   Promise.all(waitUses).then(function (values) {
-    console.log("ALL");
-
-    console.log(values);
-
-    for(var us2 in values){
-      console.log('Us2: '+us2+ ' '+waitUsesIds[us2]);
+    for (var us2 = 0; us2 < values.length; us2++) {
+      console.log('Us2: ' + us2 + ' ' + waitUsesIds[us2]);
       console.log(values[us2]);
-      req.body.uses[waitUsesIds[us2]]=values[us2];
-     }
-    console.log('okFOR');
-    console.log(req.body);
+      req.body.uses[waitUsesIds[us2]] = values[us2];
+    }
     var plant = new Plant(req.body);
 
-    console.log('ok plant');
-    console.log(plant);
-
-
     plant.user = req.user;
-    plantSave(plant,res);
+    plantSave(plant, res);
 
-  },function (err) {
-    console.log("heuy");
-    console.log(err);
+  }, function (err) {
     return res.status(400).send({
       message: errorHandler.getErrorMessage(err)
     });
@@ -83,13 +65,13 @@ exports.create = function(req, res) {
 /**
  * Show the current Plant
  */
-exports.read = function(req, res) {
+exports.read = function (req, res) {
   // convert mongoose document to JSON
   var plant = req.plant ? req.plant.toJSON() : {};
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  //plant.isCurrentUserOwner = req.user && plant.user && plant.user._id.toString() === req.user._id.toString();
+  // plant.isCurrentUserOwner = req.user && plant.user && plant.user._id.toString() === req.user._id.toString();
 
   res.jsonp(plant);
 };
@@ -97,12 +79,12 @@ exports.read = function(req, res) {
 /**
  * Update a Plant
  */
-exports.update = function(req, res) {
+exports.update = function (req, res) {
   var plant = req.plant;
 
   plant = _.extend(plant, req.body);
 
-  plant.save(function(err) {
+  plant.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -116,10 +98,10 @@ exports.update = function(req, res) {
 /**
  * Delete an Plant
  */
-exports.delete = function(req, res) {
+exports.delete = function (req, res) {
   var plant = req.plant;
 
-  plant.remove(function(err) {
+  plant.remove(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -133,8 +115,8 @@ exports.delete = function(req, res) {
 /**
  * List of Plants
  */
-exports.list = function(req, res) {
-  Plant.find().sort('-created').populate('user', 'displayName').exec(function(err, plants) {
+exports.list = function (req, res) {
+  Plant.find().sort('-created').populate('user', 'displayName').exec(function (err, plants) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -148,7 +130,7 @@ exports.list = function(req, res) {
 /**
  * Plant middleware
  */
-exports.plantByID = function(req, res, next, id) {
+exports.plantByID = function (req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
@@ -158,19 +140,19 @@ exports.plantByID = function(req, res, next, id) {
 
   Plant.findById(id)
     .populate({
-      path:     'uses',
-      populate: { path:  'theme',model:'Theme' }
+      path: 'uses',
+      populate: { path: 'theme', model: 'Theme' }
     })
     .populate('user', 'displayName')
     .exec(function (err, plant) {
-    if (err) {
-      return next(err);
-    } else if (!plant) {
-      return res.status(404).send({
-        message: 'No Plant with that identifier has been found'
-      });
-    }
-    req.plant = plant;
-    next();
-  });
+      if (err) {
+        return next(err);
+      } else if (!plant) {
+        return res.status(404).send({
+          message: 'No Plant with that identifier has been found'
+        });
+      }
+      req.plant = plant;
+      next();
+    });
 };

@@ -5,6 +5,7 @@ var should = require('should'),
   path = require('path'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
+  Theme = mongoose.model('Theme'),
   Use = mongoose.model('Use'),
   express = require(path.resolve('./config/lib/express'));
 
@@ -15,7 +16,8 @@ var app,
   agent,
   credentials,
   user,
-  use;
+  use,
+  theme;
 
 /**
  * Use routes tests
@@ -33,9 +35,10 @@ describe('Use CRUD tests', function () {
   beforeEach(function (done) {
     // Create user credentials
     credentials = {
-      username: 'username',
+      usernameOrEmail: 'username',
       password: 'M3@n.jsI$Aw3$0m3'
     };
+
 
     // Create a new user
     user = new User({
@@ -43,18 +46,22 @@ describe('Use CRUD tests', function () {
       lastName: 'Name',
       displayName: 'Full Name',
       email: 'test@test.com',
-      username: credentials.username,
+      username: credentials.usernameOrEmail,
       password: credentials.password,
       provider: 'local'
     });
-
     // Save a user to the test db and create new Use
     user.save(function () {
-      use = {
-        name: 'Use name'
-      };
 
-      done();
+      theme = new Theme({ name: 'toxic' });
+
+      theme.save(function () {
+        use = {
+          theme: theme.id,
+          desc: 'desc'
+        };
+        done();
+      });
     });
   });
 
@@ -94,7 +101,7 @@ describe('Use CRUD tests', function () {
 
                 // Set assertions
                 (uses[0].user._id).should.equal(userId);
-                (uses[0].name).should.match('Use name');
+                (uses[0].desc).should.match('desc');
 
                 // Call the assertion callback
                 done();
@@ -113,9 +120,9 @@ describe('Use CRUD tests', function () {
       });
   });
 
-  it('should not be able to save an Use if no name is provided', function (done) {
-    // Invalidate name field
-    use.name = '';
+  it('should not be able to save an Use if no desc is provided', function (done) {
+    // Invalidate desc field
+    use.desc = '';
 
     agent.post('/api/auth/signin')
       .send(credentials)
@@ -135,7 +142,7 @@ describe('Use CRUD tests', function () {
           .expect(400)
           .end(function (useSaveErr, useSaveRes) {
             // Set message assertion
-            (useSaveRes.body.message).should.match('Please fill Use name');
+            (useSaveRes.body.message).should.match('Please fill desc');
 
             // Handle Use save error
             done(useSaveErr);
@@ -166,8 +173,8 @@ describe('Use CRUD tests', function () {
               return done(useSaveErr);
             }
 
-            // Update Use name
-            use.name = 'WHY YOU GOTTA BE SO MEAN?';
+            // Update Use desc
+            use.desc = 'WHY YOU GOTTA BE SO MEAN?';
 
             // Update an existing Use
             agent.put('/api/uses/' + useSaveRes.body._id)
@@ -181,7 +188,7 @@ describe('Use CRUD tests', function () {
 
                 // Set assertions
                 (useUpdateRes.body._id).should.equal(useSaveRes.body._id);
-                (useUpdateRes.body.name).should.match('WHY YOU GOTTA BE SO MEAN?');
+                (useUpdateRes.body.desc).should.match('WHY YOU GOTTA BE SO MEAN?');
 
                 // Call the assertion callback
                 done();
@@ -218,7 +225,7 @@ describe('Use CRUD tests', function () {
       request(app).get('/api/uses/' + useObj._id)
         .end(function (req, res) {
           // Set assertion
-          res.body.should.be.instanceof(Object).and.have.property('name', use.name);
+          res.body.should.be.instanceof(Object).and.have.property('desc', use.desc);
 
           // Call the assertion callback
           done();
@@ -319,7 +326,7 @@ describe('Use CRUD tests', function () {
   it('should be able to get a single Use that has an orphaned user reference', function (done) {
     // Create orphan user creds
     var _creds = {
-      username: 'orphan',
+      usernameOrEmail: 'orphan',
       password: 'M3@n.jsI$Aw3$0m3'
     };
 
@@ -329,7 +336,7 @@ describe('Use CRUD tests', function () {
       lastName: 'Name',
       displayName: 'Full Name',
       email: 'orphan@test.com',
-      username: _creds.username,
+      username: _creds.usernameOrEmail,
       password: _creds.password,
       provider: 'local'
     });
@@ -363,7 +370,7 @@ describe('Use CRUD tests', function () {
               }
 
               // Set assertions on new Use
-              (useSaveRes.body.name).should.equal(use.name);
+              (useSaveRes.body.desc).should.equal(use.desc);
               should.exist(useSaveRes.body.user);
               should.equal(useSaveRes.body.user._id, orphanId);
 
@@ -390,7 +397,7 @@ describe('Use CRUD tests', function () {
 
                         // Set assertions
                         (useInfoRes.body._id).should.equal(useSaveRes.body._id);
-                        (useInfoRes.body.name).should.equal(use.name);
+                        (useInfoRes.body.desc).should.equal(use.desc);
                         should.equal(useInfoRes.body.user, undefined);
 
                         // Call the assertion callback

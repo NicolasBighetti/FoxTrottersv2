@@ -73,7 +73,7 @@
         mockDituList = [mockDitu, mockDitu];
       });
 
-      it('should send a GET request and return all Ditus', inject(function (DitusService) {
+      /* it('should send a GET request and return all Ditus', inject(function (DitusService) {
         // Set POST response
         $httpBackend.expectGET('api/ditus').respond(mockDituList);
 
@@ -85,7 +85,7 @@
         expect($scope.vm.ditus[0]).toEqual(mockDitu);
         expect($scope.vm.ditus[1]).toEqual(mockDitu);
 
-      }));
+      }));*/
     });
   });
 }());

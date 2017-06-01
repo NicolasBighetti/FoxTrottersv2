@@ -33,9 +33,10 @@ describe('Plant CRUD tests', function () {
   beforeEach(function (done) {
     // Create user credentials
     credentials = {
-      username: 'username',
+      usernameOrEmail: 'username',
       password: 'M3@n.jsI$Aw3$0m3'
     };
+
 
     // Create a new user
     user = new User({
@@ -43,7 +44,8 @@ describe('Plant CRUD tests', function () {
       lastName: 'Name',
       displayName: 'Full Name',
       email: 'test@test.com',
-      username: credentials.username,
+      roles: ['user', 'admin'],
+      username: credentials.usernameOrEmail,
       password: credentials.password,
       provider: 'local'
     });
@@ -51,7 +53,12 @@ describe('Plant CRUD tests', function () {
     // Save a user to the test db and create new Plant
     user.save(function () {
       plant = {
-        name: 'Plant name'
+        'pois': [],
+        'uses': [],
+        'genre': 'Zinnia',
+        'family': 'Asteraceae',
+        'latinName': 'Zinnia haageana Regel',
+        'commonName': 'Zinnia'
       };
 
       done();
@@ -94,7 +101,7 @@ describe('Plant CRUD tests', function () {
 
                 // Set assertions
                 (plants[0].user._id).should.equal(userId);
-                (plants[0].name).should.match('Plant name');
+                (plants[0].commonName).should.match('Zinnia');
 
                 // Call the assertion callback
                 done();
@@ -115,7 +122,7 @@ describe('Plant CRUD tests', function () {
 
   it('should not be able to save an Plant if no name is provided', function (done) {
     // Invalidate name field
-    plant.name = '';
+    plant.commonName = '';
 
     agent.post('/api/auth/signin')
       .send(credentials)
@@ -167,7 +174,7 @@ describe('Plant CRUD tests', function () {
             }
 
             // Update Plant name
-            plant.name = 'WHY YOU GOTTA BE SO MEAN?';
+            plant.commonName = 'WHY YOU GOTTA BE SO MEAN?';
 
             // Update an existing Plant
             agent.put('/api/plants/' + plantSaveRes.body._id)
@@ -181,7 +188,7 @@ describe('Plant CRUD tests', function () {
 
                 // Set assertions
                 (plantUpdateRes.body._id).should.equal(plantSaveRes.body._id);
-                (plantUpdateRes.body.name).should.match('WHY YOU GOTTA BE SO MEAN?');
+                (plantUpdateRes.body.commonName).should.match('WHY YOU GOTTA BE SO MEAN?');
 
                 // Call the assertion callback
                 done();
@@ -218,7 +225,7 @@ describe('Plant CRUD tests', function () {
       request(app).get('/api/plants/' + plantObj._id)
         .end(function (req, res) {
           // Set assertion
-          res.body.should.be.instanceof(Object).and.have.property('name', plant.name);
+          res.body.should.be.instanceof(Object).and.have.property('commonName', plant.commonName);
 
           // Call the assertion callback
           done();
@@ -319,7 +326,7 @@ describe('Plant CRUD tests', function () {
   it('should be able to get a single Plant that has an orphaned user reference', function (done) {
     // Create orphan user creds
     var _creds = {
-      username: 'orphan',
+      usernameOrEmail: 'orphan',
       password: 'M3@n.jsI$Aw3$0m3'
     };
 
@@ -329,7 +336,7 @@ describe('Plant CRUD tests', function () {
       lastName: 'Name',
       displayName: 'Full Name',
       email: 'orphan@test.com',
-      username: _creds.username,
+      username: _creds.usernameOrEmail,
       password: _creds.password,
       provider: 'local'
     });
@@ -363,7 +370,7 @@ describe('Plant CRUD tests', function () {
               }
 
               // Set assertions on new Plant
-              (plantSaveRes.body.name).should.equal(plant.name);
+              (plantSaveRes.body.commonName).should.equal(plant.commonName);
               should.exist(plantSaveRes.body.user);
               should.equal(plantSaveRes.body.user._id, orphanId);
 
@@ -390,7 +397,7 @@ describe('Plant CRUD tests', function () {
 
                         // Set assertions
                         (plantInfoRes.body._id).should.equal(plantSaveRes.body._id);
-                        (plantInfoRes.body.name).should.equal(plant.name);
+                        (plantInfoRes.body.commonName).should.equal(plant.commonName);
                         should.equal(plantInfoRes.body.user, undefined);
 
                         // Call the assertion callback

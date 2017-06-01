@@ -2,7 +2,6 @@
   'use strict';
 
 
-  
   // Ditus controller
   angular
     .module('ditus')
@@ -10,7 +9,7 @@
 
   DitusController.$inject = ['$scope', '$state', '$window', 'Authentication', 'dituResolve'];
 
-  function DitusController ($scope, $state, $window, Authentication, ditu) {
+  function DitusController($scope, $state, $window, Authentication, ditu) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -19,7 +18,6 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
-
 
 
     // Remove existing Ditu
