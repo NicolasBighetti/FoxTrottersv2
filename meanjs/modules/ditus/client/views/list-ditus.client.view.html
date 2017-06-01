@@ -22,6 +22,7 @@
 
 <div>
   <ng-map class="gov-map" zoom="10" center="51.5112139, -0.1198244">
+    <marker ng-repeat="marker in listmarker" position={{marker.latitude}},{{marker.longitude}}/>
   </ng-map>
 </div>
 <p>eee</p>

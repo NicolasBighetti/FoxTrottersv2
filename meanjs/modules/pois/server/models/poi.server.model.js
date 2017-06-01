@@ -34,7 +34,7 @@ var PoiSchema = new Schema({
       required: 'Please fill Poi latitude'
     }
   },
-  icone: {
+  icon: {
     type: String,
     default: './images/default-marker.jpg'
   },
@@ -57,7 +57,6 @@ var PoiSchema = new Schema({
   typep: {
     type: String
   },
-
   image: {
     type: String,
     default: './images/default.jpg'
