@@ -24,13 +24,10 @@ function filterByName(items, criteria){
     var filtered = [];
 
     for (var mrk in items) {
-      console.log(items[mrk]);
       if (items[mrk].nom.toLowerCase().indexOf(criteria.toLowerCase()) !== -1)
         filtered.push(items[mrk]);
     }
-    console.log("criteria" + criteria);
-    console.log(items);
-    console.log(filtered);
+
     return filtered;
   }
 
