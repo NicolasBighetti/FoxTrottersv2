@@ -53,7 +53,7 @@ describe('Use CRUD tests', function () {
     // Save a user to the test db and create new Use
     user.save(function () {
 
-      theme = new Theme({name:'toxic'});
+      theme = new Theme({ name: 'toxic' });
 
       theme.save(function () {
         use = {

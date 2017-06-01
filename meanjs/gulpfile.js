@@ -450,7 +450,7 @@ gulp.task('build', function (done) {
 
 // Run the project tests
 gulp.task('test', function (done) {
-  //runSequence('env:test', 'test:server', 'karma', 'nodemon', 'protractor', done);
+  // runSequence('env:test', 'test:server', 'karma', 'nodemon', 'protractor', done);
   runSequence('env:test', 'test:server', done);
 });
 
@@ -464,7 +464,7 @@ gulp.task('test:server:watch', function (done) {
 });
 
 gulp.task('test:client', function (done) {
-  //runSequence('env:test', 'lint', 'dropdb', 'karma', done);
+  // runSequence('env:test', 'lint', 'dropdb', 'karma', done);
   runSequence('env:test', 'lint', 'dropdb', done);
 });
 
@@ -474,7 +474,7 @@ gulp.task('test:e2e', function (done) {
 
 gulp.task('test:coverage', function (done) {
   runSequence('env:test', ['copyLocalEnvConfig', 'makeUploadsDir', 'dropdb'], 'lint', 'mocha:coverage', done);
-  //runSequence('env:test', ['copyLocalEnvConfig', 'makeUploadsDir', 'dropdb'], 'lint', 'mocha:coverage', 'karma:coverage', done);
+  // runSequence('env:test', ['copyLocalEnvConfig', 'makeUploadsDir', 'dropdb'], 'lint', 'mocha:coverage', 'karma:coverage', done);
 });
 
 // Run the project in development mode with node debugger enabled

@@ -8,8 +8,8 @@ var path = require('path'),
   Use = mongoose.model('Use'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash'),
-  Theme = mongoose.model('Theme'),
-  Q = require('Q');
+  Theme = mongoose.model('Theme');// ,
+  // Q = require('Q');
 
 /**
  * Create a Use
@@ -40,12 +40,12 @@ function saveUse(use, res, prom) {
 exports.create = function (req, res) {
   var use = new Use(req.body);
   use.user = req.user;
-  var prom = Q.defer();
+  var prom = Promise.defer();
 
   console.log('create use');
   console.log(req);
 
-  if(req.body.theme!==undefined&&!mongoose.Types.ObjectId.isValid(req.body.theme)&&!mongoose.Types.ObjectId.isValid(req.body.theme.id)){
+  if (req.body.theme !== undefined && !mongoose.Types.ObjectId.isValid(req.body.theme) && !mongoose.Types.ObjectId.isValid(req.body.theme.id)) {
 
     // créer le theme
 
@@ -64,7 +64,7 @@ exports.create = function (req, res) {
         }
 
       } else {
-        use.theme=theme.id;
+        use.theme = theme.id;
 
         console.log('ok th');
         saveUse(use, res, prom);

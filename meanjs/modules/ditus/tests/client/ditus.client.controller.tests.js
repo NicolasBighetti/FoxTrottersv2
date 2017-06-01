@@ -93,7 +93,7 @@
         });
       }));*/
 
-      /*it('should set $scope.vm.error if error', function () {
+      /* it('should set $scope.vm.error if error', function () {
         var errorMessage = 'this is an error message';
         $httpBackend.expectPOST('api/ditus', sampleDituPostData).respond(400, {
           message: errorMessage
@@ -103,7 +103,7 @@
         $httpBackend.flush();
 
         expect($scope.vm.error).toBe(errorMessage);
-      })*/
+      }) */
     });
 
     describe('vm.save() as update', function () {
@@ -112,7 +112,7 @@
         $scope.vm.ditu = mockDitu;
       });
 
-      /*it('should update a valid Ditu', inject(function (DitusService) {
+      /* it('should update a valid Ditu', inject(function (DitusService) {
         // Set PUT response
         $httpBackend.expectPUT(/api\/ditus\/([0-9a-fA-F]{24})$/).respond();
 

@@ -14,7 +14,8 @@ var should = require('should'),
  */
 var user,
   theme,
-  plant,credentials;
+  plant,
+  credentials;
 
 /**
  * Unit tests

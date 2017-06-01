@@ -66,14 +66,14 @@ var PoiSchema = new Schema({
     type: Number,
     default: Math.floor(Math.random() * 1000)
   },
-  plant:{
+  plant: {
     type: Schema.ObjectId,
     ref: 'Plant'
   },
   panorama: {
     type: Schema.ObjectId
   },
-  user:{
+  user: {
     type: Schema.ObjectId,
     ref: 'User'
   }
