@@ -6,12 +6,14 @@
 var should = require('should'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
+  Theme = mongoose.model('Theme'),
   Plant = mongoose.model('Plant');
 
 /**
  * Globals
  */
 var user,
+  theme,
   plant;
 
 /**
@@ -27,11 +29,24 @@ describe('Plant Model Unit Tests:', function() {
       username: 'username',
       password: 'password'
     });
+    theme = new Theme({
+      name: "edible",
+      icon: "/modules/plants/server/img/edible.svg"
+    });
 
     user.save(function() {
       plant = new Plant({
-        name: 'Plant Name',
-        user: user
+        "pois": [],
+        "uses": [
+          {
+            theme:theme ,
+            desc: "ok"
+          }
+        ],
+        "genre": "Zinnia",
+        "family": "Asteraceae",
+        "latinName": "Zinnia haageana Regel",
+        "commonName": "Zinnia"
       });
 
       done();
@@ -47,8 +62,8 @@ describe('Plant Model Unit Tests:', function() {
       });
     });
 
-    it('should be able to show an error when try to save without name', function(done) {
-      plant.name = '';
+    it('should be able to show an error when try to save without commonName', function(done) {
+      plant.commonName = '';
 
       return plant.save(function(err) {
         should.exist(err);
