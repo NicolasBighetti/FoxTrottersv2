@@ -31,7 +31,10 @@ describe('Use Model Unit Tests:', function() {
     user.save(function() {
       use = new Use({
         name: 'Use Name',
-        user: user
+        user: user,
+        desc: 'en salade',
+        theme: '592c41c2d83b7e214064ee68'
+
       });
 
       done();
@@ -48,7 +51,7 @@ describe('Use Model Unit Tests:', function() {
     });
 
     it('should be able to show an error when try to save without name', function(done) {
-      use.name = '';
+      use.theme = '';
 
       return use.save(function(err) {
         should.exist(err);

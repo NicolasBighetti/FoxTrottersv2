@@ -42,6 +42,8 @@ describe('Poi Model Unit Tests:', function() {
     it('should be able to save without problems', function(done) {
       this.timeout(0);
       return poi.save(function(err) {
+        if(err)
+          console.log(err);
         should.not.exist(err);
         done();
       });

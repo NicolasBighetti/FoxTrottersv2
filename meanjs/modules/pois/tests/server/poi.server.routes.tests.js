@@ -51,7 +51,9 @@ describe('Poi CRUD tests', function () {
     // Save a user to the test db and create new Poi
     user.save(function () {
       poi = {
-        name: 'Poi name'
+        name: 'Poi name',
+        desc: 'desc',
+        coords: {latitude: '0',longitude: '0'}
       };
 
       done();

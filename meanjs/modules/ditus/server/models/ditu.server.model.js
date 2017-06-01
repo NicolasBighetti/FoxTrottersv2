@@ -12,7 +12,6 @@ var mongoose = require('mongoose'),
 var DituSchema = new Schema({
   name: {
     type: String,
-    default: '',
     required: 'Please fill Ditu name',
     trim: true
   },
@@ -24,11 +23,10 @@ var DituSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
-  pois: {
-    type: [Schema.ObjectId],
-    ref: 'Poi',
-    default: []
-  }
+  pois: [{
+    type: Schema.ObjectId,
+    ref: 'Poi'
+  }]
 });
 
 mongoose.model('Ditu', DituSchema);

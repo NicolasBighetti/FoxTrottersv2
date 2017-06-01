@@ -218,7 +218,7 @@ describe('Plant CRUD tests', function () {
       request(app).get('/api/plants/' + plantObj._id)
         .end(function (req, res) {
           // Set assertion
-          res.body.should.be.instanceof(Object).and.have.property('name', plant.name);
+          res.body.should.be.instanceof(Object).and.have.property('commonName', plant.name);
 
           // Call the assertion callback
           done();

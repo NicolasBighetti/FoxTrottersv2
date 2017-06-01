@@ -2,16 +2,15 @@
   <div class="page-header">
     <h1 ng-bind="vm.plant.commonName"></h1>
   </div>
-  <img ng-src="vm.plant.image[0]" />
+  <img ng-src="{{vm.plant.image[0]}}" width="20%" />
   <h2 ng-bind="vm.plant.latinName"></h2>
   <h2 ng-bind="vm.plant.family"></h2>
   <h2 ng-bind="vm.plant.genre"></h2>
-  <!--
   <div ng-repeat="useElem in vm.plant.uses">
-    <img ng-src="{{ useElem.theme.icon }}" />
+    <img ng-src="{{ useElem.theme.icon }}" width="5%"  />
+    <h3 ng-bind="useElem.theme.desc"></h3>
     <p>{{useElem.desc}}</p>
   </div>
-  -->
   <div class="pull-right"
        ng-show="vm.plant.isCurrentUserOwner">
     <a class="btn btn-primary"

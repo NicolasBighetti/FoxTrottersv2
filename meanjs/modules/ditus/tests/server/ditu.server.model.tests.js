@@ -41,7 +41,7 @@ describe('Ditu Model Unit Tests:', function() {
   describe('Method Save', function() {
     it('should be able to save without problems', function(done) {
       this.timeout(0);
-      return ditu.save(function(err) {
+      ditu.save(function(err) {
         should.not.exist(err);
         done();
       });
@@ -49,8 +49,7 @@ describe('Ditu Model Unit Tests:', function() {
 
     it('should be able to show an error when try to save without name', function(done) {
       ditu.name = '';
-
-      return ditu.save(function(err) {
+      ditu.save(function(err) {
         should.exist(err);
         done();
       });
