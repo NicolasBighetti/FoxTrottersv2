@@ -53,7 +53,7 @@ describe('Poi CRUD tests', function () {
       poi = {
         name: 'Poi name',
         desc: 'desc',
-        coords: {latitude: '0',longitude: '0'}
+        coords: { latitude: '0', longitude: '0' }
       };
 
       done();

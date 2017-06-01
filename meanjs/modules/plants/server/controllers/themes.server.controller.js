@@ -12,18 +12,18 @@ var path = require('path'),
 /**
  * Create a Theme
  */
-exports.create = function(req, res) {
+exports.create = function (req, res) {
   var theme = new Theme(req.body);
   theme.user = req.user;
 
-  theme.save(function(err) {
+  theme.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      if(res)
-      res.jsonp(theme);
+      if (res)
+        res.jsonp(theme);
     }
   });
 };
@@ -31,7 +31,7 @@ exports.create = function(req, res) {
 /**
  * Show the current Theme
  */
-exports.read = function(req, res) {
+exports.read = function (req, res) {
   // convert mongoose document to JSON
   var theme = req.theme ? req.theme.toJSON() : {};
 
@@ -45,12 +45,12 @@ exports.read = function(req, res) {
 /**
  * Update a Theme
  */
-exports.update = function(req, res) {
+exports.update = function (req, res) {
   var theme = req.theme;
 
   theme = _.extend(theme, req.body);
 
-  theme.save(function(err) {
+  theme.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -64,10 +64,10 @@ exports.update = function(req, res) {
 /**
  * Delete an Theme
  */
-exports.delete = function(req, res) {
+exports.delete = function (req, res) {
   var theme = req.theme;
 
-  theme.remove(function(err) {
+  theme.remove(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -81,8 +81,8 @@ exports.delete = function(req, res) {
 /**
  * List of Themes
  */
-exports.list = function(req, res) {
-  Theme.find().sort('-created').populate('user', 'displayName').exec(function(err, themes) {
+exports.list = function (req, res) {
+  Theme.find().sort('-created').populate('user', 'displayName').exec(function (err, themes) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -96,7 +96,7 @@ exports.list = function(req, res) {
 /**
  * Theme middleware
  */
-exports.themeByID = function(req, res, next, id) {
+exports.themeByID = function (req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
