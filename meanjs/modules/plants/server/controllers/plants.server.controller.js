@@ -7,7 +7,9 @@ var path = require('path'),
   mongoose = require('mongoose'),
   Plant = mongoose.model('Plant'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
-  _ = require('lodash'), uses = require('../controllers/uses.server.controller'), Q = require('Q');
+  _ = require('lodash'),
+  uses = require('../controllers/uses.server.controller'),
+  Q = require('Q');
 
 
 function plantSave(plant, res) {
@@ -37,11 +39,10 @@ exports.create = function (req, res) {
 
   // vérifier que les usages existent
   for (var us in req.body.uses) {
-    var use = req.body.uses[us];
-    if (!mongoose.Types.ObjectId.isValid(use.id)) {
+    if (!mongoose.Types.ObjectId.isValid(req.body.uses[us].id)) {
       // créer le use
       console.log('creating use');
-      var reqt = {"body": use, "user": req.user};
+      var reqt = { 'body': req.body.uses[us], 'user': req.user };
       waitUses.push(uses.create(reqt));
       waitUsesIds.push(us);
     }
@@ -49,15 +50,16 @@ exports.create = function (req, res) {
   console.log('done');
 
   Promise.all(waitUses).then(function (values) {
-    console.log("ALL");
+    console.log('ALL');
 
     console.log(values);
 
-    for (var us2 in values) {
+    for (var us2 = 0; us2 < values.length; us2++) {
       console.log('Us2: ' + us2 + ' ' + waitUsesIds[us2]);
       console.log(values[us2]);
       req.body.uses[waitUsesIds[us2]] = values[us2];
     }
+
     console.log('okFOR');
     console.log(req.body);
     var plant = new Plant(req.body);
@@ -70,7 +72,7 @@ exports.create = function (req, res) {
     plantSave(plant, res);
 
   }, function (err) {
-    console.log("heuy");
+    console.log('heuy');
     console.log(err);
     return res.status(400).send({
       message: errorHandler.getErrorMessage(err)
@@ -89,7 +91,7 @@ exports.read = function (req, res) {
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  //plant.isCurrentUserOwner = req.user && plant.user && plant.user._id.toString() === req.user._id.toString();
+  // plant.isCurrentUserOwner = req.user && plant.user && plant.user._id.toString() === req.user._id.toString();
 
   res.jsonp(plant);
 };
@@ -159,7 +161,7 @@ exports.plantByID = function (req, res, next, id) {
   Plant.findById(id)
     .populate({
       path: 'uses',
-      populate: {path: 'theme', model: 'Theme'}
+      populate: { path: 'theme', model: 'Theme' }
     })
     .populate('user', 'displayName')
     .exec(function (err, plant) {

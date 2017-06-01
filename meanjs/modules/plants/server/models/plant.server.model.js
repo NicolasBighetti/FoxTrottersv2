@@ -36,7 +36,7 @@ var PlantSchema = new Schema({
     ref: 'Poi',
     default: []
   }],
-  image:{
+  image: {
     type: [String],
     default: ['modules/plants/client/img/errorIcon.svg']
   },

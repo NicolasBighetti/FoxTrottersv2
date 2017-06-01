@@ -7,26 +7,29 @@ var path = require('path'),
   mongoose = require('mongoose'),
   Use = mongoose.model('Use'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
-  _ = require('lodash'), Theme = mongoose.model('Theme'),Q = require('Q');
+  _ = require('lodash'),
+  Theme = mongoose.model('Theme'),
+  Q = require('Q');
 
 /**
  * Create a Use
  */
-function saveUse(use,res, prom){
-  use.save(function(err) {
+function saveUse(use, res, prom) {
+  use.save(function (err) {
     if (err) {
-      if(res){
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });}
-      if(prom) {
+      if (res) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      if (prom) {
         prom.reject(err);
       }
     } else {
-      if(res)
+      if (res)
         res.jsonp(use);
-      if(prom){
-        console.log('okuse')
+      if (prom) {
+        console.log('okuse');
         console.log(use);
         prom.resolve(use);
       }
@@ -34,41 +37,39 @@ function saveUse(use,res, prom){
   });
 }
 
-exports.create = function(req, res) {
+exports.create = function (req, res) {
   var use = new Use(req.body);
   use.user = req.user;
   var prom = Q.defer();
 
-  console.log("create use");
+  console.log('create use');
   console.log(req);
-  if(!mongoose.Types.ObjectId.isValid(req.body.theme.id)){
+  if (!mongoose.Types.ObjectId.isValid(req.body.theme.id)) {
     // créer le theme
 
     console.log('creating a new theme');
     console.log(req.body.theme);
     var theme = new Theme(req.body.theme);
 
-    theme.save(function(err) {
+    theme.save(function (err) {
       if (err) {
-        if(!res){
+        if (!res) {
           prom.reject(err);
-        }
-        else {
+        } else {
           return res.status(400).send({
             message: errorHandler.getErrorMessage(err)
           });
         }
 
       } else {
-        use.theme=theme;
+        use.theme = theme;
         console.log('ok th');
-        saveUse(use,res,prom);
+        saveUse(use, res, prom);
       }
     });
 
-  }
-  else{
-    saveUse(use,res,prom);
+  } else {
+    saveUse(use, res, prom);
   }
   return prom.promise;
 };
@@ -76,7 +77,7 @@ exports.create = function(req, res) {
 /**
  * Show the current Use
  */
-exports.read = function(req, res) {
+exports.read = function (req, res) {
   // convert mongoose document to JSON
   var use = req.use ? req.use.toJSON() : {};
 
@@ -90,12 +91,12 @@ exports.read = function(req, res) {
 /**
  * Update a Use
  */
-exports.update = function(req, res) {
+exports.update = function (req, res) {
   var use = req.use;
 
   use = _.extend(use, req.body);
 
-  use.save(function(err) {
+  use.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -109,10 +110,10 @@ exports.update = function(req, res) {
 /**
  * Delete an Use
  */
-exports.delete = function(req, res) {
+exports.delete = function (req, res) {
   var use = req.use;
 
-  use.remove(function(err) {
+  use.remove(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -126,8 +127,8 @@ exports.delete = function(req, res) {
 /**
  * List of Uses
  */
-exports.list = function(req, res) {
-  Use.find().sort('-created').populate('user', 'displayName').exec(function(err, uses) {
+exports.list = function (req, res) {
+  Use.find().sort('-created').populate('user', 'displayName').exec(function (err, uses) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -141,7 +142,7 @@ exports.list = function(req, res) {
 /**
  * Use middleware
  */
-exports.useByID = function(req, res, next, id) {
+exports.useByID = function (req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
