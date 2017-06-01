@@ -4,6 +4,8 @@ services:
     image: fxt/server
     restart: always
     build: .
+    links:
+     - db
     container_name: meanjs
     ports:
      - "3000:3000"
