@@ -33,9 +33,10 @@ describe('Ditu CRUD tests', function () {
   beforeEach(function (done) {
     // Create user credentials
     credentials = {
-      username: 'username',
+      usernameOrEmail: 'username',
       password: 'M3@n.jsI$Aw3$0m3'
     };
+
 
     // Create a new user
     user = new User({
@@ -43,7 +44,8 @@ describe('Ditu CRUD tests', function () {
       lastName: 'Name',
       displayName: 'Full Name',
       email: 'test@test.com',
-      username: credentials.username,
+      roles: ['user', 'admin'],
+      username: credentials.usernameOrEmail,
       password: credentials.password,
       provider: 'local'
     });
@@ -53,12 +55,13 @@ describe('Ditu CRUD tests', function () {
       ditu = {
         name: 'Ditu name'
       };
-
       done();
     });
   });
 
   it('should be able to save a Ditu if logged in', function (done) {
+
+
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -319,7 +322,7 @@ describe('Ditu CRUD tests', function () {
   it('should be able to get a single Ditu that has an orphaned user reference', function (done) {
     // Create orphan user creds
     var _creds = {
-      username: 'orphan',
+      usernameOrEmail: 'orphan',
       password: 'M3@n.jsI$Aw3$0m3'
     };
 
@@ -329,7 +332,7 @@ describe('Ditu CRUD tests', function () {
       lastName: 'Name',
       displayName: 'Full Name',
       email: 'orphan@test.com',
-      username: _creds.username,
+      username: _creds.usernameOrEmail,
       password: _creds.password,
       provider: 'local'
     });

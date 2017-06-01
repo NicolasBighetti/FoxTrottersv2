@@ -14,22 +14,33 @@ var should = require('should'),
  */
 var user,
   theme,
-  plant;
+  plant,credentials;
 
 /**
  * Unit tests
  */
 describe('Plant Model Unit Tests:', function() {
   beforeEach(function(done) {
+    credentials = {
+      usernameOrEmail: 'username',
+      password: 'M3@n.jsI$Aw3$0m3'
+    };
+
+
+    // Create a new user
     user = new User({
       firstName: 'Full',
       lastName: 'Name',
       displayName: 'Full Name',
       email: 'test@test.com',
-      username: 'username',
-      password: 'password'
+      roles: ['user', 'admin'],
+      username: credentials.usernameOrEmail,
+      password: credentials.password,
+      provider: 'local'
     });
+
     theme = new Theme({
+      id: "592fd36fed765d27e0a2b331",
       name: "edible",
       icon: "/modules/plants/server/img/edible.svg"
     });
@@ -37,12 +48,7 @@ describe('Plant Model Unit Tests:', function() {
     user.save(function() {
       plant = new Plant({
         "pois": [],
-        "uses": [
-          {
-            theme:theme ,
-            desc: "ok"
-          }
-        ],
+        "uses": [],
         "genre": "Zinnia",
         "family": "Asteraceae",
         "latinName": "Zinnia haageana Regel",
@@ -56,7 +62,7 @@ describe('Plant Model Unit Tests:', function() {
   describe('Method Save', function() {
     it('should be able to save without problems', function(done) {
       this.timeout(0);
-      return plant.save(function(err) {
+      plant.save(function(err) {
         should.not.exist(err);
         done();
       });
@@ -65,7 +71,7 @@ describe('Plant Model Unit Tests:', function() {
     it('should be able to show an error when try to save without commonName', function(done) {
       plant.commonName = '';
 
-      return plant.save(function(err) {
+      plant.save(function(err) {
         should.exist(err);
         done();
       });

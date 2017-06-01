@@ -30,7 +30,6 @@ describe('Use Model Unit Tests:', function() {
 
     user.save(function() {
       use = new Use({
-        name: 'Use Name',
         user: user,
         desc: 'en salade',
         theme: '592c41c2d83b7e214064ee68'
@@ -44,16 +43,16 @@ describe('Use Model Unit Tests:', function() {
   describe('Method Save', function() {
     it('should be able to save without problems', function(done) {
       this.timeout(0);
-      return use.save(function(err) {
+      use.save(function(err) {
         should.not.exist(err);
         done();
       });
     });
 
-    it('should be able to show an error when try to save without name', function(done) {
-      use.theme = '';
+    it('should be able to show an error when try to save without desc', function(done) {
+      use.desc = '';
 
-      return use.save(function(err) {
+      use.save(function(err) {
         should.exist(err);
         done();
       });

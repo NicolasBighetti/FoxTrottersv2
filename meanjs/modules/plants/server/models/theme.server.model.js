@@ -19,6 +19,10 @@ var ThemeSchema = new Schema({
     default: '',
     required: 'Please fill theme name',
     trim: true
+  },
+  user: {
+    type: Schema.ObjectId,
+    ref: 'User'
   }
 });
 

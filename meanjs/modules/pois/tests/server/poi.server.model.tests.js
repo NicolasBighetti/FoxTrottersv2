@@ -31,7 +31,9 @@ describe('Poi Model Unit Tests:', function() {
     user.save(function() {
       poi = new Poi({
         name: 'Poi Name',
-        user: user
+        user: user,
+        coords:{latitude: '0',longitude: '0'},
+        desc: 'oi'
       });
 
       done();
@@ -41,7 +43,7 @@ describe('Poi Model Unit Tests:', function() {
   describe('Method Save', function() {
     it('should be able to save without problems', function(done) {
       this.timeout(0);
-      return poi.save(function(err) {
+      poi.save(function(err) {
         if(err)
           console.log(err);
         should.not.exist(err);
@@ -52,7 +54,7 @@ describe('Poi Model Unit Tests:', function() {
     it('should be able to show an error when try to save without name', function(done) {
       poi.name = '';
 
-      return poi.save(function(err) {
+      poi.save(function(err) {
         should.exist(err);
         done();
       });

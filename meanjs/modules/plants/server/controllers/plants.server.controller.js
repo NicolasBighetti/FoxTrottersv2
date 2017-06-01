@@ -58,6 +58,8 @@ exports.create = function (req, res) {
       console.log(values[us2]);
       req.body.uses[waitUsesIds[us2]] = values[us2];
     }
+
+
     console.log('okFOR');
     console.log(req.body);
     var plant = new Plant(req.body);
