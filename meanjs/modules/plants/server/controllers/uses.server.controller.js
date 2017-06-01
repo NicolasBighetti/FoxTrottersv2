@@ -8,8 +8,8 @@ var path = require('path'),
   Use = mongoose.model('Use'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash'),
-  Theme = mongoose.model('Theme'),
-  Q = require('Q');
+  Theme = mongoose.model('Theme');// ,
+  // Q = require('Q');
 
 /**
  * Create a Use
@@ -40,7 +40,7 @@ function saveUse(use, res, prom) {
 exports.create = function (req, res) {
   var use = new Use(req.body);
   use.user = req.user;
-  var prom = Q.defer();
+  var prom = Promise.defer();
 
   console.log('create use');
   console.log(req);
