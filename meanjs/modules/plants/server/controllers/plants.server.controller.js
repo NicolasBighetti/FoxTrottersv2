@@ -13,9 +13,6 @@ var path = require('path'),
 
 
 function plantSave(plant, res) {
-  console.log('saving');
-  console.log(plant);
-  console.log(plant.uses[0]);
   plant.save(function (err) {
     if (err) {
       return res.status(400).send({
@@ -34,9 +31,6 @@ exports.create = function (req, res) {
   var waitUses = [];
   var waitUsesIds = [];
 
-  console.log('verif uses');
-  console.log(req.body);
-
   // vérifier que les usages existent
   for (var us in req.body.uses) {
     if (!mongoose.Types.ObjectId.isValid(req.body.uses[us].id)) {
@@ -47,33 +41,19 @@ exports.create = function (req, res) {
       waitUsesIds.push(us);
     }
   }
-  console.log('done');
 
   Promise.all(waitUses).then(function (values) {
-    console.log('ALL');
-
-    console.log(values);
-
     for (var us2 = 0; us2 < values.length; us2++) {
       console.log('Us2: ' + us2 + ' ' + waitUsesIds[us2]);
       console.log(values[us2]);
       req.body.uses[waitUsesIds[us2]] = values[us2];
     }
-
-    console.log('okFOR');
-    console.log(req.body);
     var plant = new Plant(req.body);
-
-    console.log('ok plant');
-    console.log(plant);
-
 
     plant.user = req.user;
     plantSave(plant, res);
 
   }, function (err) {
-    console.log('heuy');
-    console.log(err);
     return res.status(400).send({
       message: errorHandler.getErrorMessage(err)
     });
