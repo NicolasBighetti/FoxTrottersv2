@@ -4,6 +4,8 @@ services:
     image: fxt/server
     restart: always
     build: .
+    links:
+     - db
     container_name: meanjs
     ports:
      - "3000:3000"
@@ -26,14 +28,14 @@ services:
      - /opt/mean.js/public
      - /opt/mean.js/uploads
   db:
-    image: mongo:3.2
+    image: mongo:3.4
     restart: always
     ports:
-     - "27017:27017"
+     - "27017"
     volumes_from:
       - db-data
   db-data:
-    image: mongo:3.2
+    image: mongo:3.4
     volumes:
       - /data/db
       - /var/lib/mongodb

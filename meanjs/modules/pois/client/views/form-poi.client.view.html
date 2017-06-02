@@ -3,7 +3,9 @@
     <h1>{{vm.poi._id ? 'Edit Poi' : 'New Poi'}}</h1>
   </div>
   <div class="col-md-8">
-
+    <ng-map class="gov-map" zoom="10" center="51.5112139, -0.1198244">
+      <marker ng-repeat="marker in listmarker" position={{marker.latitude}},{{marker.longitude}} />
+    </ng-map>
   </div>
   <div class="col-md-4">
     <form name="vm.form.poiForm" class="form-horizontal" ng-submit="vm.save(vm.form.poiForm.$valid)" novalidate>
@@ -11,21 +13,24 @@
         <div class="form-group" show-errors>
 
           <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.poi.name" id="name" class="form-control" placeholder="Name" required>
+          <input name="name" type="text" ng-model="vm.poi.name" id="name" class="form-control" placeholder="Enter name" required>
 
           <label class="control-label" for="desc">Description</label>
-          <input name="desc" type="text" ng-model="vm.poi.desc" id="desc" class="form-control" placeholder="Desc" required>
+          <input name="desc" type="text" ng-model="vm.poi.desc" id="desc" class="form-control" placeholder="Enter description" required>
 
-          <label class="control-label" for="typep">Description</label>
-          <input name="typep" type="text" ng-model="vm.poi.typep" id="typep" class="form-control" placeholder="Typep" required>
+          <label class="control-label" for="typep">Type</label>
+          <input name="typep" type="text" ng-model="vm.poi.typep" id="typep" class="form-control" placeholder="Enter type" required>
 
           <select>
-            <option value="eau">Point d'eau</option>
-            <option value="eau">Plante</option>
-            <option value="eau">Point de vue</option>
+            <option value="water">Water</option>
+            <option value="plant">Plant</option>
+            <option value="viewpoint">Viewpoint</option>
           </select>
           <div ng-messages="vm.form.poiForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Poi name is required.</p>
+            <p class="help-block error-text" ng-message="required">Poi's name is required.</p>
+          </div>
+          <div ng-messages="vm.form.poiForm.desc.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Poi's description is required.</p>
           </div>
         </div>
         <div class="form-group">
