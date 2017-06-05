@@ -49,5 +49,13 @@
         vm.error = res.data.message;
       }
     }
+
+
+    vm.pos = {};
+    //TODO
+    vm.addMarker = function(event) {
+      var ll = event.latLng;
+      vm.pos = {lat:ll.lat(), lng: ll.lng()};
+    }
   }
 }());
