@@ -1,5 +1,7 @@
 /* Empty. Add your own CSS if you like */
-.angular-google-map-container { height: 400px; }
+ng-map {width:100%; height:100%;position: absolute;}
+
+
 .plantinder {
   position: absolute;
   top: 0;
