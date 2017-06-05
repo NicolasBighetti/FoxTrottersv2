@@ -84,6 +84,10 @@
                       zoom="8" >
                 <marker ng-repeat="latlong in foxMarkers.markers | filterByCriteria:plantname:category"
                         position=[{{latlong.latitude}},{{latlong.longitude}}]
+                        icon="{
+        url:'pictures/icons/feuille.png',
+        scaledSize:[20,20]
+      }"
                 ></marker>
               </ng-map>
               <input type="text" ng-model="plantname">
