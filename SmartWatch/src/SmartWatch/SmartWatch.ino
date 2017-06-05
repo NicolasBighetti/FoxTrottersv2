@@ -2,7 +2,10 @@
 #include <Arduino.h>
 #include <CurieBLE.h>
 #include <LiquidCrystal.h>
+#include <regex>
+#include "ArduinoJson/ArduinoJson.h";
 #include "parser.h"
+
 
 
 BLEPeripheral blePeripheral;  // BLE Peripheral Device (the board you're programming)

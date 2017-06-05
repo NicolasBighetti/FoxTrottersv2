@@ -9,3 +9,12 @@ bool bufferize(char * rcv){
   return true;
 }
 
+String parserJSON(String field){
+  StaticJsonBuffer<512> jsonBuffer;
+  JsonObject& root = jsonBuffer.parseObject(buf);
+
+  String result = root[field];
+ 
+   return result;
+}
+
