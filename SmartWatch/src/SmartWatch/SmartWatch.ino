@@ -1,12 +1,8 @@
-/*
- * Blink
- * Turns on an LED on for one second,
- * then off for one second, repeatedly.
- */
 
 #include <Arduino.h>
 #include <CurieBLE.h>
 #include <LiquidCrystal.h>
+#include "parser.h"
 
 
 BLEPeripheral blePeripheral;  // BLE Peripheral Device (the board you're programming)
@@ -53,7 +49,7 @@ void setup()
 {
 
   Serial.begin(9600);
-  //while (!Serial);
+  while (!Serial);
   Serial.println("Beginning");
   blePeripheral.setLocalName("FoxTrotters_SmartWatch");
   blePeripheral.setAdvertisedServiceUuid(comService.uuid());
@@ -103,15 +99,16 @@ void loop()
         Serial.println((char*)message.value());
        
        
-        lcd.clear();
-        delay(1000);
-        smartAfficher((char*)message.value(),message.valueLength());
+        if(bufferize((char*)message.value())){
+          lcd.clear();
+          smartAfficher(buf,buf.length());
+          buf = "";
+          /*Serial.println((char*)message.value());
+          Serial.println(digitalRead(buttonPin));
+          Serial.println("Done");*/
+        }
         memset((unsigned char *)nullchar, 0, 32);
         message.setValue((unsigned char *)nullchar,32); //set to default value
-        Serial.println((char*)message.value());
-        Serial.println(digitalRead(buttonPin));
-        Serial.println("Done");
-        
       }
     }
   }
