@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Planders</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="plander in vm.planders"
+       ui-sref="planders.view({ planderId: plander._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="plander.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="plander.user" ng-bind="plander.user.displayName"></span>
+        <span ng-if="!plander.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="plander.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.planders.$resolved && !vm.planders.length">
+    No Planders yet, why don't you <a ui-sref="planders.create">create one</a>?
+  </div>
+</section>
