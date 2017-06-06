@@ -11,6 +11,7 @@
 
 #Ionic assets
 foxapp/assets/
+!foxapp/plugins/RichNotification
 foxapp/plugins/
 foxapp/platforms/
 foxapp/.gradle/
