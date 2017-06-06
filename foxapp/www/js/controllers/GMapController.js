@@ -17,4 +17,11 @@ angular.module('foxapp')
     };
 
     $scope.tinderswitch = true;
+
+    $scope.category = "";
+
+    $scope.changeFilter = function(criteria){
+      $scope.category = criteria;
+    }
+
 }]);
