@@ -2,10 +2,18 @@
  * Created by user on 01/06/17.
  */
 angular.module('foxapp')
-  .factory('MarkerService', [
+  .factory('MarkerService', ['RESTService',
 
-    function () {
+    function (RESTService) {
       return {
+
+        getAllMarkers : function() {
+          RESTService.get("http://ns388671.ip-176-31-254.eu:3000/api/pois").then(function(data) {
+              console.log(data);
+            }
+          );
+        },
+
         getMarkers: function () {
           var mock = {
 
@@ -42,6 +50,7 @@ angular.module('foxapp')
 
           return mock;
         }
+
       }
     }
   ]);
