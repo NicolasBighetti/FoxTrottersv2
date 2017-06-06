@@ -7,8 +7,8 @@ angular.module('foxapp')
   function($http){
   return{
     get : function(URL){
-      return $http.get(URL).then(function (data) {
-        return data.data;
+      return $http.get(URL).then(function (result) {
+        return result;
       });
     },
     post : function(URL, data){
@@ -17,9 +17,19 @@ angular.module('foxapp')
         url: URL,
         data:data
       }
-      return $http(req).then(function(data) {
+      return $http(req).then(function(result) {
 
-        return data.data;
+        return result;
+      })
+    },
+    put : function(URL, data){
+      var req = {
+        method: 'PUT',
+        url: URL,
+        data:data
+      }
+      return $http(req).then(function(result){
+        return result;
       })
     }
   }
