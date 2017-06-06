@@ -11,8 +11,8 @@
 
 #Ionic assets
 foxapp/assets/
-!foxapp/plugins/RichNotification
 foxapp/plugins/
+!foxapp/plugins/RichNotification/
 foxapp/platforms/
 foxapp/.gradle/
 #WebStorm bullshit
