@@ -8,7 +8,7 @@ angular.module('foxapp')
   return{
     get : function(URL){
       return $http.get(URL).then(function (result) {
-        return result;
+        return result.data;
       });
     },
     post : function(URL, data){
@@ -19,7 +19,7 @@ angular.module('foxapp')
       }
       return $http(req).then(function(result) {
 
-        return result;
+        return result.data;
       })
     },
     put : function(URL, data){
@@ -29,7 +29,7 @@ angular.module('foxapp')
         data:data
       }
       return $http(req).then(function(result){
-        return result;
+        return result.data;
       })
     }
   }
