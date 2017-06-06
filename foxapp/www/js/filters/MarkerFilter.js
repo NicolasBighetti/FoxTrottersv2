@@ -8,9 +8,6 @@ angular.module('foxapp')
   if(criteria === undefined)
     criteria = '';
 
-  console.log("searching : " + criteria);
-  console.log("category filtering by " + category);
-
   if(category !== '')
     items = filterByCategory(items, category);
 
