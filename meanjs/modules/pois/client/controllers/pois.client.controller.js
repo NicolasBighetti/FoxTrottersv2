@@ -51,11 +51,12 @@
     }
 
 
-    vm.pos = {};
-    //TODO
+    // --- Custom functions ---
+
+    vm.poi.coords = {};
     vm.addMarker = function(event) {
       var ll = event.latLng;
-      vm.pos = {lat:ll.lat(), lng: ll.lng()};
+      vm.poi.coords = {'longitude':ll.lng(), 'latitude': ll.lat()};
     }
   }
 }());
