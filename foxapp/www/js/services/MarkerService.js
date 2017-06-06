@@ -8,10 +8,8 @@ angular.module('foxapp')
       return {
 
         getAllMarkers : function() {
-          RESTService.get("http://ns388671.ip-176-31-254.eu:3000/api/pois").then(function(data) {
-              console.log(data);
-            }
-          );
+          return RESTService.get("http://ns388671.ip-176-31-254.eu:3000/api/pois");
+
         },
 
         getMarkers: function () {

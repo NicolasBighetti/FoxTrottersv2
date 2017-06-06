@@ -19,7 +19,6 @@ angular.module('foxapp')
 };
 
 function filterByName(items, criteria){
-
     if(criteria === '') {
       return items;
     }
@@ -27,7 +26,7 @@ function filterByName(items, criteria){
     var filtered = [];
 
     for (var mrk in items) {
-      if (items[mrk].nom.toLowerCase().indexOf(criteria.toLowerCase()) !== -1)
+      if (items[mrk].name.toLowerCase().indexOf(criteria.toLowerCase()) !== -1)
         filtered.push(items[mrk]);
     }
 
@@ -38,7 +37,7 @@ function filterByCategory(items, category){
   var filtered = [];
 
   for (var mrk in items) {
-    if (items[mrk].theme.toLowerCase().indexOf(category.toLowerCase()) !== -1)
+    if (items[mrk].typep.toLowerCase().indexOf(category.toLowerCase()) !== -1)
       filtered.push(items[mrk]);
   }
 
