@@ -49,5 +49,14 @@
         vm.error = res.data.message;
       }
     }
+
+
+    // --- Custom functions ---
+
+    vm.poi.coords = {};
+    vm.addMarker = function(event) {
+      var ll = event.latLng;
+      vm.poi.coords = {'longitude':ll.lng(), 'latitude': ll.lat()};
+    }
   }
 }());

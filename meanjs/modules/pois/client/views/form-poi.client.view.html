@@ -3,8 +3,11 @@
     <h1>{{vm.poi._id ? 'Edit Poi' : 'New Poi'}}</h1>
   </div>
   <div class="col-md-8">
-    <ng-map class="gov-map" zoom="10" center="51.5112139, -0.1198244">
-      <marker ng-repeat="marker in listmarker" position={{marker.latitude}},{{marker.longitude}} />
+    <ng-map class="gov-map" zoom="10" center="51.5112139, -0.1198244" on-click="vm.addMarker()">
+      <!-- <marker ng-repeat="marker in listmarker" position={{marker.latitude}},{{marker.longitude}}></marker> -->
+      <marker
+        position="{{vm.poi.coords.latitude}}, {{vm.poi.coords.longitude}}"
+        icon="{path:'CIRCLE', scale: 5, strokeColor: 'red', zIndex:10}"></marker>
     </ng-map>
   </div>
   <div class="col-md-4">
@@ -18,9 +21,7 @@
           <label class="control-label" for="desc">Description</label>
           <input name="desc" type="text" ng-model="vm.poi.desc" id="desc" class="form-control" placeholder="Enter description" required>
 
-          <label class="control-label" for="typep">Type</label>
-          <input name="typep" type="text" ng-model="vm.poi.typep" id="typep" class="form-control" placeholder="Enter type" required>
-
+          <h4>Type</h4>
           <select>
             <option value="water">Water</option>
             <option value="plant">Plant</option>
