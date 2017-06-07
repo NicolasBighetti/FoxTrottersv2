@@ -11,7 +11,7 @@ module.exports = {
   },
   port: process.env.PORT || 80,
   // Binding to 127.0.0.1 is safer in production.
-  host: process.env.HOST || '127.0.0.1',
+  host: process.env.HOST || '0.0.0.0',
   db: {
     uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean',
     options: {
@@ -60,8 +60,8 @@ module.exports = {
     callbackURL: '/api/auth/twitter/callback'
   },
   google: {
-    clientID: process.env.GOOGLE_ID || '39639065033-naj3v0bmnbolmg910rd3it72c367crjo.apps.googleusercontent.com',
-    clientSecret: process.env.GOOGLE_SECRET || '7Y3h7T3OexW-_10BtTvJvuLJ',
+    clientID: '39639065033-naj3v0bmnbolmg910rd3it72c367crjo.apps.googleusercontent.com',
+    clientSecret: '7Y3h7T3OexW-_10BtTvJvuLJ',
     callbackURL: '/api/auth/google/callback'
   },
   linkedin: {

@@ -2,8 +2,6 @@ version: '2'
 services:
   web:
     restart: always
-    links:
-      - db
     build:
      context: .
      dockerfile: Dockerfile-production
@@ -41,4 +39,3 @@ services:
       - /var/lib/mongodb
       - /var/log/mongodb
     entrypoint: /bin/true
-
