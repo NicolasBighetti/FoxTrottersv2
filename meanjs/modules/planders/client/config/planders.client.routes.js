@@ -20,7 +20,8 @@
         controller: 'PlandersListController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Planders List'
+          pageTitle: 'Planders List',
+          roles: ['user', 'admin']
         }
       })
       .state('planders.create', {
@@ -38,7 +39,7 @@
       })
       .state('planders.edit', {
         url: '/:planderId/edit',
-        templateUrl: 'modules/planders/client/views/form-plander.client.view.html',
+        templateUrl: '/modules/planders/client/views/form-plander.client.view.html',
         controller: 'PlandersController',
         controllerAs: 'vm',
         resolve: {
@@ -51,21 +52,22 @@
       })
       .state('planders.view', {
         url: '/:planderId',
-        templateUrl: 'modules/planders/client/views/view-plander.client.view.html',
+        templateUrl: '/modules/planders/client/views/view-plander.client.view.html',
         controller: 'PlandersController',
         controllerAs: 'vm',
         resolve: {
           planderResolve: getPlander
         },
         data: {
-          pageTitle: 'Plander {{ planderResolve.name }}'
+          pageTitle: 'Plander {{ planderResolve.name }}',
+          roles: ['user', 'admin']
         }
       });
   }
 
-  getPlander.$inject = ['$stateParams', 'PlandersService'];
+  getPlander.$inject = ['PlandersService', '$stateParams'];
 
-  function getPlander($stateParams, PlandersService) {
+  function getPlander(PlandersService, $stateParams) {
     return PlandersService.get({
       planderId: $stateParams.planderId
     }).$promise;

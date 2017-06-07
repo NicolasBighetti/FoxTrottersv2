@@ -1,7 +1,6 @@
 version: '2'
 services:
   web:
-    image: fxt/server
     restart: always
     links:
       - db
@@ -11,12 +10,13 @@ services:
     container_name: meanjs
     ports:
      - "8443:8443"
+     - "80:80"
+     - "3000:80"
     environment:
      - NODE_ENV=production
      - DB_1_PORT_27017_TCP_ADDR=db
     depends_on:
      - db
-
     volumes_from:
      - web-data
   web-data:
@@ -35,7 +35,7 @@ services:
     volumes_from:
       - db-data
   db-data:
-    image: mongo:3.2
+    image: mongo:3.4
     volumes:
       - /data/db
       - /var/lib/mongodb
