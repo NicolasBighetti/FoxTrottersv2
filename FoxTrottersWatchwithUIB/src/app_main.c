@@ -49,12 +49,12 @@ void uib_app_destroy(app_data *user_data)
 void
 my_short_job(void *data, Ecore_Thread *thread)
 {
-	while(true){
+	/*while(true){
 		usleep(2000000);
     uib_app_manager_st* app_manager = uib_app_manager_get_instance();
     	uib_view1_view_context* view1 =  app_manager->find_view_context("view1");
     	elm_object_text_set(view1->label2,"nope");
-	}
+	}*/
 }
 
 
