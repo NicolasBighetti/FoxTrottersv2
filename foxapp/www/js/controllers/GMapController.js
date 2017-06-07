@@ -27,4 +27,13 @@ angular.module('foxapp')
       $scope.category = criteria;
     }
 
+    $scope.showDetail = function(poi) {
+      $scope.poi = poi;
+      $scope.map.showInfoWindow('foo-iw', poi.name);
+    };
+
+    $scope.hideDetail = function() {
+      $scope.map.hideInfoWindow('foo-iw');
+    };
+
 }]);
