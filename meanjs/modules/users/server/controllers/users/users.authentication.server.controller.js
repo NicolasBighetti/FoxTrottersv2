@@ -101,6 +101,7 @@ exports.oauthCallback = function (strategy) {
 
     // info.redirect_to contains inteded redirect path
     passport.authenticate(strategy, function (err, user, info) {
+
       if (err) {
         return res.redirect('/authentication/signin?err=' + encodeURIComponent(errorHandler.getErrorMessage(err)));
       }
