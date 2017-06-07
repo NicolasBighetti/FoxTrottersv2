@@ -2,12 +2,16 @@ version: '2'
 services:
   web:
     restart: always
+    links:
+      - db
     build:
      context: .
      dockerfile: Dockerfile-production
     container_name: meanjs
     ports:
      - "8443:8443"
+     - "80:80"
+     - "3000:80"
     environment:
      - NODE_ENV=production
      - DB_1_PORT_27017_TCP_ADDR=db
@@ -26,12 +30,12 @@ services:
      - /opt/mean.js/public
      - /opt/mean.js/uploads
   db:
-    image: mongo:3.2
+    image: mongo:3.4
     restart: always
     volumes_from:
       - db-data
   db-data:
-    image: mongo:3.2
+    image: mongo:3.4
     volumes:
       - /data/db
       - /var/lib/mongodb

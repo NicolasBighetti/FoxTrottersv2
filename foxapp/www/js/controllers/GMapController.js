@@ -6,7 +6,10 @@ angular.module('foxapp')
     $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGMBQQC143VTbPWjLWEBJfB3LSzD0LnPw";
     //console.log(MarkerService.getMarkers());
 
-    $scope.foxMarkers = MarkerService.getMarkers();
+    MarkerService.getAllMarkers().then(function(data) {
+      $scope.foxMarkers = data;
+    });
+
 
     $scope.tinderise = function(){
       $scope.tinderswitch = false;
@@ -17,4 +20,11 @@ angular.module('foxapp')
     };
 
     $scope.tinderswitch = true;
+
+    $scope.category = "";
+
+    $scope.changeFilter = function(criteria){
+      $scope.category = criteria;
+    }
+
 }]);

@@ -20,12 +20,13 @@ angular.module('foxapp')
         };
           }, false);
 
+      $scope.uploadHide = true;
+
       $scope.takePicture = function(options) {
         $cordovaCamera.getPicture(options).then(function (imageData) {
           var image = document.getElementById('myImage');
           image.src = /*"data:image/jpeg;base64," +*/ imageData;
-          var but = document.getElementById('upload');
-          but.style = "visibility: visible;"
+          $scope.uploadHide = false;
         }, function (err) {
           // error
         });
@@ -41,6 +42,10 @@ angular.module('foxapp')
         alertPopup.then(function(res) {
           // Custom functionality....
         });
+      }
+
+      $scope.close = function(){
+        $scope.uploadHide = true;
       }
 
     }]);

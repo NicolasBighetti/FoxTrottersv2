@@ -75,6 +75,10 @@ var PoiSchema = new Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User'
+  },
+  dangerzone: {
+    type: String,
+    default: '0'
   }
 
 });

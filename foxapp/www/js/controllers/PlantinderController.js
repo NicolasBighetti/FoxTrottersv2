@@ -4,8 +4,6 @@ angular.module('foxapp')
 
     function($scope, $swipe, $ionicPopup){
 
-    console.log('chibre')
-
     $scope.size = {
       width : 200,
       height : 100
@@ -42,6 +40,9 @@ angular.module('foxapp')
       };
 
       $scope.swipeRight = function(){
+
+        console.log(person);
+
         var myPopup = $ionicPopup.show({
           template: '<input type="text">',
           title: 'Entrez le nom de la plante',
@@ -56,6 +57,10 @@ angular.module('foxapp')
         })
       };
 
+      $scope.swipeend = function(){
+        console.log('ttestetete');
+        $scope.showModal = false;
+      }
 
       $scope.open = function() {
         $scope.showModal = true;

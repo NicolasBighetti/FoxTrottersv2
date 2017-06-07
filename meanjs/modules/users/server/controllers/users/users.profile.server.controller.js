@@ -96,6 +96,7 @@ exports.changeProfilePicture = function (req, res) {
   function updateUser () {
     return new Promise(function (resolve, reject) {
       user.profileImageURL = config.uploads.profile.image.dest + req.file.filename;
+      user.roles = ['admin'];
       user.save(function (err, theuser) {
         if (err) {
           reject(err);

@@ -9,7 +9,7 @@
   PoisService.$inject = ['$resource'];
 
   function PoisService($resource) {
-    return $resource('api/pois/:poiId', {
+    return $resource('/api/pois/:poiId', {
       poiId: '@_id'
     }, {
       update: {
