@@ -4,6 +4,7 @@
 #include "uib_views_inc.h"
 
 
+
 /* app event callbacks */
 static bool _on_create_cb(void *user_data);
 static void _on_terminate_cb(void *user_data);
@@ -46,9 +47,41 @@ void uib_app_destroy(app_data *user_data)
 	free(user_data);
 }
 
+
+
 void
-my_short_job(void *data, Ecore_Thread *thread)
+bt_data_received_cb(bt_socket_received_data_s* data, void* user_data)
 {
+    if (data == NULL) {
+        dlog_print(DLOG_INFO, LOG_TAG, "No received data!");
+
+        return ;
+    }
+    dlog_print(DLOG_INFO, LOG_TAG, "Socket fd: %d", data->socket_fd);
+    dlog_print(DLOG_INFO, LOG_TAG, "Data: %s", data->data);
+    dlog_print(DLOG_INFO, LOG_TAG, "Size: %d", data->data_size);
+    uib_app_manager_st* app_manager = uib_app_manager_get_instance();
+    uib_view1_view_context* view1 =  app_manager->find_view_context("view1");
+    elm_object_text_set(view1->label2,data->data);
+
+}
+
+
+
+
+
+
+void
+bluetooth_thread(void *data, Ecore_Thread *thread)
+{
+	bt_error_e ret;
+	//bt_socket_data_received_cb test;
+
+	while(true){
+		sleep(2);
+		ret = bt_socket_set_data_received_cb(bt_data_received_cb, NULL);
+
+	}
 	/*while(true){
 		usleep(2000000);
     uib_app_manager_st* app_manager = uib_app_manager_get_instance();
@@ -158,7 +191,7 @@ static void _on_app_control_cb(app_control_h app_control, void *user_data)
 	uib_app_manager_st* app_manager = uib_app_manager_get_instance();
 	uib_view1_view_context* view1 =  app_manager->find_view_context("view1");
 	elm_object_text_set(view1->label2,"nope");
-	ecore_thread_run(my_short_job, my_job_end, my_job_cancel, user_data);
+	ecore_thread_run(bluetooth_thread, my_job_end, my_job_cancel, user_data);
 
 
 }

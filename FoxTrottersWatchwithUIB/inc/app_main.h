@@ -5,6 +5,9 @@
 
 #include "g_inc_uib.h"
 #include "uib_views.h"
+#include <app_control.h>
+#include <dlog.h>
+#include <bluetooth.h>
 
 /**
  * @brief Forward declaration of model
@@ -13,6 +16,8 @@ typedef struct {
 
 
 } app_data;
+
+
 
 /**< H/W Back Key Event */
 /**
