@@ -13,7 +13,7 @@
 foxapp/assets/
 foxapp/plugins/*
 !foxapp/plugins/RichNotification
-foxapp/lib/
+foxapp/www/lib/
 foxapp/platforms/
 foxapp/.gradle/
 #WebStorm bullshit
