@@ -21,7 +21,7 @@ angular.module('foxapp')
         {
         thumbnail: 'pictures/03.jpg',
         title: '',
-        subtitle: 'emy@gmail.com'
+        subtitle: ''
       }, {
         thumbnail: 'pictures/04.jpg',
         title: '',
@@ -40,8 +40,6 @@ angular.module('foxapp')
       };
 
       $scope.swipeRight = function(){
-
-        console.log(person);
 
         var myPopup = $ionicPopup.show({
           template: '<input type="text">',
