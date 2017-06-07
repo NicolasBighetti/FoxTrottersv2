@@ -16,7 +16,6 @@ services:
      - DB_1_PORT_27017_TCP_ADDR=db
     depends_on:
      - db
-
     volumes_from:
      - web-data
   web-data:

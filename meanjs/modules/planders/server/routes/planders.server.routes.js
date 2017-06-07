@@ -17,6 +17,10 @@ module.exports = function(app) {
     .put(planders.update)
     .delete(planders.delete);
 
+  app.route('/api/planders/picture/:planderId').all(plandersPolicy.isAllowed).post(planders.uploadPicture);
+
+  // app.route('/api/planders/result/:planderId').get(planders.getResults);
+
   // Finish by binding the Plander middleware
   app.param('planderId', planders.planderByID);
 };

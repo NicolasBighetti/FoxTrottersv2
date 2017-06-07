@@ -35,6 +35,17 @@ var PlanderSchema = new Schema({
   image: {
     type: String,
     default: 'modules/planders/client/img/default.png'
+  },
+  originalAuthor: {
+    type:String
+  },
+  isPlantnet: {
+    type: Boolean,
+    default: false
+  },
+  done: {
+    type: Boolean,
+    default: false
   }
 
 });

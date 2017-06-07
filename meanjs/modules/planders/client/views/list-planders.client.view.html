@@ -1,22 +1,25 @@
 <section>
   <div class="page-header">
-    <h1>Planders</h1>
+    <h1>
+      Planders
+      <a class="btn btn-primary pull-right" data-ui-sref="planders.create">
+        <i class="glyphicon glyphicon-plus"></i>
+      </a>
+    </h1>
   </div>
   <div class="list-group">
-    <a ng-repeat="plander in vm.planders"
-       ui-sref="planders.view({ planderId: plander._id })"
-       class="list-group-item">
+    <a data-ng-repeat="plander in vm.planders" data-ui-sref="planders.edit({planderId: plander._id})" class="list-group-item">
       <small class="list-group-item-text">
         Posted on
-        <span ng-bind="plander.created | date:'mediumDate'"></span>
+        <span data-ng-bind="plander.created | date:'mediumDate'"></span>
         by
         <span ng-if="plander.user" ng-bind="plander.user.displayName"></span>
         <span ng-if="!plander.user">Deleted User</span>
       </small>
-      <h4 class="list-group-item-heading" ng-bind="plander.name"></h4>
+      <h4 class="list-group-item-heading" data-ng-bind="plander.name"></h4>
     </a>
   </div>
-  <div class="alert alert-warning text-center" ng-if="vm.planders.$resolved && !vm.planders.length">
-    No Planders yet, why don't you <a ui-sref="planders.create">create one</a>?
+  <div class="alert alert-warning text-center" data-ng-if="planders.$resolved && !planders.length">
+    No planders yet, why don't you <a data-ui-sref="planders.create">create one</a>?
   </div>
 </section>

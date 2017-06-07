@@ -10,7 +10,7 @@ module.exports = {
   db: {
     promise: global.Promise
   },
-  port: process.env.PORT || 3000,
+  port: process.env.PORT || 80,
   host: process.env.HOST || '0.0.0.0',
   // DOMAIN config should be set to the fully qualified application accessible
   // URL. For example: https://www.myapp.com (including port if required).
@@ -50,7 +50,7 @@ module.exports = {
       image: {
         dest: './modules/users/client/img/profile/uploads/',
         limits: {
-          fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
+          fileSize: 4 * 1024 * 1024 // Max file size in bytes (4 MB)
         }
       }
     }
