@@ -43,7 +43,7 @@ angular.module('foxapp')
 
     $scope.notifyProximity = function(){
       if($scope.checkProximity) {
-        var triggerDistance = 5;
+        var triggerDistance = 0.5;
 
         $scope.getGPSPosition([]).then( function(coords){
           for(var mrk in $scope.foxMarkers){
