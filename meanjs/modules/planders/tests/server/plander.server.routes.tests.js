@@ -52,7 +52,7 @@ describe('Plander CRUD tests', function () {
     // Save a user to the test db and create new Plander
     user.save(function () {
       plander = {
-        name: 'Plander name'
+        image: '/img/default.png'
       };
 
       done();
@@ -95,7 +95,7 @@ describe('Plander CRUD tests', function () {
 
                 // Set assertions
                 (planders[0].user._id).should.equal(userId);
-                (planders[0].name).should.match('Plander name');
+                (planders[0].image).should.match('/img/default.png');
 
                 // Call the assertion callback
                 done();
@@ -114,9 +114,9 @@ describe('Plander CRUD tests', function () {
       });
   });
 
-  it('should not be able to save an Plander if no name is provided', function (done) {
-    // Invalidate name field
-    plander.name = '';
+  it('should not be able to save an Plander if no image is provided', function (done) {
+    // Invalidate image field
+    plander.image = '';
 
     agent.post('/api/auth/signin')
       .send(credentials)
@@ -136,7 +136,7 @@ describe('Plander CRUD tests', function () {
           .expect(400)
           .end(function (planderSaveErr, planderSaveRes) {
             // Set message assertion
-            (planderSaveRes.body.message).should.match('Please fill Plander name');
+            (planderSaveRes.body.message).should.match('Please add an image');
 
             // Handle Plander save error
             done(planderSaveErr);
@@ -167,8 +167,8 @@ describe('Plander CRUD tests', function () {
               return done(planderSaveErr);
             }
 
-            // Update Plander name
-            plander.name = 'WHY YOU GOTTA BE SO MEAN?';
+            // Update Plander image
+            plander.image = 'WHY YOU GOTTA BE SO MEAN?';
 
             // Update an existing Plander
             agent.put('/api/planders/' + planderSaveRes.body._id)
@@ -182,7 +182,7 @@ describe('Plander CRUD tests', function () {
 
                 // Set assertions
                 (planderUpdateRes.body._id).should.equal(planderSaveRes.body._id);
-                (planderUpdateRes.body.name).should.match('WHY YOU GOTTA BE SO MEAN?');
+                (planderUpdateRes.body.image).should.match('WHY YOU GOTTA BE SO MEAN?');
 
                 // Call the assertion callback
                 done();
@@ -219,7 +219,7 @@ describe('Plander CRUD tests', function () {
       request(app).get('/api/planders/' + planderObj._id)
         .end(function (req, res) {
           // Set assertion
-          res.body.should.be.instanceof(Object).and.have.property('name', plander.name);
+          res.body.should.be.instanceof(Object).and.have.property('image', plander.image);
 
           // Call the assertion callback
           done();
@@ -364,7 +364,7 @@ describe('Plander CRUD tests', function () {
               }
 
               // Set assertions on new Plander
-              (planderSaveRes.body.name).should.equal(plander.name);
+              (planderSaveRes.body.image).should.equal(plander.image);
               should.exist(planderSaveRes.body.user);
               should.equal(planderSaveRes.body.user._id, orphanId);
 
@@ -391,7 +391,7 @@ describe('Plander CRUD tests', function () {
 
                         // Set assertions
                         (planderInfoRes.body._id).should.equal(planderSaveRes.body._id);
-                        (planderInfoRes.body.name).should.equal(plander.name);
+                        (planderInfoRes.body.image).should.equal(plander.image);
                         should.equal(planderInfoRes.body.user, undefined);
 
                         // Call the assertion callback

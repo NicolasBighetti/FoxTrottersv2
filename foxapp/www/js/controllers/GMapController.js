@@ -1,8 +1,8 @@
 angular.module('foxapp')
 
-.controller('GMapController', ['$scope', '$interval','$window','$location', 'GeolocationService' ,'NgMap', 'MarkerService',
+.controller('GMapController', ['$scope', '$interval','$window','$location', '$cordovaVibration','GeolocationService' ,'NgMap', 'MarkerService',
 
-  function($scope, $interval, $window ,$location, GeolocationService, NgMap, MarkerService) {
+  function($scope, $interval, $window ,$location, $cordovaVibration, GeolocationService, NgMap, MarkerService) {
     $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGMBQQC143VTbPWjLWEBJfB3LSzD0LnPw";
     //console.log(MarkerService.getMarkers());
 
@@ -37,7 +37,6 @@ angular.module('foxapp')
           [coords.lat, coords.lng]
         )
       });
-      console.log($scope.GPSTrace);
     };
 
     $scope.checkProximity = true;
@@ -49,7 +48,7 @@ angular.module('foxapp')
         $scope.getGPSPosition([]).then( function(coords){
           for(var mrk in $scope.foxMarkers){
             if(GeolocationService.getDistanceFromLatLonInKm(coords.lat, coords.lng, $scope.foxMarkers[mrk].coords.latitude, $scope.foxMarkers[mrk].coords.longitude) <= triggerDistance){
-                console.log($scope.foxMarkers[mrk]);
+                $cordovaVibration.vibrate(100);
                 break;
             }
           }
@@ -78,7 +77,8 @@ angular.module('foxapp')
       $scope.category = criteria;
     }
 
-    $scope.showDetail = function(poi) {
+    $scope.showDetail = function(e, poi) {
+      console.log(poi);
       $scope.poi = poi;
       $scope.map.showInfoWindow('foo-iw', poi.name);
 

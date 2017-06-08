@@ -10,7 +10,8 @@
     "ngCordova": "^0.1.27-alpha",
     "ng-swippy": "^0.1.2",
     "angular-touch": "^1.6.4",
-    "angular": "^1.6.4"
+    "angular": "^1.6.4",
+    "ng-file-upload-shim": "^12.2.13"
   },
   "resolutions": {
     "angular": "^1.6.4",
