@@ -43,7 +43,7 @@ angular.module('foxapp')
 
     $scope.notifyProximity = function(){
       if($scope.checkProximity) {
-        var triggerDistance = 5;
+        var triggerDistance = 0.5;
 
         $scope.getGPSPosition([]).then( function(coords){
           for(var mrk in $scope.foxMarkers){
@@ -77,14 +77,10 @@ angular.module('foxapp')
       $scope.category = criteria;
     }
 
-    $scope.showDetail = function(poi) {
+    // Shows the informations of the marker once you clicked on it
+    $scope.showDetail = function(e, poi) {
       $scope.poi = poi;
-      $scope.map.showInfoWindow('foo-iw', poi.name);
-
-    // TODO: show details by clicking on them
-
-
-
+      $scope.map.showInfoWindow('foo-iw', poi._id);
     };
 
     $scope.hideDetail = function() {

@@ -50,6 +50,7 @@
   <script src="http://maps.google.com/maps/api/js"></script>
   <script src="lib/ngmap/build/scripts/ng-map.min.js"></script>
   <script src="lib/ng-swippy/ng-swippy.js"></script>
+  <script src="lib/ng-file-upload/ng-file-upload.js"></script>
 
 
   <!-- controllers -->
@@ -65,6 +66,7 @@
   <script src="js/services/SmartWatchService.js"></script>
   <script src="js/services/RESTService.js"></script>
   <script src="js/services/GeolocationService.js"></script>
+  <script src="js/services/PictureUploadService.js"></script>
 
   <!-- filters -->
   <script src="js/filters/MarkerFilter.js"></script>
@@ -143,7 +145,8 @@
                    stroke-weight="2">
             </shape>
             <marker ng-repeat="Object in foxMarkers | filterByCriteria:plantname:category"
-                    on-click="showDetail({{Object}})"
+                    id="{{Object._id}}"
+                    on-click="showDetail(Object)"
                     position=[{{Object.coords.latitude}},{{Object.coords.longitude}}]
                     icon="{
                             url:'pictures/icons/{{Object.typep}}.png',
@@ -160,20 +163,40 @@
             </marker>
             <info-window id="foo-iw">
               <div ng-non-bindable="">
-                name: {{poi.name}}<br/>
-                Position 1: {{poi.coords}}<br/>
+                <img ng-src="{{poi.icon}}" />
+                Name: {{poi.name}}<br/>
+                Description: {{poi.desc}}<br/>
+                Danger: {{poi.dangerzone}}<br/>
+                Visitors: {{poi.people}}<br/>
+                Created by: {{poi.user.displayName}}<br/>
+                <img ng-src="{{poi.image}}" /><br/>
+                <div id="plant-info" ng-hide="poi.plant == null">
+                  <h3>Plant informations:</h3>
+                  Common name: {{poi.plant.commonName}}<br/>
+                  <img ng-src="{{poi.plant.image[0]}}" />
+                  Latin name: {{poi.plant.latinName}}<br/>
+                  Family: {{poi.plant.family}}<br/>
+                  Genre: {{poi.plant.genre}}<br/>
+                  <div ng-repeat="useElem in poi.plant.uses">
+                    <img ng-src="{{ useElem.theme.icon }}" width="5%"  />
+                    <h3 ng-bind="useElem.theme.desc"></h3>
+                    <p>{{useElem.desc}}</p>
+                  </div>
+                  <small>
+                    <em class="text-muted">
+                      Posted on
+                      <span ng-bind="poi.plant.created | date:'mediumDate'"></span>
+                      by
+                      <span ng-if="poi.plant.user"
+                            ng-bind="poi.plant.user.displayName"></span>
+                      <span ng-if="!poi.plant.user">Deleted User</span>
+                    </em>
+                  </small>
+                </div>
                 <button class="btn btn-success" ng-controller="BLEController" ng-click="notificate()">Suivre</button>
               </div>
             </info-window>
           </ng-map>
-        </div>
-
-        <div id="upload" ng-hide="uploadHide" class="upload-shit" modal="showModal" ng-controller="PhotoController" close="close()">
-          <div class="swipable-card">
-            <img id="myImage" style="height:100px;width: 100px">
-            </img>
-            <button ng-click="sendPicture()">Faire identifier</button>
-          </div>
         </div>
 
         <div ng-hide="tinderswitch" class="momo" modal="showModal" close="cancel()" ng-controller="PlantinderController">

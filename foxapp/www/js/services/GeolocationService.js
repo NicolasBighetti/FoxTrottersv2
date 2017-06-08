@@ -25,7 +25,6 @@ angular.module('foxapp')
 
       }, function (err) {
         var coord = [];
-        console.log(err);
         coord.lat = 43.6156;
         coord.lng = 7.0719;
 
