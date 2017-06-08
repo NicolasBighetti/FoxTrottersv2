@@ -12,7 +12,7 @@
 #Ionic assets
 foxapp/assets/
 foxapp/plugins/*
-!foxapp/plugins/RichNotification
+!foxapp/plugins/com.samsung.richnotification
 !foxapp/plugins/*.json
 foxapp/www/lib/
 foxapp/platforms/
