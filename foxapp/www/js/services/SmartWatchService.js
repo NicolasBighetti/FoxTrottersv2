@@ -14,17 +14,13 @@ angular.module('foxapp')
     //il implémente le js du plugin décrit /home/user/projuin/fox_trotters/private/foxapp/plugins/RichNotification/www/richnotification.js
     //C'est le yolo total après, mais au moins ça passe la compilation angular, à prioris ça devrait marcher
 
-    function ($cordovaBluetoothSerial) {
+    function ($cordovaGear, $cordovaBluetoothSerial) {
       return {
         notificate : function(){
             //var jsonPOI = {name: namePOI, pos: positionPOI};
-            $cordovaBluetoothSerial.write('hello world').then(success, failure);
-            console.log('notif');
-
-            return 'chibre';
+          if($cordovaGear.isSupported() && $cordovaGear.isConnected()){
+            $cordovaGear.send();
+          }
         }
       }
-    }
-
-
-    ]);
+    }]);
