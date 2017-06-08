@@ -19,14 +19,12 @@ angular.module('foxapp')
 
         coord.lat = position.coords.latitude;
         coord.lng = position.coords.longitude;
-        console.log('la localisation');
 
         return coord;
 
 
       }, function (err) {
         var coord = [];
-        console.log('default coord');
         console.log(err);
         coord.lat = 43.6156;
         coord.lng = 7.0719;

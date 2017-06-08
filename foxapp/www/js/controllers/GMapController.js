@@ -37,7 +37,6 @@ angular.module('foxapp')
           [coords.lat, coords.lng]
         )
       });
-      console.log($scope.GPSTrace);
     };
 
     $scope.checkProximity = true;
@@ -49,7 +48,6 @@ angular.module('foxapp')
         $scope.getGPSPosition([]).then( function(coords){
           for(var mrk in $scope.foxMarkers){
             if(GeolocationService.getDistanceFromLatLonInKm(coords.lat, coords.lng, $scope.foxMarkers[mrk].coords.latitude, $scope.foxMarkers[mrk].coords.longitude) <= triggerDistance){
-                console.log($scope.foxMarkers[mrk]);
                 $cordovaVibration.vibrate(100);
                 break;
             }
