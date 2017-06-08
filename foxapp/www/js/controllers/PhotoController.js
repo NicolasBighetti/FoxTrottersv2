@@ -20,28 +20,18 @@ angular.module('foxapp')
         };
           }, false);
 
-      $scope.uploadHide = true;
 
       $scope.takePicture = function(options) {
         $cordovaCamera.getPicture(options).then(function (imageData) {
           var image = document.getElementById('myImage');
           image.src = /*"data:image/jpeg;base64," +*/ imageData;
-          $scope.uploadHide = false;
         }, function (err) {
           // error
         });
       }
 
       $scope.sendPicture = function () {
-        console.log('ALERTE');
-        var alertPopup = $ionicPopup.alert({
-          title: 'Envoi réussi',
-          template: 'Votre photo a bien été envoyé'
-        });
 
-        alertPopup.then(function(res) {
-          // Custom functionality....
-        });
       }
 
       $scope.close = function(){
