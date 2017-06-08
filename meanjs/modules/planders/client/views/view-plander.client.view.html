@@ -1,6 +1,9 @@
-<section>
+<>
   <div class="page-header">
     <h1 ng-bind="vm.plander.name"></h1>
+  </div>
+  <div>
+    <img ng-src="{{vm.plander.image}}"/>
   </div>
   <div class="pull-right"
        ng-show="vm.plander.isCurrentUserOwner">
@@ -22,5 +25,7 @@
       <span ng-if="!vm.plander.user">Deleted User</span>
     </em>
   </small>
+
+
   <p class="lead" ng-bind="vm.plander.content"></p>
 </section>

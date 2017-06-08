@@ -10,16 +10,15 @@ module.exports = function(app) {
   // Planders Routes
   app.route('/api/planders').all(plandersPolicy.isAllowed)
     .get(planders.list)
-    .post(planders.create);
+    .post(planders.uploadPicture);
 
   app.route('/api/planders/:planderId').all(plandersPolicy.isAllowed)
     .get(planders.read)
     .put(planders.update)
     .delete(planders.delete);
 
-  app.route('/api/planders/picture/:planderId').all(plandersPolicy.isAllowed).post(planders.uploadPicture);
-
-  // app.route('/api/planders/result/:planderId').get(planders.getResults);
+  app.route('/api/planders/result/:planderId')
+    .get(planders.getResults);
 
   // Finish by binding the Plander middleware
   app.param('planderId', planders.planderByID);

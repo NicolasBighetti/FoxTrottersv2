@@ -21,6 +21,7 @@ module.exports = {
         'public/lib/angular-messages/angular-messages.min.js',
         'public/lib/angular-mocks/angular-mocks.js',
         'public/lib/angular-resource/angular-resource.min.js',
+        'public/lib/lodash/lodash.js',
         'public/lib/angular-ui-notification/dist/angular-ui-notification.min.js',
         'public/lib/angular-ui-router/release/angular-ui-router.min.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',

@@ -39,7 +39,7 @@ describe('Plander Model Unit Tests:', function() {
     });
     user.save(function() {
       plander = new Plander({
-        name: 'Plander Name',
+        image: '/img/default.png',
         user: user
       });
 
@@ -56,8 +56,8 @@ describe('Plander Model Unit Tests:', function() {
       });
     });
 
-    it('should be able to show an error when try to save without name', function(done) {
-      plander.name = '';
+    it('should be able to show an error when try to save without image', function(done) {
+      plander.image = '';
 
       plander.save(function(err) {
         should.exist(err);
