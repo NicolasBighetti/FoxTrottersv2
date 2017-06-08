@@ -9,6 +9,9 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   multer = require('multer'),
   config = require(path.resolve('./config/config')),
+  crypto = require('crypto'),
+  mime = require('mime'),
+  http = require('http'),
   _ = require('lodash');
 
 /**
@@ -123,9 +126,7 @@ exports.planderByID = function (req, res, next, id) {
  */
 exports.uploadPicture = function (req, res) {
   var user = req.user;
-
-  var plander = req.plander;
-
+  console.log('hey');
 
   if (!user) {
     res.status(401).send({
@@ -133,45 +134,80 @@ exports.uploadPicture = function (req, res) {
     });
   }
 
-  var multerConfig = config.uploads.profile.image;
-  multerConfig.fileFilter = require(path.resolve('./config/lib/multer')).imageFileFilter;
-  var upload = multer(multerConfig).single('newProfilePicture');
+  var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './modules/users/client/img/profile/uploads//')
+    },
+    filename: function (req, file, cb) {
+      crypto.pseudoRandomBytes(16, function (err, raw) {
+        cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+      });
+    }
+  });
 
-  console.log('upload plander');
-  console.log(plander);
+  var upload = multer({
+    storage: storage
+  }).single('newProfilePicture');
 
-  // Filtering to upload only images
+  console.log('hey');
+  upload(req, res, function (uploadError) {
+    console.log('ho');
 
-  if (plander) {
-    console.log('hey');
-    upload(req, res, function (uploadError) {
-      console.log('ho');
+    if (uploadError) {
+      return res.status(400).send({
+        message: 'Error occurred while uploading plander picture' + uploadError
+      });
+    } else {
+      console.log('ok2');
+      var plander = new Plander();
+      plander.image = '/modules/users/client/img/profile/uploads/' + req.file.filename;
 
-      if (uploadError) {
-        return res.status(400).send({
-          message: 'Error occurred while uploading plander picture' + uploadError
-        });
-      } else {
-        console.log('ok2');
-        plander.image = './modules/users/client/img/profile/uploads/' + req.file.filename;
+      console.log(plander.image);
+      console.log(req.file);
 
-        plander.save(function (saveError) {
-          if (saveError) {
-            return res.status(400).send({
-              message: errorHandler.getErrorMessage(saveError)
-            });
-          } else {
-            console.log('OK ! ' + plander);
-            res.json(plander);
-          }
-        });
-      }
-    });
-  }
-  else {
-    res.status(400).send({
-      message: 'Plander not found'
-    });
-  }
+      plander.user = user;
+
+      plander.save(function (saveError) {
+        if (saveError) {
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(saveError)
+          });
+        } else {
+          res.json(plander);
+        }
+      });
+    }
+  });
+
 };
 
+exports.getResults = function (req, res2) {
+  var plander = req.plander;
+  console.log(plander);
+
+  //var itl = 'http://' + req.headers.host + plander.image;
+
+  var itl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Leucanthemum_vulgare_qtl1.jpg/220px-Leucanthemum_vulgare_qtl1.jpg';
+  var host = 'http://identify.plantnet-project.org';
+  var pathAP=
+    '/api/project/useful/identify?imgs=' + itl +
+    '&tags=flower&json=true&lang=en&app_version=web-1.0.0';
+
+  http.get(host+pathAP, function(res) {
+
+    var body = '';
+    res.on('data', function(chunk) {
+      body += chunk;
+    });
+    res.on('end', function() {
+      console.log(body);
+      res2.jsonp(body);
+    });
+  }).on('error', function(e) {
+    console.log("Got error: " + e.message);
+    console.log(pathAP);
+    res2.status(404).send({
+      message: e.message
+    });
+  });
+};

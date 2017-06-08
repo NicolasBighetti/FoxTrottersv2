@@ -13,10 +13,6 @@ MAINTAINER MEAN.JS
 # 80 = HTTP, 443 = HTTPS, 3000 = MEAN.JS server, 35729 = livereload
 EXPOSE 80 443 3000 35729
 
-RUN apt-get autoclean
-RUN apt-get clean
-
-
 # Install Utilities
 RUN apt-get update -q  \
  && apt-get install -yqq \
@@ -50,7 +46,7 @@ WORKDIR /opt/mean.js
 # when the local package.json file changes.
 # Install npm packages
 COPY package.json /opt/mean.js/package.json
-RUN NODE_ENV=development npm install --quiet && npm cache clean
+RUN NODE_ENV=production npm install --quiet && npm cache clean
 
 # Install bower packages
 COPY bower.json /opt/mean.js/bower.json

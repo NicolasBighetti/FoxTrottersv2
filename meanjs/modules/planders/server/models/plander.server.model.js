@@ -10,12 +10,6 @@ var mongoose = require('mongoose'),
  * Plander Schema
  */
 var PlanderSchema = new Schema({
-  name: {
-    type: String,
-    default: '',
-    required: 'Please fill Plander name',
-    trim: true
-  },
   created: {
     type: Date,
     default: Date.now
@@ -34,7 +28,7 @@ var PlanderSchema = new Schema({
   },
   image: {
     type: String,
-    default: 'modules/planders/client/img/default.png'
+    required: 'Please add an image'
   },
   originalAuthor: {
     type:String
@@ -43,7 +37,7 @@ var PlanderSchema = new Schema({
     type: Boolean,
     default: false
   },
-  done: {
+  askCommunity: {
     type: Boolean,
     default: false
   }
