@@ -58,6 +58,11 @@ angular.module('foxapp')
     $scope.showDetail = function(poi) {
       $scope.poi = poi;
       $scope.map.showInfoWindow('foo-iw', poi.name);
+
+    // TODO: show details by clicking on them
+
+
+
     };
 
     $scope.hideDetail = function() {
