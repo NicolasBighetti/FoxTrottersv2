@@ -10,6 +10,7 @@
         "cordova-plugin-compat": "^1.1.0",
         "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-device": "^1.1.4",
+        "cordova-plugin-geolocation": "^2.4.3",
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.2.1",
         "cordova-plugin-whitelist": "^1.3.1",
@@ -37,7 +38,11 @@
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
             "cordova-plugin-camera": {},
+<<<<<<< HEAD
             "cordova-plugin-bluetooth-serial": {}
+=======
+            "cordova-plugin-geolocation": {}
+>>>>>>> 1a6d3592ef33c8ade4a21c2a99a6bd5a6849eb52
         },
         "platforms": [
             "android"

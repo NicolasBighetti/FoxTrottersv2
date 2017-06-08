@@ -13,6 +13,12 @@
 
     vm.authentication = Authentication;
     vm.poi = poi;
+
+    // Avoid a blank possible value in the type selection
+    if (!vm.poi.typep){
+      vm.poi.typep = 'plant';
+    }
+
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
