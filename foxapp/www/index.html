@@ -165,9 +165,36 @@
             </marker>
             <info-window id="foo-iw">
               <div ng-non-bindable="">
+                <img ng-src="{{poi.icon}}" />
                 Name: {{poi.name}}<br/>
                 Description: {{poi.desc}}<br/>
                 Danger: {{poi.dangerzone}}<br/>
+                Visitors: {{poi.people}}<br/>
+                Created by: {{poi.user.displayName}}<br/>
+                <img ng-src="{{poi.image}}" /><br/>
+                <div id="plant-info" ng-hide="poi.plant == null">
+                  <h3>Plant informations:</h3>
+                  Common name: {{poi.plant.commonName}}<br/>
+                  <img ng-src="{{poi.plant.image[0]}}" />
+                  Latin name: {{poi.plant.latinName}}<br/>
+                  Family: {{poi.plant.family}}<br/>
+                  Genre: {{poi.plant.genre}}<br/>
+                  <div ng-repeat="useElem in poi.plant.uses">
+                    <img ng-src="{{ useElem.theme.icon }}" width="5%"  />
+                    <h3 ng-bind="useElem.theme.desc"></h3>
+                    <p>{{useElem.desc}}</p>
+                  </div>
+                  <small>
+                    <em class="text-muted">
+                      Posted on
+                      <span ng-bind="poi.plant.created | date:'mediumDate'"></span>
+                      by
+                      <span ng-if="poi.plant.user"
+                            ng-bind="poi.plant.user.displayName"></span>
+                      <span ng-if="!poi.plant.user">Deleted User</span>
+                    </em>
+                  </small>
+                </div>
                 <button class="btn btn-success" ng-controller="BLEController" ng-click="notificate()">Suivre</button>
               </div>
             </info-window>
