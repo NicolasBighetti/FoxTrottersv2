@@ -7,6 +7,7 @@ angular.module('foxapp')
 
   function($cordovaGeolocation){
 
+
   return {
 
     getCurrentPosition : function(posOptions) {
@@ -36,8 +37,8 @@ angular.module('foxapp')
 
     getDistanceFromLatLonInKm : function(lat1,lon1,lat2,lon2) {
       var R = 6371; // Radius of the earth in km
-      var dLat = deg2rad(lat2-lat1);  // deg2rad below
-      var dLon = deg2rad(lon2-lon1);
+      var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
+      var dLon = this.deg2rad(lon2-lon1);
       var a =
         Math.sin(dLat/2) * Math.sin(dLat/2) +
         Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
