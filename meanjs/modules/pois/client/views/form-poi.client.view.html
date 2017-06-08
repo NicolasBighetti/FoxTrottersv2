@@ -3,7 +3,7 @@
     <h1>{{vm.poi._id ? 'Edit Poi' : 'New Poi'}}</h1>
   </div>
   <div class="col-md-8">
-    <ng-map class="gov-map" zoom="10" center="51.5112139, -0.1198244" on-click="vm.addMarker()">
+    <ng-map class="gov-map" zoom="10" center="43.6156, 7.0719" on-click="vm.addMarker()">
       <!-- <marker ng-repeat="marker in listmarker" position={{marker.latitude}},{{marker.longitude}}></marker> -->
       <marker
         position="{{vm.poi.coords.latitude}}, {{vm.poi.coords.longitude}}"
