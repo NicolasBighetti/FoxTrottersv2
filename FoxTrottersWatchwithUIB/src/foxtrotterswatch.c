@@ -67,7 +67,7 @@ app_create(void *data)
 
 	bt_error_e ret;
 
-	ret = bt_initialize();
+
 	if (ret != BT_ERROR_NONE) {
 	    dlog_print(DLOG_ERROR, LOG_TAG, "[bt_initialize] failed.");
 

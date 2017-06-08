@@ -8,4 +8,8 @@
     <privileges>
         <privilege>http://tizen.org/privilege/bluetooth</privilege>
     </privileges>
+    <feature name="http://tizen.org/feature/network.bluetooth.le">true</feature>
+    <feature name="http://tizen.org/feature/network.bluetooth">true</feature>
+    <feature name="http://tizen.org/feature/network.bluetooth.opp">true</feature>
+    <feature name="http://tizen.org/feature/network.bluetooth.hid">true</feature>
 </manifest>

@@ -52,16 +52,21 @@ void uib_app_destroy(app_data *user_data)
 void
 bt_data_received_cb(bt_socket_received_data_s* data, void* user_data)
 {
+	 uib_app_manager_st* app_manager = uib_app_manager_get_instance();
+	            uib_view1_view_context* view1 =  app_manager->find_view_context("view1");
+	            elm_object_text_set(view1->label2,"chibre");
     if (data == NULL) {
         dlog_print(DLOG_INFO, LOG_TAG, "No received data!");
+        snprintf("checked",7,NULL);
+
 
         return ;
     }
     dlog_print(DLOG_INFO, LOG_TAG, "Socket fd: %d", data->socket_fd);
     dlog_print(DLOG_INFO, LOG_TAG, "Data: %s", data->data);
     dlog_print(DLOG_INFO, LOG_TAG, "Size: %d", data->data_size);
-    uib_app_manager_st* app_manager = uib_app_manager_get_instance();
-    uib_view1_view_context* view1 =  app_manager->find_view_context("view1");
+    /*uib_app_manager_st* app_manager = uib_app_manager_get_instance();
+    uib_view1_view_context* view1 =  app_manager->find_view_context("view1");*/
     elm_object_text_set(view1->label2,data->data);
 
 }
@@ -79,7 +84,15 @@ bluetooth_thread(void *data, Ecore_Thread *thread)
 
 	while(true){
 		sleep(2);
-		ret = bt_socket_set_data_received_cb(bt_data_received_cb, NULL);
+
+		//C'EST ICI QUE LE CALLBACK PART PAS
+		ret = bt_socket_set_data_received_cb((bt_socket_data_received_cb) bt_data_received_cb, data);
+		if (ret != BT_ERROR_NONE)
+		{
+		   dlog_print(DLOG_ERROR, LOG_TAG, "[bt_socket_data_received_cb] regist to fail.");
+		}
+	    dlog_print(DLOG_INFO, LOG_TAG, "ret : %d", ret);
+
 
 	}
 	/*while(true){
@@ -133,7 +146,7 @@ int uib_app_run(app_data *user_data, int argc, char **argv)
 	ui_app_add_event_handler(&handlers[APP_EVENT_DEVICE_ORIENTATION_CHANGED], APP_EVENT_DEVICE_ORIENTATION_CHANGED, _on_device_orientation_cb, user_data);
 	ui_app_add_event_handler(&handlers[APP_EVENT_LANGUAGE_CHANGED], APP_EVENT_LANGUAGE_CHANGED, _on_language_changed_cb, user_data);
 	ui_app_add_event_handler(&handlers[APP_EVENT_REGION_FORMAT_CHANGED], APP_EVENT_REGION_FORMAT_CHANGED, _on_region_format_changed_cb, user_data);
-
+	bt_initialize();
 
 
 	return ui_app_main(argc, argv, &cbs, user_data);
@@ -151,6 +164,10 @@ app_get_resource(const char *res_file_in, char *res_path_out, int res_path_max)
 	}
 }
 
+void
+server (){
+	return;
+}
 
 static bool _on_create_cb(void *user_data)
 {
@@ -163,6 +180,36 @@ static bool _on_create_cb(void *user_data)
 	/*
 	 * End of area
 	 */
+
+	bt_error_e ret;
+
+
+	ret = bt_initialize();
+		    dlog_print(DLOG_INFO, LOG_TAG, "bt_initialize: %d", ret);
+		    if (ret != BT_ERROR_NONE)
+		    {
+		       dlog_print(DLOG_ERROR, LOG_TAG, "[bt_initialize] Failed.");
+
+
+		    }
+
+		    ret = bt_socket_set_connection_state_changed_cb(server, NULL);
+		    if (ret != BT_ERROR_NONE) {
+		        dlog_print(DLOG_ERROR, LOG_TAG, "[bt_socket_set_connection_state_changed_cb] failed.");
+
+
+		    }
+
+		    /*const char *service_uuid="00001101-0000-1000-8000-00805F9B34FB";
+
+		    ret = bt_socket_connect_rfcomm(bt_server_address, service_uuid);
+		    if (ret != BT_ERROR_NONE) {
+		        dlog_print(DLOG_ERROR, LOG_TAG, "[bt_socket_connect_rfcomm] failed.");
+
+
+		    } else {
+		        dlog_print(DLOG_INFO, LOG_TAG, "[bt_socket_connect_rfcomm] Succeeded. bt_socket_connection_state_changed_cb will be called.");
+		    }*/
 	//user_data->am = app_manager;
 	//app_manager->find_view_context("view1");
 
