@@ -20,23 +20,29 @@ angular.module('foxapp')
     };
   }, false);
 
-  $scope.URL = [{
+  $scope.URL = {
     "plantinder": "http://ns388671.ip-176-31-254.eu/api/planders",
     "poi" : "http://ns388671.ip-176-31-254.eu/api/poi"
-  }];
+  };
 
   $scope.takePicture = function(options) {
-    $cordovaCamera.getPicture(options).then(function (imageData) {
+    return $cordovaCamera.getPicture(options).then(function (imageData) {
       //var image = document.getElementById('myImage');
       //:image.src = /*"data:image/jpeg;base64," +*/ imageData;
-      $scope.$file = imageData;
+      return imageData;
     }, function (err) {
       // error
     });
   };
 
   $scope.sendPicture = function (URL, image) {
-    PictureUploadService.upload(image, URL);
+    image.then( function(imageData){
+
+      console.log(imageData);
+      console.log('chibre');
+        PictureUploadService.upload(imageData, URL);
+      }
+    );
   };
 
   $scope.close = function(){
