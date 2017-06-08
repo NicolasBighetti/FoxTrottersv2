@@ -2,6 +2,7 @@
  * Created by user on 08/06/17.
  */
 angular.module("foxapp")
+
 .controller("PictureUploadController",["$scope","Upload",
   function($scope, Upload){
 

@@ -58,6 +58,7 @@
   <script src="js/controllers/PhotoController.js"></script>
   <script src="js/controllers/PlantinderController.js"></script>
   <script src="js/controllers/BLEController.js"> </script>
+  <script src="js/controllers/PictureUploadController.js"></script>
 
 
   <!-- services -->
@@ -121,6 +122,8 @@
                 <svg style="width:100%;height:100%" align="center" viewBox="0 0 24 24">
                   <path fill="#000000" d="M9,3L7.17,5H4A2,2 0 0,0 2,7V19A2,2 0 0,0 4,21H20A2,2 0 0,0 22,19V7A2,2 0 0,0 20,5H16.83L15,3M12,18A5,5 0 0,1 7,13A5,5 0 0,1 12,8A5,5 0 0,1 17,13A5,5 0 0,1 12,18M12,17L13.25,14.25L16,13L13.25,11.75L12,9L10.75,11.75L8,13L10.75,14.25" />
                 </svg>
+                <button ng-controller="PictureUploadController" type="file" ngf-select="upload($file)"
+                        accept="image/*" ></button>
               </a>
               <a href="#" ng-click="tinderise()">
                 <svg style="width:100%;height:100%" viewBox="0 0 24 24">
@@ -169,14 +172,6 @@
               </div>
             </info-window>
           </ng-map>
-        </div>
-
-        <div id="upload" ng-hide="uploadHide" class="upload-shit" modal="showModal" ng-controller="PhotoController" close="close()">
-          <div class="swipable-card">
-            <img id="myImage" style="height:100px;width: 100px">
-            </img>
-            <button ng-click="sendPicture()">Faire identifier</button>
-          </div>
         </div>
 
         <div ng-hide="tinderswitch" class="momo" modal="showModal" close="cancel()" ng-controller="PlantinderController">
