@@ -1,8 +1,8 @@
 angular.module('foxapp')
 
-.controller('GMapController', ['$scope', '$interval','$window','$location', 'GeolocationService' ,'NgMap', 'MarkerService',
+.controller('GMapController', ['$scope', '$interval','$window','$location', '$cordovaVibration','GeolocationService' ,'NgMap', 'MarkerService',
 
-  function($scope, $interval, $window ,$location, GeolocationService, NgMap, MarkerService) {
+  function($scope, $interval, $window ,$location, $cordovaVibration, GeolocationService, NgMap, MarkerService) {
     $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGMBQQC143VTbPWjLWEBJfB3LSzD0LnPw";
     //console.log(MarkerService.getMarkers());
 
@@ -44,12 +44,13 @@ angular.module('foxapp')
 
     $scope.notifyProximity = function(){
       if($scope.checkProximity) {
-        var triggerDistance = 0.5;
+        var triggerDistance = 5;
 
         $scope.getGPSPosition([]).then( function(coords){
           for(var mrk in $scope.foxMarkers){
             if(GeolocationService.getDistanceFromLatLonInKm(coords.lat, coords.lng, $scope.foxMarkers[mrk].coords.latitude, $scope.foxMarkers[mrk].coords.longitude) <= triggerDistance){
                 console.log($scope.foxMarkers[mrk]);
+                $cordovaVibration.vibrate(100);
                 break;
             }
           }
