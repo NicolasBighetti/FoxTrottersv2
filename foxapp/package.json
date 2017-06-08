@@ -38,11 +38,8 @@
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
             "cordova-plugin-camera": {},
-<<<<<<< HEAD
             "cordova-plugin-bluetooth-serial": {}
-=======
             "cordova-plugin-geolocation": {}
->>>>>>> 1a6d3592ef33c8ade4a21c2a99a6bd5a6849eb52
         },
         "platforms": [
             "android"
