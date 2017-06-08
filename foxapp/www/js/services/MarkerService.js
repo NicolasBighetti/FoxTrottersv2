@@ -22,7 +22,7 @@ angular.module('foxapp')
                 }
               },
               {
-                "name": "oursins",
+                "name": "Point d'eau",
                 "typep":"water",
                 "coords" : {
                   "latitude": 43.3025,
