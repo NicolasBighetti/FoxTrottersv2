@@ -40,7 +40,27 @@ angular.module('foxapp')
       console.log($scope.GPSTrace);
     };
 
+    $scope.checkProximity = true;
+
+    $scope.notifyProximity = function(){
+      if($scope.checkProximity) {
+        var triggerDistance = 0.5;
+
+        $scope.getGPSPosition([]).then( function(coords){
+          for(var mrk in $scope.foxMarkers){
+            if(GeolocationService.getDistanceFromLatLonInKm(coords.lat, coords.lng, $scope.foxMarkers[mrk].coords.latitude, $scope.foxMarkers[mrk].coords.longitude) <= triggerDistance){
+                console.log($scope.foxMarkers[mrk]);
+                break;
+            }
+          }
+        });
+
+      }
+    };
+
     $interval($scope.savePosition, 15000);
+    $interval($scope.notifyProximity, 5000);
+
 
     $scope.tinderise = function(){
       $scope.tinderswitch = false;
