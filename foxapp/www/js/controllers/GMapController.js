@@ -77,15 +77,11 @@ angular.module('foxapp')
       $scope.category = criteria;
     }
 
+    // Shows the informations of the marker once you clicked on it
     $scope.showDetail = function(e, poi) {
       console.log(poi);
       $scope.poi = poi;
-      $scope.map.showInfoWindow('foo-iw', poi.name);
-
-    // TODO: show details by clicking on them
-
-
-
+      $scope.map.showInfoWindow('foo-iw', poi._id);
     };
 
     $scope.hideDetail = function() {

@@ -144,6 +144,7 @@
                    stroke-weight="2">
             </shape>
             <marker ng-repeat="Object in foxMarkers | filterByCriteria:plantname:category"
+                    id="{{Object._id}}"
                     on-click="showDetail(Object)"
                     position=[{{Object.coords.latitude}},{{Object.coords.longitude}}]
                     icon="{
@@ -161,8 +162,9 @@
             </marker>
             <info-window id="foo-iw">
               <div ng-non-bindable="">
-                name: {{poi.name}}<br/>
-                Position 1: {{poi.coords}}<br/>
+                Name: {{poi.name}}<br/>
+                Description: {{poi.desc}}<br/>
+                Danger: {{poi.dangerzone}}<br/>
                 <button class="btn btn-success" ng-controller="BLEController" ng-click="notificate()">Suivre</button>
               </div>
             </info-window>
