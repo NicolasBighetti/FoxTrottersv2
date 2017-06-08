@@ -38,7 +38,7 @@
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
             "cordova-plugin-camera": {},
-            "cordova-plugin-bluetooth-serial": {}
+            "cordova-plugin-bluetooth-serial": {},
             "cordova-plugin-geolocation": {}
         },
         "platforms": [
