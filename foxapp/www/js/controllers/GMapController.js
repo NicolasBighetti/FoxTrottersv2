@@ -1,10 +1,12 @@
 angular.module('foxapp')
 
-.controller('GMapController', ['$scope', '$window','$location', '$cordovaGeolocation' ,'NgMap', 'MarkerService',
+.controller('GMapController', ['$scope', '$interval','$window','$location', '$cordovaGeolocation' ,'NgMap', 'MarkerService',
 
-  function($scope, $window ,$location, $cordovaGeolocation, NgMap, MarkerService) {
+  function($scope, $interval, $window ,$location, $cordovaGeolocation, NgMap, MarkerService) {
     $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGMBQQC143VTbPWjLWEBJfB3LSzD0LnPw";
     //console.log(MarkerService.getMarkers());
+
+    $scope.GPSTrace = [];
 
     $scope.foxMarkers = MarkerService.getMarkers();
 
@@ -12,32 +14,52 @@ angular.module('foxapp')
       $scope.foxMarkers = data;
     });
 
-    $scope.center = function() {
+    $scope.getGPSPosition = function(posOptions) {
 
-      var posOptions = [];
-
-      $cordovaGeolocation.getCurrentPosition(posOptions)
+      return $cordovaGeolocation.getCurrentPosition(posOptions)
         .then(function (position) {
           var coord = [];
 
 
           coord.lat = position.coords.latitude;
-          coord.long = position.coords.longitude;
-          $scope.position = coord;
-
+          coord.lng = position.coords.longitude;
           console.log('la localisation');
+
+          return coord;
+
 
         }, function (err) {
           var coord = [];
           console.log('default coord');
           console.log(err);
           coord.lat = 43.6156;
-          coord.long = 7.0719;
-          $scope.position = coord;
+          coord.lng = 7.0719;
+
+          return coord;
         });
     };
 
+    $scope.center = function() {
+      var posOptions = [];
+      $scope.getGPSPosition(posOptions).then( function(coords){
+        $scope.position = coords;
+      });
+
+    };
+
     $scope.center();
+
+    $scope.savePosition = function(){
+      var posOptions = [];
+      $scope.getGPSPosition(posOptions).then( function(coords){
+        $scope.GPSTrace.push(
+          [coords.lat, coords.lng]
+        )
+      });
+      console.log($scope.GPSTrace);
+    };
+
+    $interval($scope.savePosition, 15000);
 
     $scope.tinderise = function(){
       $scope.tinderswitch = false;
