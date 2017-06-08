@@ -13,6 +13,7 @@
 foxapp/assets/
 foxapp/plugins/*
 !foxapp/plugins/RichNotification
+!foxapp/plugins/*.json
 foxapp/www/lib/
 foxapp/platforms/
 foxapp/.gradle/
