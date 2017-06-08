@@ -5,7 +5,7 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  Plander = mongoose.model('Plander'),
+  Panorama = mongoose.model('Panorama'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   multer = require('multer'),
   config = require(path.resolve('./config/config')),
@@ -15,118 +15,117 @@ var path = require('path'),
   _ = require('lodash');
 
 /**
- * Create a Plander
+ * Create a Panorama
  */
 exports.create = function (req, res) {
-  var plander = new Plander(req.body);
-  plander.user = req.user;
+  var panorama = new Panorama(req.body);
+  panorama.user = req.user;
 
-  plander.save(function (err) {
+  panorama.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(plander);
+      res.jsonp(panorama);
     }
   });
 };
 
 /**
- * Show the current Plander
+ * Show the current Panorama
  */
 exports.read = function (req, res) {
   // convert mongoose document to JSON
-  var plander = req.plander ? req.plander.toJSON() : {};
+  var panorama = req.panorama ? req.panorama.toJSON() : {};
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  plander.isCurrentUserOwner = req.user && plander.user && plander.user._id.toString() === req.user._id.toString();
+  panorama.isCurrentUserOwner = req.user && panorama.user && panorama.user._id.toString() === req.user._id.toString();
 
-  res.jsonp(plander);
+  res.jsonp(panorama);
 };
 
 /**
- * Update a Plander
+ * Update a Panorama
  */
 exports.update = function (req, res) {
-  var plander = req.plander;
+  var panorama = req.panorama;
 
-  plander = _.extend(plander, req.body);
+  panorama = _.extend(panorama, req.body);
 
-  plander.save(function (err) {
+  panorama.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(plander);
+      res.jsonp(panorama);
     }
   });
 };
 
 /**
- * Delete an Plander
+ * Delete an Panorama
  */
 exports.delete = function (req, res) {
-  var plander = req.plander;
+  var panorama = req.panorama;
 
-  plander.remove(function (err) {
+  panorama.remove(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(plander);
+      res.jsonp(panorama);
     }
   });
 };
 
 /**
- * List of Planders
+ * List of Panoramas
  */
 exports.list = function (req, res) {
-  Plander.find().sort('-created').populate('user', 'displayName').exec(function (err, planders) {
+  Panorama.find().sort('-created').populate('user', 'displayName').exec(function (err, panoramas) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(planders);
+      res.jsonp(panoramas);
     }
   });
 };
 
 /**
- * Plander middleware
+ * Panorama middleware
  */
-exports.planderByID = function (req, res, next, id) {
+exports.panoramaByID = function (req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'Plander is invalid'
+      message: 'Panorama is invalid'
     });
   }
 
-  Plander.findById(id).populate('user', 'displayName').exec(function (err, plander) {
+  Panorama.findById(id).populate('user', 'displayName').exec(function (err, panorama) {
     if (err) {
       return next(err);
-    } else if (!plander) {
+    } else if (!panorama) {
       return res.status(404).send({
-        message: 'No Plander with that identifier has been found'
+        message: 'No Panorama with that identifier has been found'
       });
     }
-    req.plander = plander;
+    req.panorama = panorama;
     next();
   });
 };
 
 /**
- * Upload a plant picture
+ * Upload a panorama picture
  */
 exports.uploadPicture = function (req, res) {
   var user = req.user;
-  console.log('hey');
 
   if (!user) {
     res.status(401).send({
@@ -136,7 +135,7 @@ exports.uploadPicture = function (req, res) {
 
   var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './modules/users/client/img/profile/uploads//');
+      cb(null, './modules/users/client/img/profile/uploads/');
     },
     filename: function (req, file, cb) {
       crypto.pseudoRandomBytes(16, function (err, raw) {
@@ -155,24 +154,24 @@ exports.uploadPicture = function (req, res) {
 
     if (uploadError) {
       return res.status(400).send({
-        message: 'Error occurred while uploading plander picture' + uploadError
+        message: 'Error occurred while uploading panorama picture' + uploadError
       });
     } else {
       console.log('ok2');
-      var plander = new Plander();
-      plander.image = '/modules/users/client/img/profile/uploads/' + req.file.filename;
+      var panorama = new Panorama();
+      panorama.image = '/modules/users/client/img/profile/uploads/' + req.file.filename;
 
-      console.log(plander.image);
+      console.log(panorama.image);
 
-      plander.user = user;
+      panorama.user = user;
 
-      plander.save(function (saveError) {
+      panorama.save(function (saveError) {
         if (saveError) {
           return res.status(400).send({
             message: errorHandler.getErrorMessage(saveError)
           });
         } else {
-          res.json(plander);
+          res.json(panorama);
         }
       });
     }
@@ -181,10 +180,10 @@ exports.uploadPicture = function (req, res) {
 };
 
 exports.getResults = function (req, res2) {
-  var plander = req.plander;
-  console.log(plander);
+  var panorama = req.panorama;
+  console.log(panorama);
 
-  // var itl = 'http://' + req.headers.host + plander.image;
+  // var itl = 'http://' + req.headers.host + panorama.image;
 
   var itl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Leucanthemum_vulgare_qtl1.jpg/220px-Leucanthemum_vulgare_qtl1.jpg';
   var host = 'http://identify.plantnet-project.org';

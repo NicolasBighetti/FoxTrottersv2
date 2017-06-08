@@ -22,14 +22,14 @@
     vm.remove = remove;
     vm.save = save;
     vm.showDemande = true;
-    vm.plants=undefined;
+    vm.plants = undefined;
     vm.selectedPlant = undefined;
     vm.setPlantId = setPlantId;
 
     function autoReco() {
-      $http.get('/api/planders/result/'+vm.plander._id).then(function (res) {
+      $http.get('/api/planders/result/' + vm.plander._id).then(function (res) {
         console.dir(res.data);
-      },function (err) {
+      }, function (err) {
         console.log(err);
       });
 
@@ -39,16 +39,14 @@
 
     function setPlantId() {
       console.dir(vm.selectedPlant);
-      if(vm.selectedPlant._id){
-        vm.plander.plant=vm.selectedPlant._id;
+      if (vm.selectedPlant._id) {
+        vm.plander.plant = vm.selectedPlant._id;
         console.log('setPlantId');
       }
       vm.plander.createOrUpdate()
         .then(successCallback)
         .catch(errorCallback);
     }
-
-
 
     $scope.ngModelOptionsSelected = function(value) {
       console.log('Selected');
@@ -87,7 +85,6 @@
       if ($window.confirm('Are you sure you want to delete?')) {
         vm.plander.$remove($state.go('planders.list'));
         Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Planders deleted successfully!'});
-
       }
     }
 

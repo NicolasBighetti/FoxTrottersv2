@@ -9,47 +9,47 @@ var acl = require('acl');
 acl = new acl(new acl.memoryBackend());
 
 /**
- * Invoke Planders Permissions
+ * Invoke Panoramas Permissions
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/planders',
+      resources: '/api/panoramas',
       permissions: '*'
     }, {
-      resources: '/api/planders/:planderId',
+      resources: '/api/panoramas/:panoramaId',
       permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
-      resources: '/api/planders',
+      resources: '/api/panoramas',
       permissions: ['get', 'post']
     }, {
-      resources: '/api/planders/:planderId',
+      resources: '/api/panoramas/:panoramaId',
       permissions: ['get']
     }]
   }, {
     roles: ['guest'],
     allows: [{
-      resources: '/api/planders',
-      permissions: ['*']
+      resources: '/api/panoramas',
+      permissions: ['get']
     }, {
-      resources: '/api/planders/:planderId',
-      permissions: ['*']
+      resources: '/api/panoramas/:panoramaId',
+      permissions: ['get']
     }]
   }]);
 };
 
 /**
- * Check If Planders Policy Allows
+ * Check If Panoramas Policy Allows
  */
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
-  // If an Plander is being processed and the current user created it then allow any manipulation
-  if (req.plander && req.user && req.plander.user && req.plander.user.id === req.user.id) {
+  // If an Panorama is being processed and the current user created it then allow any manipulation
+  if (req.panorama && req.user && req.panorama.user && req.panorama.user.id === req.user.id) {
     return next();
   }
 

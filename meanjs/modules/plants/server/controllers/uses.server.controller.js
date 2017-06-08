@@ -42,15 +42,10 @@ exports.create = function (req, res) {
   use.user = req.user;
   var prom = Promise.defer();
 
-  console.log('create use');
-  console.log(req);
-
   if (req.body.theme !== undefined && !mongoose.Types.ObjectId.isValid(req.body.theme) && !mongoose.Types.ObjectId.isValid(req.body.theme.id)) {
 
     // créer le theme
 
-    console.log('creating a new theme');
-    console.log(req.body.theme);
     var theme = new Theme(req.body.theme);
 
     theme.save(function (err) {
