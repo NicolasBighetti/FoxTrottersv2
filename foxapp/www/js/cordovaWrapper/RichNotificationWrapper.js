@@ -8,11 +8,13 @@ angular.module('foxapp')
     return {
       isSupported : function () {
 
-        var success = function () {
+        var success = function (param) {
+          console.log("is supported : " + param);
           return true;
         };
 
-        var fail = function () {
+        var fail = function (param) {
+          console.log("fail supported : " + param);
           return false;
         };
 
@@ -24,11 +26,13 @@ angular.module('foxapp')
 
 
       isConnected : function () {
-        var success = function () {
+        var success = function (param) {
+          console.log("is connected " + param);
           return true;
         };
 
-        var fail = function () {
+        var fail = function (param) {
+          console.log("fail connected " + param);
           return false;
         };
 
@@ -39,11 +43,13 @@ angular.module('foxapp')
       },
 
       registerEventListeners : function () {
-        var success = function () {
+        var success = function (param) {
+          console.log("success event " + param);
           return true;
         };
 
-        var fail = function () {
+        var fail = function (param) {
+          console.log("fail register "+ param);
           return false;
         }
 
@@ -55,11 +61,13 @@ angular.module('foxapp')
 
 
       send : function (options) {
-        var success = function () {
+        var success = function (param) {
+          console.log("success param : " + param);
           return true;
         };
 
-        var fail = function () {
+        var fail = function (param) {
+          console.log("fail param : " + param);
           return false;
         };
 

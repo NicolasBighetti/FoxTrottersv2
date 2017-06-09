@@ -18,7 +18,7 @@ angular.module('foxapp')
       return {
         notificate : function(){
             //var jsonPOI = {name: namePOI, pos: positionPOI};
-          if($cordovaGear.isSupported() && $cordovaGear.isConnected()){
+
             var opts = {
               "uuid" : "",
               "readoutTitle" : "Shaprrr",
@@ -46,7 +46,7 @@ angular.module('foxapp')
           };
               $cordovaGear.send(opts);
           }
-          }
+
         }
 
     }]);

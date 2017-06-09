@@ -21,7 +21,7 @@ angular.module('foxapp', ['ionic', 'ui.bootstrap.modal','ngMap', 'ngFileUpload',
       StatusBar.styleDefault();
     }
   });
-})
+});
 
 
 /*
