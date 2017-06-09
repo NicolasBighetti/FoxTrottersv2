@@ -16,42 +16,41 @@ angular.module('foxapp')
     //Samsung Gear > Notifications > Limit notifications
     function ($cordovaGear) {
       return {
-        notificate : function(){
-            //var jsonPOI = {name: namePOI, pos: positionPOI};
-<<<<<<< HEAD
-          if($cordovaGear.isSupported() && $cordovaGear.isConnected()){
-            console.log('sending notif');
-=======
+        notificate: function () {
+          //var jsonPOI = {name: namePOI, pos: positionPOI};
 
->>>>>>> f31cfd3efe98bad785b67bc88402af1142bb1990
+          if ($cordovaGear.isSupported() && $cordovaGear.isConnected()) {
+            console.log('sending notif');
+
             var opts = {
-              "uuid" : "",
-              "readoutTitle" : "Shaprrr",
-              "readout" : "Shaprrr",
-              "notificationTitle" : "Shaprrr",
-              "headerSizeType" : undefined,
-              "primarySubHeader" : "Shaprrrr",
-              "primaryBody" : "",
-              "primaryQRImage" : "",
-              "primaryBackgroundColor" : "#008000",
-              "primaryBackgroundImage" : "",
-              "secondaryType" : undefined,
-              "secondarySubHeader" : "",
-              "secondaryContent" : "",
-              "secondaryBackgroundColor" : "",
-              "secondaryImage" : "",
-              "smallIcon1Path" : "",
-              "smallIcon1Text" : "",
-              "smallIcon2Path" : "",
-              "smallIcon2Text" : "",
-              "notificationIcon" : "",
-              "alertType" : "104",
-              "popupType"  : "202",
-              "actions" : null
-          };
-              $cordovaGear.send(opts);
+              "uuid": "",
+              "readoutTitle": "Shaprrr",
+              "readout": "Shaprrr",
+              "notificationTitle": "Shaprrr",
+              "headerSizeType": undefined,
+              "primarySubHeader": "Shaprrrr",
+              "primaryBody": "",
+              "primaryQRImage": "",
+              "primaryBackgroundColor": "#008000",
+              "primaryBackgroundImage": "",
+              "secondaryType": undefined,
+              "secondarySubHeader": "",
+              "secondaryContent": "",
+              "secondaryBackgroundColor": "",
+              "secondaryImage": "",
+              "smallIcon1Path": "",
+              "smallIcon1Text": "",
+              "smallIcon2Path": "",
+              "smallIcon2Text": "",
+              "notificationIcon": "",
+              "alertType": "104",
+              "popupType": "202",
+              "actions": null
+            };
+            $cordovaGear.send(opts);
           }
 
         }
+      }
 
     }]);
