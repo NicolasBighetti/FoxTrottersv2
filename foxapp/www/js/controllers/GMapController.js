@@ -11,14 +11,14 @@ angular.module('foxapp')
 
     $scope.foxMarkers = MarkerService.getMarkers();
 
+
+
     MarkerService.getAllMarkers().then(function(data) {
       $scope.foxMarkers = data;
     });
 
     $scope.getGPSPosition = function(posOptions) {
-
       return GeolocationService.getCurrentPosition(posOptions);
-
     };
 
     $scope.center = function() {
@@ -26,7 +26,6 @@ angular.module('foxapp')
       $scope.getGPSPosition(posOptions).then( function(coords){
         $scope.position = coords;
       });
-
     };
 
     $scope.center();
@@ -77,7 +76,7 @@ angular.module('foxapp')
 
     $scope.changeFilter = function(criteria){
       $scope.category = criteria;
-    }
+    };
 
     // Shows the informations of the marker once you clicked on it
     $scope.showDetail = function(e, poi) {
