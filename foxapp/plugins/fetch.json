@@ -66,7 +66,7 @@
     "cordova-plugin-geolocation": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-geolocation"
+            "id": "cordova-plugin-geolocation@^2.4.3"
         },
         "is_top_level": true,
         "variables": {}
@@ -74,7 +74,7 @@
     "cordova-plugin-vibration": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-vibration"
+            "id": "cordova-plugin-vibration@^2.1.5"
         },
         "is_top_level": true,
         "variables": {}
@@ -88,11 +88,11 @@
         "variables": {}
     },
     "RichNotification": {
-    "source":{
-      "type": "registry",
-      "id": "com.samsung.richnotification"
-    },
-    "is_top_level": true,
-    "variables": {}
-  }
+        "source": {
+            "type": "registry",
+            "id": "com.samsung.richnotification"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
 }
