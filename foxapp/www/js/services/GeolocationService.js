@@ -11,23 +11,21 @@ angular.module('foxapp')
   return {
 
     getCurrentPosition : function(posOptions) {
+      var posOptions = {timeout: 30000};
 
       return $cordovaGeolocation.getCurrentPosition(posOptions).
       then(function (position) {
+        console.log('got pos');
         var coord = [];
-
-
         coord.lat = position.coords.latitude;
         coord.lng = position.coords.longitude;
-
         return coord;
-
-
       }, function (err) {
+        console.log('got err');
+        console.log(err);
         var coord = [];
         coord.lat = 43.6156;
         coord.lng = 7.0719;
-
         return coord;
       });
     },

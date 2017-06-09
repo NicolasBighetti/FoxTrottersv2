@@ -2,25 +2,41 @@
  * Created by user on 08/06/17.
  */
 angular.module('foxapp')
-.factory('PictureUploadService', ['Upload',
+.factory('PictureUploadService', ['$cordovaFileTransfer',
 
-  function(Upload){
+  function($cordovaFileTransfer){
 
       return{
       upload : function (file, URL) {
-        if(file === undefined)
-          return;
-
+        console.log('upload');
         console.log(file);
+        console.log(URL);
 
-        Upload.upload({
+        var options = {
+          fileKey: "newProfilePicture",
+          fileName: file.substr(file.lastIndexOf('/') + 1),
+          chunkedMode: false,
+          mimeType: "image/jpeg"
+        };
+
+        $cordovaFileTransfer.upload(URL, file, options).then(function (result) {
+          console.log("SUCCESS: " + JSON.stringify(result.response));
+        }, function (err) {
+          console.log("ERROR: " + JSON.stringify(err));
+        }, function (progress) {
+          // PROGRESS HANDLING GOES HERE
+        });
+
+
+
+/*        Upload.upload({
           url: URL,
           newProfilePicture: file
         }).then(function (resp) {
           console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
         }, function (resp) {
           console.log('Error status: ' + resp.status);
-        });
+        });*/
       }
     }
 }]);

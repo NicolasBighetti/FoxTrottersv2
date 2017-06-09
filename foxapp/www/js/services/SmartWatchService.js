@@ -19,6 +19,7 @@ angular.module('foxapp')
         notificate : function(){
             //var jsonPOI = {name: namePOI, pos: positionPOI};
           if($cordovaGear.isSupported() && $cordovaGear.isConnected()){
+            console.log('sending notif');
             var opts = {
               "uuid" : "",
               "readoutTitle" : "Shaprrr",
