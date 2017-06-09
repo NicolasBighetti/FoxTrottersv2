@@ -29,7 +29,7 @@
     function autoReco() {
       $http.get('/api/planders/result/' + vm.plander._id).then(function (res) {
         console.dir(res.data);
-        vm.recoAuto = data;
+        vm.recoAuto = res.data;
       }, function (err) {
         console.log(err);
       });
