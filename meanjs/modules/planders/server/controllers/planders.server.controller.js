@@ -185,9 +185,9 @@ exports.getResults = function (req, res2) {
   var plander = req.plander;
   console.log(plander);
 
-  // var itl = 'http://' + req.headers.host + plander.image;
+  var itl = 'http://' + req.headers.host + plander.image;
 
-  var itl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Leucanthemum_vulgare_qtl1.jpg/220px-Leucanthemum_vulgare_qtl1.jpg';
+  //var itl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Leucanthemum_vulgare_qtl1.jpg/220px-Leucanthemum_vulgare_qtl1.jpg';
   var host = 'http://identify.plantnet-project.org';
   var pathAP =
     '/api/project/useful/identify?imgs=' + itl +
