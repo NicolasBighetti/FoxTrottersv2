@@ -128,11 +128,11 @@ exports.uploadPicture = function (req, res) {
   var user = req.user;
   console.log('hey');
 
-  if (!user) {
+  /*if (!user) {
     res.status(401).send({
       message: 'User is not signed in'
     });
-  }
+  }*/
 
   var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -164,7 +164,8 @@ exports.uploadPicture = function (req, res) {
 
       console.log(plander.image);
 
-      plander.user = user;
+      if(user)
+        plander.user = user;
 
       plander.save(function (saveError) {
         if (saveError) {
