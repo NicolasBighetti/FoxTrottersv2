@@ -25,10 +25,12 @@
     vm.plants = undefined;
     vm.selectedPlant = undefined;
     vm.setPlantId = setPlantId;
+    vm.recoAuto = undefined;
 
     function autoReco() {
       $http.get('/api/planders/result/' + vm.plander._id).then(function (res) {
         console.dir(res.data);
+        vm.showA = true;
         vm.recoAuto = res.data;
       }, function (err) {
         console.log(err);
