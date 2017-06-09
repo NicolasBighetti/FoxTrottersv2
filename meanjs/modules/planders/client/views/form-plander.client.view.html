@@ -75,3 +75,13 @@
         </form>
     </div>
 </section>
+
+<section ng-show="vm.recoAuto">
+    <div ng-repeat="Object in vm.recoAuto.results">
+        <span>Nom</span>
+        <span>{{Object.name}}</span>
+        <span>Score</span>
+        <span>{{Object.score}}</span>
+        <button>Accept</button>
+    </div>
+</section>
