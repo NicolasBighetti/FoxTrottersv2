@@ -16,7 +16,7 @@ angular.module('foxapp')
           return false;
         };
 
-        RichNotification.isSupported(
+        samsung.richnotification.isSupported(
           success,
           fail
         );
@@ -32,7 +32,7 @@ angular.module('foxapp')
           return false;
         };
 
-        RichNotification.isConnected(
+        samsung.richnotification.isConnected(
           success,
           fail
         );
@@ -47,7 +47,7 @@ angular.module('foxapp')
           return false;
         }
 
-        RichNotification.registerEventListeners(
+        samsung.richnotification.registerEventListeners(
           success,
           fail
         );
@@ -63,7 +63,7 @@ angular.module('foxapp')
           return false;
         };
 
-        RichNotification.send(
+        samsung.richnotification.send(
           options,
           success,
           fail
@@ -80,7 +80,7 @@ angular.module('foxapp')
           return false;
         }
 
-        RichNotification.isSupported(
+        samsung.richnotification.isSupported(
           uuid,
           success,
           fail
