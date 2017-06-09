@@ -7,7 +7,6 @@
         "@ionic/cloud-angular": "^0.12.0",
         "buffer-shims": "^1.0.0",
         "cordova-android": "^6.2.3",
-        "cordova-browser": "^4.1.0",
         "cordova-plugin-bluetooth-serial": "^0.4.7",
         "cordova-plugin-camera": "^2.4.1",
         "cordova-plugin-compat": "^1.1.0",
@@ -48,11 +47,11 @@
             "cordova-plugin-bluetooth-serial": {},
             "cordova-plugin-geolocation": {},
             "cordova-plugin-vibration": {},
+            "cordova-plugin-file": {},
             "cordova-plugin-file-transfer": {}
         },
         "platforms": [
-            "android",
-            "browser"
+            "android"
         ]
     }
 }
