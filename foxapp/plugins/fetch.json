@@ -90,7 +90,7 @@
     "com.samsung.richnotification": {
         "source":{
             "type": "local",
-            "id": "com.samsung.richnotification"
+            "path": "./com.samsung.richnotification"
         },
         "is_top_level": true,
         "variables": {}
