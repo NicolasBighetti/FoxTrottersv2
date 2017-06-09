@@ -18,8 +18,12 @@ angular.module('foxapp')
       return {
         notificate : function(){
             //var jsonPOI = {name: namePOI, pos: positionPOI};
+<<<<<<< HEAD
           if($cordovaGear.isSupported() && $cordovaGear.isConnected()){
             console.log('sending notif');
+=======
+
+>>>>>>> f31cfd3efe98bad785b67bc88402af1142bb1990
             var opts = {
               "uuid" : "",
               "readoutTitle" : "Shaprrr",
@@ -47,7 +51,7 @@ angular.module('foxapp')
           };
               $cordovaGear.send(opts);
           }
-          }
+
         }
 
     }]);
