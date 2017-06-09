@@ -31,7 +31,7 @@
       $http.get('/api/planders/result/' + vm.plander._id).then(function (res) {
         console.dir(res.data);
         vm.showA = true;
-        vm.recoAuto = res.data;
+        vm.recoAuto = JSON.parse(res.data);
       }, function (err) {
         console.log(err);
       });
