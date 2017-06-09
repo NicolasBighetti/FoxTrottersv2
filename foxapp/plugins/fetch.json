@@ -88,11 +88,11 @@
         "variables": {}
     },
     "com.samsung.richnotification": {
-    "source":{
-      "type": "registry",
-      "id": "com.samsung.richnotification"
-    },
-    "is_top_level": true,
-    "variables": {}
+        "source":{
+            "type": "local",
+            "id": "com.samsung.richnotification"
+        },
+        "is_top_level": true,
+        "variables": {}
   }
 }
