@@ -11,9 +11,11 @@ angular.module('foxapp')
 
     $scope.foxMarkers = MarkerService.getMarkers();
 
+
     MarkerService.getAllMarkers().then(function(data) {
       $scope.foxMarkers = data;
     });
+
 
     $scope.getGPSPosition = function(posOptions) {
       return GeolocationService.getCurrentPosition(posOptions);
@@ -23,8 +25,10 @@ angular.module('foxapp')
       var posOptions = [];
 
       $scope.getGPSPosition(posOptions).then( function(coords){
+
         $scope.position = coords;
       }, function (err) {
+
       });
     };
 
@@ -34,6 +38,7 @@ angular.module('foxapp')
     $scope.savePosition = function(){
       var posOptions = [];
       $scope.getGPSPosition(posOptions).then( function(coords){
+        $scope.position = coords;
         $scope.GPSTrace.push(
           [coords.lat, coords.lng]
         )
