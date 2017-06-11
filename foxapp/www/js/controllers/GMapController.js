@@ -73,11 +73,18 @@ angular.module('foxapp')
       $scope.tinderswitch = false;
     };
 
+    $scope.addPOI = function(){
+      $scope.creationPOI = !$scope.creationPOI;
+    };
+
     $scope.swipeend = function(){
       $scope.tinderswitch = true;
     };
 
     $scope.tinderswitch = true;
+
+    $scope.creationPOI = true;
+
 
     $scope.category = "";
 
