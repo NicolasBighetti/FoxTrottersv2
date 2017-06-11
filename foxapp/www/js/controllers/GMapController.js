@@ -21,19 +21,13 @@ angular.module('foxapp')
 
     $scope.center = function() {
       var posOptions = [];
-      console.log('center');
 
       $scope.getGPSPosition(posOptions).then( function(coords){
-        console.log('coods');
-        console.log(coords);
         $scope.position = coords;
       }, function (err) {
-        console.log('error in getGPSPosition');
-        console.log(err);
       });
     };
 
-    console.log('calling center');
 
     $scope.center();
 
