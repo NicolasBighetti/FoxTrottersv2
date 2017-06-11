@@ -1,8 +1,8 @@
 angular.module('foxapp')
 
-.controller('GMapController', ['$scope', '$interval','$window','$location', '$cordovaVibration','GeolocationService' ,'NgMap', 'MarkerService', 'SmartWatchService',
+.controller('GMapController', ['$scope', '$interval','$window','$location', '$cordovaVibration','GeolocationService' ,'NgMap', 'MarkerService', 'SmartWatchService','RESTService','$ionicPopup',
 
-  function($scope, $interval, $window ,$location, $cordovaVibration, GeolocationService, NgMap, MarkerService, SmartWatchService) {
+  function($scope, $interval, $window ,$location, $cordovaVibration, GeolocationService, NgMap, MarkerService, SmartWatchService, RESTService , $ionicPopup) {
 
     // $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGMBQQC143VTbPWjLWEBJfB3LSzD0LnPw";
     // console.log(MarkerService.getMarkers());
@@ -83,6 +83,52 @@ angular.module('foxapp')
     $scope.tinderswitch = true;
 
     $scope.creationPOI = true;
+
+    $scope.URL = {
+      "plantinder": "http://ns388671.ip-176-31-254.eu/api/planders",
+      "poi": "http://ns388671.ip-176-31-254.eu/api/poi",
+      "planders" : "http://ns388671.ip-176-31-254.eu/api/planders/result/"
+    };
+
+    $scope.recognizePlant = function(promise){
+      promise.then(
+        function(data){
+          var json = JSON.parse(data);
+          console.log("been there");
+          RESTService.get($scope.URL.planders+json._id).then(
+            function(result){
+              var jsson = JSON.parse(result);
+
+              $scope.answerder = jsson.results[0].name;
+
+              var myPopup = $ionicPopup.show({
+                template: '<input type = "text" ng-model = "answerder">',
+                title: 'Résultat',
+                subTitle: 'Plander',
+                scope: $scope,
+
+                buttons: [
+                  { text: 'Cancel' }, {
+                    text: '<b>Save</b>',
+                    type: 'button-positive',
+                    onTap: function(e) {
+
+                      if (!$scope.data.model) {
+                        //don't allow the user to close unless he enters model...
+                        e.preventDefault();
+                      } else {
+                        return $scope.data.model;
+                      }
+                    }
+                  }
+                ]
+              });
+
+            }
+          );
+        }
+      );
+    };
 
 
     $scope.category = "";

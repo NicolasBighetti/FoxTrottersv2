@@ -20,10 +20,7 @@ angular.module('foxapp')
         };
       }, false);
 
-      $scope.URL = {
-        "plantinder": "http://ns388671.ip-176-31-254.eu/api/planders",
-        "poi": "http://ns388671.ip-176-31-254.eu/api/poi"
-      };
+
 
       $scope.takePicture = function (options) {
         return $cordovaCamera.getPicture(options).then(function (imageData) {
@@ -38,7 +35,7 @@ angular.module('foxapp')
       };
 
       $scope.sendPicture = function (URL, image) {
-        image.then(function (imageData) {
+        return image.then(function (imageData) {
 
             console.log(imageData);
             console.log('hhhh');
