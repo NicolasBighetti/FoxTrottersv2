@@ -239,7 +239,12 @@
 
                   <label class="control-label" for="desc">Description</label>
                   <input name="desc" type="text" ng-model="poi.desc" id="desc" class="form-control" placeholder="Enter description" required>
-
+                  <div class="photo">
+                    <button href="#" ng-controller="PhotoController" ng-click="setURI(takePicture(options))">
+                      Ajouter une photo
+                    </button>
+                    <img src="{{$scope.poi.image}}" />
+                  </div>
                   <h4>Type</h4>
                   <select ng-model="poi.typep">
                     <option value="plant">Plant</option>
