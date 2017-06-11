@@ -42,7 +42,7 @@ angular.module('foxapp')
 
             console.log(imageData);
             console.log('hhhh');
-            PictureUploadService.upload(imageData, URL);
+            return PictureUploadService.upload(imageData, URL);
           }
         );
       };
