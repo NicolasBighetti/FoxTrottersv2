@@ -11,7 +11,9 @@ angular.module('foxapp')
     $scope.createPOI = function(){
       GeolocationService.getCurrentPosition({}).then(
         function(data){
-          $scope.poi.coords = data;
+          $scope.poi.coords = {};
+          $scope.poi.coords.latitude = data.lat;
+          $scope.poi.coords.longitude = data.lng;
         }
       ).then(
         function(){
