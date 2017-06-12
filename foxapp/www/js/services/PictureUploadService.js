@@ -8,9 +8,7 @@ angular.module('foxapp')
 
       return{
       upload : function (file, URL) {
-        console.log('upload');
-        console.log(file);
-        console.log(URL);
+
 
         var options = {
           fileKey: "newProfilePicture",
@@ -19,8 +17,9 @@ angular.module('foxapp')
           mimeType: "image/jpeg"
         };
 
-        $cordovaFileTransfer.upload(URL, file, options).then(function (result) {
+        return $cordovaFileTransfer.upload(URL, file, options).then(function (result) {
           console.log("SUCCESS: " + JSON.stringify(result.response));
+          return result.response;
         }, function (err) {
           console.log("ERROR: " + JSON.stringify(err));
         }, function (progress) {

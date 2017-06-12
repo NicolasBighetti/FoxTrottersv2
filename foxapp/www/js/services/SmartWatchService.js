@@ -18,17 +18,15 @@ angular.module('foxapp')
       return {
         notificate: function () {
           //var jsonPOI = {name: namePOI, pos: positionPOI};
-
-          if ($cordovaGear.isSupported() && $cordovaGear.isConnected()) {
-            console.log('sending notif');
+           console.log('sending notif');
 
             var opts = {
               "uuid": "",
-              "readoutTitle": "Shaprrr",
-              "readout": "Shaprrr",
-              "notificationTitle": "Shaprrr",
+              "readoutTitle": "Vous êtes a proximité d'un point d'intérêt",
+              "readout": "Vous êtes a proximité d'un point d'intérêt",
+              "notificationTitle": "Vous êtes a proximité d'un point d'intérêt",
               "headerSizeType": undefined,
-              "primarySubHeader": "Shaprrrr",
+              "primarySubHeader": "Vous êtes a proximité d'un point d'intérêt",
               "primaryBody": "",
               "primaryQRImage": "",
               "primaryBackgroundColor": "#008000",
@@ -48,7 +46,7 @@ angular.module('foxapp')
               "actions": null
             };
             $cordovaGear.send(opts);
-          }
+
 
         }
       }

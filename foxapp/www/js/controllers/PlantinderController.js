@@ -28,15 +28,12 @@ angular.module('foxapp')
         subtitle: ''
       }],
         $scope.zoomPicture = function(){
-          console.log('je suis le zoom');
       };
       $scope.showinfo = function(){
-          console.log('je suis linfo');
       };
 
 
       $scope.swipeLeft = function(){
-          console.log('left');
       };
 
       $scope.swipeRight = function(){
@@ -56,7 +53,6 @@ angular.module('foxapp')
       };
 
       $scope.swipeend = function(){
-        console.log('ttestetete');
         $scope.showModal = false;
       }
 
