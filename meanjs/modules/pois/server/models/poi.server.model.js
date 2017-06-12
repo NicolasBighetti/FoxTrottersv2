@@ -79,6 +79,10 @@ var PoiSchema = new Schema({
   dangerzone: {
     type: String,
     default: '0'
+  },
+  score: {
+    type: Number,
+    default: 0
   }
 
 });

@@ -87,7 +87,8 @@ angular.module('foxapp')
     $scope.URL = {
       "plantinder": "http://ns388671.ip-176-31-254.eu/api/planders",
       "poi": "http://ns388671.ip-176-31-254.eu/api/poi",
-      "planders" : "http://ns388671.ip-176-31-254.eu/api/planders/result/"
+      "planders" : "http://ns388671.ip-176-31-254.eu/api/planders/result/",
+      "vote" : "http://ns388671.ip-176-31-254.eu/api/pois/"
     };
 
     $scope.recognizePlant = function(promise){
@@ -145,6 +146,15 @@ angular.module('foxapp')
 
     $scope.hideDetail = function() {
       $scope.map.hideInfoWindow('foo-iw');
+    };
+
+    $scope.vote = function (poi,score) {
+      if(score == 1){
+        poi.score++;
+      }else {
+        poi.score--;
+      }
+      RESTService.put(URL.vote+poi._id,poi);
     };
 
 }]);
