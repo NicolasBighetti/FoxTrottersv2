@@ -93,6 +93,42 @@ exports.list = function(req, res) {
 };
 
 /**
+ * Poi vote positif
+ */
+
+exports.voteP = function (req, res) {
+  var poi = req.poi;
+  poi.score++;
+  poi = _.extend(poi, req.body);
+
+  if (err) {
+    return res.status(400).send({
+      message: errorHandler.getErrorMessage(err)
+    });
+  } else {
+    res.jsonp(poi);
+  }
+};
+
+/**
+ * Poi vote negatif
+ */
+
+exports.voteM = function (req, res) {
+  var poi = req.poi;
+  poi.score--;
+  poi = _.extend(poi, req.body);
+
+  if (err) {
+    return res.status(400).send({
+      message: errorHandler.getErrorMessage(err)
+    });
+  } else {
+    res.jsonp(poi);
+  }
+};
+
+/**
  * Poi middleware
  */
 exports.poiByID = function(req, res, next, id) {
@@ -115,3 +151,4 @@ exports.poiByID = function(req, res, next, id) {
     next();
   });
 };
+
