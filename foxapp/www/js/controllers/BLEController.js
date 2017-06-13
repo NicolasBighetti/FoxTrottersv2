@@ -4,7 +4,7 @@ angular.module('foxapp')
 
         function($scope, $window ,$location,$cordovaBluetoothSerial) {
             $scope.notificate = function () {
-                $cordovaBluetoothSerial.write('hello world');
+                //$cordovaBluetoothSerial.write('hello world');
                 console.log('notif');
 
                 return 'chibre';

@@ -1,0 +1,7 @@
+<div ng-hide="tinderswitch" class="momo" modal="showModal" close="cancel()" ng-controller="PlantinderController">
+    <div class="modal-body">
+        <div name="plantinder"  >
+            <ng-swippy class="plantinder"collection='itemsCollection' width='80%' height='80%' item-click='zoomPicture' data='showinfo'collection-empty='swipeend' swipe-left='swipeLeft'  swipe-right='swipeRight' cards-number='2' label-ok='Je connais cette plantes!' label-negative='Je ne connais pas cette plante'></ng-swippy>
+        </div>
+    </div>
+</div>

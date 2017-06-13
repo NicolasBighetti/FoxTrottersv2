@@ -1,8 +1,10 @@
 angular.module('foxapp')
 
-.controller('GMapController', ['$scope', '$interval','$window','$location', '$cordovaVibration','GeolocationService' ,'NgMap', 'MarkerService', 'SmartWatchService','RESTService','$ionicPopup',
+.controller('GMapController', ['$scope', '$interval','$window','$location', '$cordovaVibration', 'GeolocationService',
+  'NgMap', 'MarkerService', 'SmartWatchService','RESTService','$ionicPopup',
 
-  function($scope, $interval, $window ,$location, $cordovaVibration, GeolocationService, NgMap, MarkerService, SmartWatchService, RESTService , $ionicPopup) {
+  function($scope, $interval, $window ,$location, $cordovaVibration, GeolocationService, NgMap, MarkerService,
+           SmartWatchService, RESTService , $ionicPopup) {
 
     // $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGMBQQC143VTbPWjLWEBJfB3LSzD0LnPw";
     // console.log(MarkerService.getMarkers());
@@ -72,7 +74,8 @@ angular.module('foxapp')
     };
 
     $interval($scope.savePosition, 15000);
-    $interval($scope.notifyProximity, 5000);
+    var notificationTime = 60 * 1000;
+    $interval($scope.notifyProximity, notificationTime);
 
 
     $scope.tinderise = function(){
@@ -145,8 +148,15 @@ angular.module('foxapp')
       $scope.category = criteria;
     };
 
+    NgMap.getMap().then(function(evtMap) {
+      console.log('setmap');
+      $scope.map = evtMap;
+      //interval = $interval(talk, 2000);
+    });
+
     // Shows the informations of the marker once you clicked on it
     $scope.showDetail = function(e, poi) {
+      console.log($scope.map);
       $scope.poi = poi;
       $scope.map.showInfoWindow('foo-iw', poi._id);
     };
