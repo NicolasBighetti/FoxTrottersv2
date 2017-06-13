@@ -204,12 +204,13 @@
                     </em>
                   </small>
                 </div>
-                <button class="btn btn-success" ng-controller="BLEController" ng-click="notificate()">Suivre</button>
-                <form ng-controller="GMapController">
-                  <i title="Up Votes" ng-click="vote({{poi}},1)" class="fa fa-arrow-circle-up fa-2x" ng-class="{true:'up', false:''}[vote=='up']"></i>
+                test 1
+                <div ng-controller="GMapController">
+                  test affichage
+                  <a title="Up Votes" ng-click="vote({{poi}},1)"  >+</a>
                   {{poi.score}}
-                  <i title="Down Votes" ng-click="vote({{poi}},0)" class="fa fa-arrow-circle-down fa-2x"  ng-class="{true:'down', false:''}[vote=='down']"></i>
-                </form>
+                  <a title="Down Votes" ng-click="vote({{poi}},0)"   >-</a><!-- class="glyphicon glyphicon-chevron-down"ng-class="{true:'down', false:''}[vote=='down']"-->
+                </div>
               </div>
             </info-window>
           </ng-map>

@@ -150,11 +150,11 @@ angular.module('foxapp')
 
     $scope.vote = function (poi,score) {
       if(score == 1){
-        poi.score++;
+        RESTService.put(URL.vote+poi._id+"/+",poi);
       }else {
-        poi.score--;
+        RESTService.put(URL.vote+poi._id+"/-",poi);
       }
-      RESTService.put(URL.vote+poi._id,poi);
+
     };
 
 }]);
