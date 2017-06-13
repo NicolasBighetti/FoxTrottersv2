@@ -84,6 +84,10 @@ angular.module('foxapp')
         },
         getProximity: function(){
           return proximityNotification;
+        },
+        notify: function(label, distance, opts){
+          opts.notificationTitle = label + " : " + distance + "m";
+          this.notificate(opts);
         }
       };
 
