@@ -6,7 +6,7 @@
         Danger: {{poi.dangerzone}}<br/>
         Visitors: {{poi.people}}<br/>
         Created by: {{poi.user.displayName}}<br/>
-        <img ng-src="{{poi.image}}" /><br/>
+        <img ng-src="{{$location.absUrl() + poi.image}}" /><br/>
         <div id="plant-info" ng-hide="poi.plant == null">
             <h3>Plant informations:</h3>
             Common name: {{poi.plant.commonName}}<br/>
