@@ -2,8 +2,9 @@
 	background-image: url(../img/background_fxtr_better.png);
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	margin: 0%;
-	padding: 100%;
+	background-size:cover;
+	position:relative;
+	height:100vh;
 }
 
 .content {
