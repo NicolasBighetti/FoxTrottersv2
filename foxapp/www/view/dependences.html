@@ -1,33 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
-
-    <link rel="manifest" href="manifest.json">
-
-    <!-- un-comment this code to enable service worker
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(() => console.log('service worker installed'))
-          .catch(err => console.log('Error', err));
-      }
-    </script>-->
-
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="lib/ng-swippy/ngswippy.css" rel="stylesheet">
-
-    <link href="css/style.css" rel="stylesheet">
-
-
-</head>
-<body ng-app="foxapp">
-
 <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
   <link href="css/ionic.app.css" rel="stylesheet">
   -->
+
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular-animate/angular-animate.js"></script>
 <script src="lib/angular-touch/angular-touch.js"></script>
@@ -65,7 +39,7 @@
 <script src="js/controllers/GMapController.js"></script>
 <script src="js/controllers/PhotoController.js"></script>
 <script src="js/controllers/PlantinderController.js"></script>
-<script src="js/controllers/BLEController.js"></script>
+<script src="js/controllers/BLEController.js"> </script>
 <script src="js/controllers/CreationController.js"></script>
 
 
@@ -82,21 +56,3 @@
 
 <!-- Route -->
 <script src="js/RouteConfiguration.js"></script>
-
-<ion-pane>
-    <ion-view>
-        <ion-content>
-            <div id="map" ng-controller="GMapController">
-                <ng-include src="'view/search.html'"></ng-include>
-                <ng-include src="'view/menu.html'"></ng-include>
-                <ng-include src="'view/map.html'"></ng-include>
-                <ng-include src="'view/plantinder.html'"></ng-include>
-                <ng-include src="'view/pois-view.html'"></ng-include>
-            </div>
-
-        </ion-content>
-    </ion-view>
-
-</ion-pane>
-</body>
-</html>
