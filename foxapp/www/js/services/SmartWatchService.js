@@ -14,41 +14,81 @@ angular.module('foxapp')
     //il implémente le js du plugin décrit /home/user/projuin/fox_trotters/private/foxapp/plugins/com.samsung.richnotification/www/richnotification.js
     //C'est le yolo total après, mais au moins ça passe la compilation angular, à prioris ça devrait marcher
     //Samsung Gear > Notifications > Limit notifications
+
+
+
     function ($cordovaGear) {
+
+      var proximityNotification = {
+        "uuid": "",
+        "readoutTitle": "Vous êtes a proximité d'un point d'intérêt",
+        "readout": "Vous êtes a proximité d'un point d'intérêt",
+        "notificationTitle": "Vous êtes a proximité d'un point d'intérêt",
+        "headerSizeType": undefined,
+        "primarySubHeader": "Vous êtes a proximité d'un point d'intérêt",
+        "primaryBody": "",
+        "primaryQRImage": "",
+        "primaryBackgroundColor": "#008000",
+        "primaryBackgroundImage": "",
+        "secondaryType": undefined,
+        "secondarySubHeader": "",
+        "secondaryContent": "",
+        "secondaryBackgroundColor": "",
+        "secondaryImage": "",
+        "smallIcon1Path": "",
+        "smallIcon1Text": "",
+        "smallIcon2Path": "",
+        "smallIcon2Text": "",
+        "notificationIcon": "",
+        "alertType": "104",
+        "popupType": "202",
+        "actions": null
+      };
+
+      var dangerNotification = {
+        "uuid": "",
+        "readoutTitle": "Attention danger!",
+        "readout": "Attention danger!",
+        "notificationTitle": "Attention danger!",
+        "headerSizeType": undefined,
+        "primarySubHeader": "Attention danger!",
+        "primaryBody": "",
+        "primaryQRImage": "",
+        "primaryBackgroundColor": "#800000",
+        "primaryBackgroundImage": "",
+        "secondaryType": undefined,
+        "secondarySubHeader": "",
+        "secondaryContent": "",
+        "secondaryBackgroundColor": "",
+        "secondaryImage": "",
+        "smallIcon1Path": "",
+        "smallIcon1Text": "",
+        "smallIcon2Path": "",
+        "smallIcon2Text": "",
+        "notificationIcon": "",
+        "alertType": "104",
+        "popupType": "202",
+        "actions": null};
+
       return {
-        notificate: function () {
+        notificate: function (opts) {
           //var jsonPOI = {name: namePOI, pos: positionPOI};
            console.log('sending notif');
 
-            var opts = {
-              "uuid": "",
-              "readoutTitle": "Vous êtes a proximité d'un point d'intérêt",
-              "readout": "Vous êtes a proximité d'un point d'intérêt",
-              "notificationTitle": "Vous êtes a proximité d'un point d'intérêt",
-              "headerSizeType": undefined,
-              "primarySubHeader": "Vous êtes a proximité d'un point d'intérêt",
-              "primaryBody": "",
-              "primaryQRImage": "",
-              "primaryBackgroundColor": "#008000",
-              "primaryBackgroundImage": "",
-              "secondaryType": undefined,
-              "secondarySubHeader": "",
-              "secondaryContent": "",
-              "secondaryBackgroundColor": "",
-              "secondaryImage": "",
-              "smallIcon1Path": "",
-              "smallIcon1Text": "",
-              "smallIcon2Path": "",
-              "smallIcon2Text": "",
-              "notificationIcon": "",
-              "alertType": "104",
-              "popupType": "202",
-              "actions": null
-            };
             $cordovaGear.send(opts);
 
 
+        },
+        getDanger: function(){
+          return dangerNotification;
+        },
+        getProximity: function(){
+          return proximityNotification;
+        },
+        notify: function(label, distance, opts){
+          opts.notificationTitle = label + " : " + distance + "m";
+          this.notificate(opts);
         }
-      }
+      };
 
     }]);

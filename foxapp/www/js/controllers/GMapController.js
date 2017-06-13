@@ -11,11 +11,14 @@ angular.module('foxapp')
 
     $scope.foxMarkers = MarkerService.getMarkers();
 
+    $scope.getAllMarkers = function() {
+      MarkerService.getAllMarkers().then(function(data) {
+        $scope.foxMarkers = data;
+      });
+    };
 
-    MarkerService.getAllMarkers().then(function(data) {
-      $scope.foxMarkers = data;
-    });
 
+    $scope.getAllMarkers();
 
     $scope.getGPSPosition = function(posOptions) {
       return GeolocationService.getCurrentPosition(posOptions);
@@ -49,13 +52,17 @@ angular.module('foxapp')
 
     $scope.notifyProximity = function(){
       if($scope.checkProximity) {
-        var triggerDistance = 5;
+        var triggerDistance = 0.15;
+        var dangerThreshold = 250;
 
         $scope.getGPSPosition([]).then( function(coords){
           for(var mrk in $scope.foxMarkers){
+            var name = $scope.foxMarkers[mrk].name;
+            var danger = $scope.foxMarkers[mrk].dangerzone;
             if(GeolocationService.getDistanceFromLatLonInKm(coords.lat, coords.lng, $scope.foxMarkers[mrk].coords.latitude, $scope.foxMarkers[mrk].coords.longitude) <= triggerDistance){
-                $cordovaVibration.vibrate(100);
-                SmartWatchService.notificate();
+                $cordovaVibration.vibrate(10);
+                var notif = (danger >= dangerThreshold ? SmartWatchService.getDanger(): SmartWatchService.getProximity());
+                SmartWatchService.notify(name, danger, notif);
               break;
             }
           }
