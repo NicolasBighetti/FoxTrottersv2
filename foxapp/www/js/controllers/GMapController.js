@@ -11,11 +11,14 @@ angular.module('foxapp')
 
     $scope.foxMarkers = MarkerService.getMarkers();
 
+    $scope.getAllMarkers = function() {
+      MarkerService.getAllMarkers().then(function(data) {
+        $scope.foxMarkers = data;
+      });
+    };
 
-    MarkerService.getAllMarkers().then(function(data) {
-      $scope.foxMarkers = data;
-    });
 
+    $scope.getAllMarkers();
 
     $scope.getGPSPosition = function(posOptions) {
       return GeolocationService.getCurrentPosition(posOptions);
