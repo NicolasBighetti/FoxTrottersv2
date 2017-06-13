@@ -8,7 +8,7 @@ angular.module('foxapp')
     function ($scope, GeolocationService, RESTService, PictureUploadService) {
       console.log('CreationController')
 
-      $scope.url = "http://ns388671.ip-176-31-254.eu/api/planders";
+      $scope.url = dbPath+"api/planders";
 
       $scope.createPOI = function () {
         $scope.poi.coords = {};

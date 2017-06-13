@@ -8,7 +8,8 @@ angular.module('foxapp')
 
     // $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGMBQQC143VTbPWjLWEBJfB3LSzD0LnPw";
     // console.log(MarkerService.getMarkers());
-
+    console.log('dbPath');
+    console.log(dbPath);
     $scope.GPSTrace = [];
 
     $scope.foxMarkers = MarkerService.getMarkers();
@@ -95,9 +96,9 @@ angular.module('foxapp')
     $scope.creationPOI = true;
 
     $scope.URL = {
-      "plantinder": "http://ns388671.ip-176-31-254.eu/api/planders",
-      "poi": "http://ns388671.ip-176-31-254.eu/api/poi",
-      "planders" : "http://ns388671.ip-176-31-254.eu/api/planders/result/"
+      "plantinder": "dbPathapi/planders",
+      "poi": "dbPathapi/poi",
+      "planders" : "dbPathapi/planders/result/"
     };
 
     $scope.recognizePlant = function(promise){
