@@ -49,7 +49,7 @@ angular.module('foxapp')
 
     $scope.notifyProximity = function(){
       if($scope.checkProximity) {
-        var triggerDistance = 15;
+        var triggerDistance = 0.15;
         var dangerThreshold = 250;
 
         $scope.getGPSPosition([]).then( function(coords){
