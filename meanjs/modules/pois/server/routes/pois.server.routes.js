@@ -17,10 +17,10 @@ module.exports = function(app) {
     .put(pois.update)
     .delete(pois.delete);
 
-  app.route('/api/pois/:poiId/+').all(poisPolicy.isAllowed)
+  app.route('/api/pois/:poiId/plus').all(poisPolicy.isAllowed)
       .get(pois.voteP);
 
-  app.route('/api/pois/:poiId/-').all(poisPolicy.isAllowed)
+  app.route('/api/pois/:poiId/moins').all(poisPolicy.isAllowed)
       .get(pois.voteM);
       
 

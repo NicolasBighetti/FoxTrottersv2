@@ -165,6 +165,14 @@ angular.module('foxapp')
       $scope.map.hideInfoWindow('foo-iw');
     };
 
+    $scope.vote = function (poi,score) {
+      if (score == 1) {
+        RESTService.get($scope.URL.vote + poi._id + "/plus", poi);
+      } else {
+        RESTService.get($scope.URL.vote + poi._id + "/moins", poi);
+      }
+    };
+
 
     $scope.form = {};
 
