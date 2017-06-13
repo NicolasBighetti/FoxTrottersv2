@@ -10,6 +10,10 @@ angular.module('foxapp')
     // console.log(MarkerService.getMarkers());
     console.log('dbPath');
     console.log(dbPath);
+
+    $scope.dbPath = dbPath;
+
+
     $scope.GPSTrace = [];
 
     $scope.foxMarkers = MarkerService.getMarkers();
