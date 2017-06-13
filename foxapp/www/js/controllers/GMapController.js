@@ -167,9 +167,9 @@ angular.module('foxapp')
 
     $scope.vote = function (poi,score) {
       if(score == 1){
-        RESTService.put($scope.URL.vote+poi._id+"/+",poi);
+        RESTService.get($scope.URL.vote+poi._id+"/plus",poi);
       }else {
-        RESTService.put($scope.URL.vote+poi._id+"/-",poi);
+        RESTService.get($scope.URL.vote+poi._id+"/moins",poi);
       }
 
     };

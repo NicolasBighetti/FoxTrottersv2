@@ -60,7 +60,12 @@
                         </em>
                     </small>
                 </div>
-                <button class="btn btn-success" ng-controller="BLEController" ng-click="notificate()">Suivre</button>
+                <div ng-controller="GMapController">
+
+                    <a title="Up Votes" ng-click="vote({{poi}},1)"  >+</a>
+                    {{poi.score}}
+                    <a title="Down Votes" ng-click="vote({{poi}},0)"   >-</a><!-- class="glyphicon glyphicon-chevron-down"ng-class="{true:'down', false:''}[vote=='down']"-->
+                </div>
             </div>
         </info-window>
     </ng-map>
