@@ -164,4 +164,31 @@ angular.module('foxapp')
       $scope.map.hideInfoWindow('foo-iw');
     };
 
+
+    $scope.form = {};
+
+    $scope.poi = {};
+
+    $scope.pictureURI = "";
+
+    $scope.setURI = function (pictureData) {
+      pictureData.then(function (path) {
+        $scope.pictureURI = path;
+      });
+    };
+
+    $scope.open = function () {
+
+      $scope.creationPOI = true;
+    };
+
+    $scope.create = function () {
+
+      $scope.creationPOI = false;
+    };
+
+    $scope.cancelPoi = function () {
+      $scope.creationPOI = true;
+    };
+
 }]);
