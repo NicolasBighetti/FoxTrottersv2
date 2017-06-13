@@ -114,7 +114,7 @@ exports.voteP = function (req, res) {
  * Poi vote negatif
  */
 
-exports.voteP = function (req, res) {
+exports.voteM = function (req, res) {
   var poi = req.poi;
   poi.score--;
   poi = _.extend(poi, req.body);

@@ -150,9 +150,9 @@ angular.module('foxapp')
 
     $scope.vote = function (poi,score) {
       if(score == 1){
-        RESTService.put(URL.vote+poi._id+"/+",poi);
+        RESTService.put($scope.URL.vote+poi._id+"/+",poi);
       }else {
-        RESTService.put(URL.vote+poi._id+"/-",poi);
+        RESTService.put($scope.URL.vote+poi._id+"/-",poi);
       }
 
     };

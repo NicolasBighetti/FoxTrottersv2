@@ -21,7 +21,7 @@ module.exports = function(app) {
       .get(pois.voteP);
 
   app.route('/api/pois/:poiId/-').all(poisPolicy.isAllowed)
-      .get(pois.voteM)
+      .get(pois.voteM);
       
 
   // Finish by binding the Poi middleware
