@@ -49,13 +49,14 @@ angular.module('foxapp')
 
     $scope.notifyProximity = function(){
       if($scope.checkProximity) {
-        var triggerDistance = 5;
+        var triggerDistance = 15;
+        var dangerThreshold = 250;
 
         $scope.getGPSPosition([]).then( function(coords){
           for(var mrk in $scope.foxMarkers){
             if(GeolocationService.getDistanceFromLatLonInKm(coords.lat, coords.lng, $scope.foxMarkers[mrk].coords.latitude, $scope.foxMarkers[mrk].coords.longitude) <= triggerDistance){
                 $cordovaVibration.vibrate(100);
-                SmartWatchService.notificate();
+                $scope.foxMarkers[mrk].dangerzone >= dangerThreshold ? SmartWatchService.notificate(SmartWatchService.getDanger()) : SmartWatchService.notificate(SmartWatchService.getProximity());
               break;
             }
           }
