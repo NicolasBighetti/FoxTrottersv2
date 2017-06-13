@@ -97,8 +97,7 @@ angular.module('foxapp')
     $scope.URL = {
       "plantinder": "http://ns388671.ip-176-31-254.eu/api/planders",
       "poi": "http://ns388671.ip-176-31-254.eu/api/poi",
-      "planders" : "http://ns388671.ip-176-31-254.eu/api/planders/result/",
-      "vote" : "http://ns388671.ip-176-31-254.eu/api/pois/"
+      "planders" : "http://ns388671.ip-176-31-254.eu/api/planders/result/"
     };
 
     $scope.recognizePlant = function(promise){
@@ -166,12 +165,38 @@ angular.module('foxapp')
     };
 
     $scope.vote = function (poi,score) {
-      if(score == 1){
-        RESTService.get($scope.URL.vote+poi._id+"/plus",poi);
-      }else {
-        RESTService.get($scope.URL.vote+poi._id+"/moins",poi);
+      if (score == 1) {
+        RESTService.get($scope.URL.vote + poi._id + "/plus", poi);
+      } else {
+        RESTService.get($scope.URL.vote + poi._id + "/moins", poi);
       }
+    };
 
+
+    $scope.form = {};
+
+    $scope.poi = {};
+
+    $scope.pictureURI = "";
+
+    $scope.setURI = function (pictureData) {
+      pictureData.then(function (path) {
+        $scope.pictureURI = path;
+      });
+    };
+
+    $scope.open = function () {
+
+      $scope.creationPOI = true;
+    };
+
+    $scope.create = function () {
+
+      $scope.creationPOI = false;
+    };
+
+    $scope.cancelPoi = function () {
+      $scope.creationPOI = true;
     };
 
 }]);
