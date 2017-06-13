@@ -7,9 +7,7 @@ Un assistant en milieu naturel
 foxapp, l'application mobile
     pour install:
     Installer NPM puis:
-
         npm install -g cordova ionic
-
         se mettre dans le dossier foxapp
         npm install
         bower install
@@ -25,9 +23,17 @@ foxapp, l'application mobile
         ionic cordova run android (branche un tel android en mode debug usb ou émulateur)
         ou
         ionic serve (pour la version nav)
+
     erreurs courantes:
         il faut le jdk java dans le path
         il faut accepter la licence android sdk avec le standalone sdk manager
+        il faut avoir acces au serveur ou le lancer en local et changer la variable dbPath dans foxapp/www/js/app.js
+        en
+        var dbPath = "http://localhost";
+        pour remmettre sur le serveur:
+        var dbPath = "http://ns388671.ip-176-31-254.eu/";
+
+
 
 meanjs, application web et serveur + bd
     install:
