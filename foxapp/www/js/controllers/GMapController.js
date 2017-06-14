@@ -13,18 +13,17 @@ angular.module('foxapp')
 
     $scope.dbPath = dbPath;
 
-    $scope.$on('$ionicView.beforeEnter', function() {
-      //do stuff before enter
-      console.log('jesuisla');
-      $ionicSlideBoxDelegate.enableSlide(false);
+    $scope.disableSwipe = function(){
+        $ionicSlideBoxDelegate.enableSlide(false);
+    };
 
-    });
-    $scope.$on('$ionicView.beforeLeave', function() {
-      //do your stuff after leaving
-      console.log('jexiste');
-      $ionicSlideBoxDelegate.enableSlide(true);
+    $scope.enableSwipe = function(){
+        $ionicSlideBoxDelegate.enableSlide(true);
+    };
 
-    });
+    $ionicSlideBoxDelegate.enableSlide(false);
+
+
 
     $scope.GPSTrace = [];
 
