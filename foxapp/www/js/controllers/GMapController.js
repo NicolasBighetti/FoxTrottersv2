@@ -1,10 +1,10 @@
 angular.module('foxapp')
 
 .controller('GMapController', ['$scope', '$interval','$window','$location', '$cordovaVibration', 'GeolocationService',
-  'NgMap', 'MarkerService', 'SmartWatchService','RESTService','$ionicPopup',
+  'NgMap', 'MarkerService', 'SmartWatchService','RESTService','$ionicPopup','$ionicSlideBoxDelegate',
 
   function($scope, $interval, $window ,$location, $cordovaVibration, GeolocationService, NgMap, MarkerService,
-           SmartWatchService, RESTService , $ionicPopup) {
+           SmartWatchService, RESTService , $ionicPopup, $ionicSlideBoxDelegate) {
 
     // $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGMBQQC143VTbPWjLWEBJfB3LSzD0LnPw";
     // console.log(MarkerService.getMarkers());
@@ -13,6 +13,18 @@ angular.module('foxapp')
 
     $scope.dbPath = dbPath;
 
+    $scope.$on('$ionicView.beforeEnter', function() {
+      //do stuff before enter
+      console.log('jesuisla');
+      $ionicSlideBoxDelegate.enableSlide(false);
+
+    });
+    $scope.$on('$ionicView.beforeLeave', function() {
+      //do your stuff after leaving
+      console.log('jexiste');
+      $ionicSlideBoxDelegate.enableSlide(true);
+
+    });
 
     $scope.GPSTrace = [];
 
@@ -93,9 +105,6 @@ angular.module('foxapp')
       var positionCenter = $interval($scope.center, 15000);
     };
 
-    $scope.tinderise = function(){
-      $scope.tinderswitch = false;
-    };
 
     $scope.addPOI = function(){
 
@@ -116,13 +125,6 @@ angular.module('foxapp')
 
     };
 
-    $scope.swipeend = function(){
-      $scope.tinderswitch = true;
-    };
-
-    $scope.tinderswitch = true;
-
-    $scope.creationPOI = true;
 
     $scope.URL = {
       "plantinder": "dbPathapi/planders",
@@ -215,18 +217,5 @@ angular.module('foxapp')
       });
     };
 
-    $scope.open = function () {
-
-      $scope.creationPOI = true;
-    };
-
-    $scope.create = function () {
-
-      $scope.creationPOI = false;
-    };
-
-    $scope.cancelPoi = function () {
-      $scope.creationPOI = true;
-    };
 
 }]);
