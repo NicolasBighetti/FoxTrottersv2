@@ -98,16 +98,19 @@ exports.list = function(req, res) {
 
 exports.voteP = function (req, res) {
   var poi = req.poi;
+  console.log(poi);
+
   poi.score++;
   poi = _.extend(poi, req.body);
-
-  if (err) {
-    return res.status(400).send({
-      message: errorHandler.getErrorMessage(err)
-    });
-  } else {
-    res.jsonp(poi);
-  }
+  poi.save(function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(poi);
+    }
+  });
 };
 
 /**
@@ -118,14 +121,15 @@ exports.voteM = function (req, res) {
   var poi = req.poi;
   poi.score--;
   poi = _.extend(poi, req.body);
-
-  if (err) {
-    return res.status(400).send({
-      message: errorHandler.getErrorMessage(err)
-    });
-  } else {
-    res.jsonp(poi);
-  }
+  poi.save(function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(poi);
+    }
+  });
 };
 
 /**
