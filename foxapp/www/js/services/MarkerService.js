@@ -6,7 +6,29 @@ angular.module('foxapp')
 
     function (RESTService) {
 
-      var offlinePOI = [];
+      var offlinePOI = [
+        {
+          "coords" : {
+            "lat" : 40.730610,
+            "lng" : -73.935242
+          },
+          "imagePath" : "shaprr"
+        },
+        {
+          "coords" : {
+            "lat" : 35.652832,
+            "lng" : 139.839478
+          },
+          "imagePath" : "shaprr"
+        },
+        {
+          "coords" : {
+            "lat" : 1.3278,
+            "lng" : 172.97696
+          },
+          "imagePath" : "shaprr"
+        }
+      ];
 
       return {
 
@@ -26,6 +48,10 @@ angular.module('foxapp')
 
         getOfflineList : function(){
           return offlinePOI;
+        },
+
+        resetOfflineList : function () {
+          offlinePOI = [];
         }
 
       };
