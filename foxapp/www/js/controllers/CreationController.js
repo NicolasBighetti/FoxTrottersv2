@@ -6,11 +6,13 @@ angular.module('foxapp')
   .controller('CreationController', ['$scope', 'GeolocationService', 'RESTService', 'PictureUploadService',
 
     function ($scope, GeolocationService, RESTService, PictureUploadService) {
-      console.log('CreationController')
+      console.log('CreationController');
 
       $scope.url = dbPath+"api/planders";
+      $scope.poi = {};
+      $scope.poi.typep = "plant";
 
-      $scope.createPOI = function () {
+      $scope.createPoi = function () {
         $scope.poi.coords = {};
         $scope.poi.coords.latitude = $scope.position.lat;
         $scope.poi.coords.longitude = $scope.position.lng;
@@ -20,6 +22,7 @@ angular.module('foxapp')
           $scope.poi.image = json.image;
           RESTService.post(dbPath+'api/pois', $scope.poi).then(function () {
             $scope.getAllMarkers();
+            $scope.poi = {};
           });
         });
         $scope.cancelPoi();

@@ -45,8 +45,15 @@
                 Danger: {{poi.dangerzone}}<br/>
                 Visitors: {{poi.people}}<br/>
                 Created by: {{poi.user.displayName}}<br/>
-                Score: {{poi.score}}<br/>
+
+
                 <img ng-src="{{dbpath}}{{poi.image}}" /><br/>
+                {{poi.score}}<br/>
+
+                <div>
+                <button title="Up Votes" ng-click="vote(1)">+</button><br/>
+                <button title="Down Votes" ng-click="vote(0)">-</button>
+                </div>
                 <div id="plant-info" ng-hide="poi.plant == null">
                     <h3>Plant informations:</h3>
                     Common name: {{poi.plant.commonName}}<br/>
@@ -54,6 +61,7 @@
                     Latin name: {{poi.plant.latinName}}<br/>
                     Family: {{poi.plant.family}}<br/>
                     Genre: {{poi.plant.genre}}<br/>
+                    <!-- class="glyphicon glyphicon-chevron-down"ng-class="{true:'down', false:''}[vote=='down']"-->
                     <div ng-repeat="useElem in poi.plant.uses">
                         <img ng-src="{{ useElem.theme.icon }}" width="5%"  />
                         <h3 ng-bind="useElem.theme.desc"></h3>
@@ -67,10 +75,6 @@
                             <span ng-if="poi.plant.user"
                                   ng-bind="poi.plant.user.displayName"></span>
                             <span ng-if="!poi.plant.user">Deleted User</span>
-                            <a title="Up Votes" ng-click="vote(1)"  >+</a>
-                            {{poi.score}}
-                            <a title="Down Votes" ng-click="vote(0)"   >-</a><!-- class="glyphicon glyphicon-chevron-down"ng-class="{true:'down', false:''}[vote=='down']"-->
-
                         </em>
                     </small>
                 </div>
