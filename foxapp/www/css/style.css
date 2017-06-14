@@ -1,4 +1,9 @@
-ng-map {width:100%; height:100%;position: absolute; z-index: 2;}
+ng-map {
+  width:100%;
+  height:100%;
+  position: absolute;
+  z-index: 2;
+}
 
 .control{
   position: absolute;
