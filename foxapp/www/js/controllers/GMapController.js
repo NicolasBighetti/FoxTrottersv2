@@ -16,8 +16,6 @@ angular.module('foxapp')
 
     $scope.GPSTrace = [];
 
-    $scope.foxMarkers = MarkerService.getMarkers();
-
     $scope.getAllMarkers = function() {
       MarkerService.getAllMarkers().then(function(data) {
         $scope.foxMarkers = data;
