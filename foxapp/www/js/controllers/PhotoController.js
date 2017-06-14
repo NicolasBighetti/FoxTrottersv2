@@ -1,8 +1,8 @@
 angular.module('foxapp')
 
-  .controller('PhotoController', ['$scope', 'PictureUploadService', '$cordovaCamera',
+  .controller('PhotoController', ['$scope', 'PictureUploadService', '$cordovaCamera', 'GeolocationService', 'MarkerService',
 
-    function ($scope, PictureUploadService, $cordovaCamera) {
+    function ($scope, PictureUploadService, $cordovaCamera, GeolocationService, MarkerService) {
 
       document.addEventListener("deviceready", function () {
 
@@ -46,6 +46,18 @@ angular.module('foxapp')
 
       $scope.close = function () {
         $scope.uploadHide = true;
-      }
+      };
+
+      $scope.savePOI = function(imagePromise){
+        return imagePromise.then(function (imageData) {
+            var imagePath = imageData;
+            GeolocationService.getCurrentPosition({}).then(
+              function(coords){
+                MarkerService.pushPosition(coords, imagePath);
+              }
+            );
+          }
+        );
+      };
 
     }]);
