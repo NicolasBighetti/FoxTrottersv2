@@ -1,10 +1,19 @@
 angular.module('foxapp')
 
-  .controller('SlideCtrl', ['$scope',
+  .controller('SlideCtrl', ['$scope','$ionicSlideBoxDelegate',
 
-    function($scope) {
+    function($scope, $ionicSlideBoxDelegate) {
+
       $scope.logSlideChanged = function (index) {
-        console.log('Slide changed to '+index);
-      }
+
+        console.log("we Are "+ index);
+
+        if(index === 0) {
+          $ionicSlideBoxDelegate.enableSlide(false);
+        }
+        else {
+          $ionicSlideBoxDelegate.enableSlide(true);
+        }
+      };
 
     }]);

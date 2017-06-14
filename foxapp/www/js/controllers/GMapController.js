@@ -21,9 +21,6 @@ angular.module('foxapp')
         $ionicSlideBoxDelegate.enableSlide(true);
     };
 
-    $ionicSlideBoxDelegate.enableSlide(false);
-
-
 
     $scope.GPSTrace = [];
 
