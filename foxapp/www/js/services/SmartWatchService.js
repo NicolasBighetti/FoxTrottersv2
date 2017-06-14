@@ -70,6 +70,31 @@ angular.module('foxapp')
         "popupType": "202",
         "actions": null};
 
+      var viewPointNotification = {
+        "uuid": "",
+        "readoutTitle": "Point de vue proche!",
+        "readout": "Point de vue proche!",
+        "notificationTitle": "Point de vue proche!",
+        "headerSizeType": undefined,
+        "primarySubHeader": "Point de vue proche!",
+        "primaryBody": "",
+        "primaryQRImage": "",
+        "primaryBackgroundColor": "#000080",
+        "primaryBackgroundImage": "",
+        "secondaryType": undefined,
+        "secondarySubHeader": "",
+        "secondaryContent": "",
+        "secondaryBackgroundColor": "",
+        "secondaryImage": "",
+        "smallIcon1Path": "",
+        "smallIcon1Text": "",
+        "smallIcon2Path": "",
+        "smallIcon2Text": "",
+        "notificationIcon": "",
+        "alertType": "104",
+        "popupType": "202",
+        "actions": null};
+
       return {
         notificate: function (opts) {
           //var jsonPOI = {name: namePOI, pos: positionPOI};
