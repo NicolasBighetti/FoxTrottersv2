@@ -102,6 +102,17 @@ a svg {
   background-color: #4CAF50; /* Add an active/current color */
 }
 
+.touchMargin {
+  width: 15%;
+  height: 100%;
+  z-index: 3000000;
+  position: absolute;
+  right: 0px;
+  /*margin-top: 8%;
+  margin-left: 85%;
+  margin-right: 0;*/
+}
+
 .creationMomo{
   position: absolute;
   top: 0;
