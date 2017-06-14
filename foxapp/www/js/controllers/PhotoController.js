@@ -10,7 +10,7 @@ angular.module('foxapp')
           quality: 50,
           destinationType: Camera.DestinationType.FILE_URI,
           sourceType: Camera.PictureSourceType.CAMERA,
-          allowEdit: true,
+          allowEdit: false,
           encodingType: Camera.EncodingType.JPEG,
           targetWidth: 100,
           targetHeight: 100,
