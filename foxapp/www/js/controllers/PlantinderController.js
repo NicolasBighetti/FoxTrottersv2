@@ -3,6 +3,7 @@ angular.module('foxapp')
   .controller('PlantinderController', ['$scope','$swipe','$ionicPopup',
 
     function($scope, $swipe, $ionicPopup){
+    console.log('start PlantinderController');
 
     $scope.size = {
       width : 200,
@@ -34,7 +35,9 @@ angular.module('foxapp')
 
 
       $scope.swipeLeft = function(){
+
       };
+      
 
       $scope.swipeRight = function(){
 
@@ -54,7 +57,7 @@ angular.module('foxapp')
 
       $scope.swipeend = function(){
         $scope.showModal = false;
-      }
+      };
 
       $scope.open = function() {
         $scope.showModal = true;
@@ -68,6 +71,7 @@ angular.module('foxapp')
         $scope.showModal = false;
       };
 
+      console.log('start PlantinderController');
 
 
 

@@ -63,10 +63,12 @@
 
 <!-- controllers -->
 <script src="js/controllers/GMapController.js"></script>
+<script src="js/controllers/SlideCtrl.js"></script>
 <script src="js/controllers/PhotoController.js"></script>
 <script src="js/controllers/PlantinderController.js"></script>
 <script src="js/controllers/BLEController.js"></script>
 <script src="js/controllers/CreationController.js"></script>
+<script src="js/controllers/ResultCtrl.js"></script>
 
 
 <!-- services -->
@@ -83,40 +85,49 @@
 <!-- Route -->
 <script src="js/RouteConfiguration.js"></script>
 
-<ion-pane>
-    <ion-slide-box style="height: 100%; width: 100%;">
+<ion-pane ng-controller="SlideCtrl">
+    <ion-slide-box style="height: 100%; width: 100%;" on-slide-changed="logSlideChanged($index)">
+
+        <ion-slide id="view/map.html">
+            <div ng-include src="'view/map.html'"></div>
+        </ion-slide>
+
+        <ion-slide>
+            <div ng-include src="'view/poi.html'">
+
+            </div>
+        </ion-slide>
+        <ion-slide id="view/resultplant.html">
+            <div ng-include src="'view/2.html'"></div>
+        </ion-slide>
+
+        <ion-slide id="view/plantinder.html">
+            <div ng-include src="'view/plantinder.html'"></div>
+        </ion-slide>
+
+        <ion-slide>
+            <p>Slide 5</p>
+        </ion-slide>
 
 
-      <ion-slide id="view/map.html">
-        <button>
-          Bonjour
-        </button>
-      <div ng-include src="'view/map.html'"></div>
-      </ion-slide>
-      <ion-slide>
-      <button>
-        Shaprrrr
-      </button>
-    </ion-slide>
     </ion-slide-box>
-  <!--<ion-view>
-      <script id="view/map.html" type="text/ng-template">
-        <p>Shaprrr</p>
-      </script>
+    <!--<ion-view>
+        <script id="view/map.html" type="text/ng-template">
+          <p>Shaprrr</p>
+        </script>
 
-    </ion-view>
--->
-  <!--<ng-include src="'view/map.html'" ></ng-include> -->
+      </ion-view>
+  -->
+    <!--<ng-include src="'view/map.html'" ></ng-include> -->
 
 
     <!--<ion-view>
         <ion-content>
             <div id="map" ng-controller="GMapController">
 <ion-nav-view animation="slide-left-right"></ion-nav-view>
-  <ng-include src="'view/search.html'"></ng-include>
+
   <ng-include src="'view/menu.html'"></ng-include>
             </div>
-<ng-include src="'view/plantinder.html'"></ng-include>
   <ng-include src="'view/poi.html'"></ng-include>
 
         </ion-content>

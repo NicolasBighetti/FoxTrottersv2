@@ -1,5 +1,11 @@
 // Ionic Starter App
+
+
+// Config
 var dbPath = "http://ns388671.ip-176-31-254.eu/";
+
+// Distance de déclenchement de notification en km
+var notifDistance = 0.15;
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)

@@ -59,6 +59,8 @@ angular.module('foxapp')
 
     $scope.notifyProximity = function(){
       if($scope.checkProximity) {
+
+        // config de la distance de notif
         var triggerDistance = 0.15;
         var dangerThreshold = 250;
 
