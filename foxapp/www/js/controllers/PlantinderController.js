@@ -1,9 +1,11 @@
 angular.module('foxapp')
 
-  .controller('PlantinderController', ['$scope','$swipe','$ionicPopup',
+  .controller('PlantinderController', ['$scope','$swipe','$ionicPopup','$ionicSlideBoxDelegate',
 
-    function($scope, $swipe, $ionicPopup){
+    function($scope, $swipe, $ionicPopup, $ionicSlideBoxDelegate){
     console.log('start PlantinderController');
+
+    $scope.isOver = false;
 
     $scope.size = {
       width : 200,
@@ -37,7 +39,7 @@ angular.module('foxapp')
       $scope.swipeLeft = function(){
 
       };
-      
+
 
       $scope.swipeRight = function(){
 
@@ -52,24 +54,26 @@ angular.module('foxapp')
               text: '<b>Identifier</b>'
             }
           ]
-        })
+        });
       };
 
       $scope.swipeend = function(){
-        $scope.showModal = false;
+        $scope.isOver = true;
+        $ionicSlideBoxDelegate.enableSlide(true);
       };
 
-      $scope.open = function() {
-        $scope.showModal = true;
+
+      $scope.disableSwipe = function(){
+        if(!$scope.isOver){
+          $ionicSlideBoxDelegate.enableSlide(false);
+        }
+      };
+      $scope.enableSwipe = function(){
+        if(!$scope.isOver) {
+          $ionicSlideBoxDelegate.enableSlide(true);
+        }
       };
 
-      $scope.ok = function() {
-        $scope.showModal = false;
-      };
-
-      $scope.cancel = function() {
-        $scope.showModal = false;
-      };
 
       console.log('start PlantinderController');
 
