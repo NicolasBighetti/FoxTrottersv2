@@ -84,19 +84,43 @@
 <script src="js/RouteConfiguration.js"></script>
 
 <ion-pane>
-    <ion-view>
+    <ion-slide-box>
+
+
+      <ion-slide id="view/map.html">
+        <button>
+          Bonjour
+        </button>
+      <div ng-include src="'view/map.html'"></div>
+      </ion-slide>
+      <ion-slide>
+      <button>
+        Shaprrrr
+      </button>
+    </ion-slide>
+    </ion-slide-box>
+  <!--<ion-view>
+      <script id="view/map.html" type="text/ng-template">
+        <p>Shaprrr</p>
+      </script>
+
+    </ion-view>
+-->
+  <!--<ng-include src="'view/map.html'" ></ng-include> -->
+
+
+    <!--<ion-view>
         <ion-content>
             <div id="map" ng-controller="GMapController">
-                <ng-include src="'view/search.html'"></ng-include>
-                <ng-include src="'view/menu.html'"></ng-include>
-                <ng-include src="'view/map.html'"></ng-include>
-                <ng-include src="'view/plantinder.html'"></ng-include>
-                <ng-include src="'view/poi.html'"></ng-include>
+<ion-nav-view animation="slide-left-right"></ion-nav-view>
+  <ng-include src="'view/search.html'"></ng-include>
+  <ng-include src="'view/menu.html'"></ng-include>
             </div>
-
+<ng-include src="'view/plantinder.html'"></ng-include>
+  <ng-include src="'view/poi.html'"></ng-include>
 
         </ion-content>
-    </ion-view>
+    </ion-view>-->
 
 </ion-pane>
 </body>
