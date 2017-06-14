@@ -5,53 +5,29 @@ angular.module('foxapp')
   .factory('MarkerService', ['RESTService',
 
     function (RESTService) {
+
+      var offlinePOI = [];
+
       return {
 
         getAllMarkers : function() {
           return RESTService.get(dbPath+"api/pois");
         },
 
-        getMarkers: function () {
-          var mock =[
-              {
-                "name": "thym",
-                "typep":"plant",
-                "coords" : {
-                  "latitude": 43.7025,
-                  "longitude": 7.26333
-                }
-              },
-              {
-                "name": "Point d'eau",
-                "typep":"water",
-                "coords" : {
-                  "latitude": 43.3025,
-                  "longitude": 7.56333
-                }
-              },
-              {
-                "name": "romarin",
-                "typep":"plant",
-                "coords": {
-                  "latitude": 43.9925,
-                  "longitude": 7.16333
-                }
-              },
-            {
-              "name": "thym",
-              "typep":"plant",
-              "coords": {
-                "latitude": 43.7425,
-                "longitude": 7.29333
-              }
+        pushPosition : function(coords, imagePath){
+          var poi = {
+            "coords":coords,
+            "imagePath": imagePath
+          };
 
-            }
-]
+          offlinePOI.push(poi);
+          console.log(offlinePOI);
+        },
 
-
-          return mock;
+        getOfflineList : function(){
+          return offlinePOI;
         }
 
-      }
+      };
     }
   ]);
