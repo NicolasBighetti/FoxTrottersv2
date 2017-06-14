@@ -60,6 +60,7 @@ angular.module('foxapp')
       $scope.swipeend = function(){
         $scope.isOver = true;
         $ionicSlideBoxDelegate.enableSlide(true);
+        $ionicSlideBoxDelegate.select(true);
       };
 
 

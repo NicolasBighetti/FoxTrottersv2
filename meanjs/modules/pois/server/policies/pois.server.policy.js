@@ -38,6 +38,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/pois/:poiId',
       permissions: ['*']
+    }, {
+      resources: '/api/pois/:poiId/plus',
+      permissions: ['*']
     }]
   }]);
 };
@@ -51,7 +54,7 @@ exports.isAllowed = function (req, res, next) {
   // If an Poi is being processed and the current user created it then allow any manipulation
   if (req.poi && req.user && req.poi.user && req.poi.user.id === req.user.id) {
     return next();
-  }
+  };
 
   // Check for user roles
   acl.areAnyRolesAllowed(roles, req.route.path, req.method.toLowerCase(), function (err, isAllowed) {

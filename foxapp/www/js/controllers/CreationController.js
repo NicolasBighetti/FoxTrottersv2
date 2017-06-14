@@ -18,7 +18,7 @@ angular.module('foxapp')
         PictureUploadService.upload($scope.pictureURI, $scope.url).then(function (data) {
           var json = JSON.parse(data);
           $scope.poi.image = json.image;
-          RESTService.post(dbPath+'/api/pois', $scope.poi).then(function () {
+          RESTService.post(dbPath+'api/pois', $scope.poi).then(function () {
             $scope.getAllMarkers();
           });
         });

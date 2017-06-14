@@ -16,7 +16,7 @@ angular.module('foxapp')
         method: 'POST',
         url: URL,
         data:data
-      }
+      };
       return $http(req).then(function(result) {
 
         return result.data;
@@ -27,7 +27,7 @@ angular.module('foxapp')
         method: 'PUT',
         url: URL,
         data:data
-      }
+      };
       return $http(req).then(function(result){
         return result.data;
       })
