@@ -46,7 +46,6 @@ angular.module('foxapp')
     $scope.savePosition = function(){
       var posOptions = [];
       $scope.getGPSPosition(posOptions).then( function(coords){
-        $scope.position = coords;
         $scope.GPSTrace.push(
           [coords.lat, coords.lng]
         )
@@ -76,10 +75,18 @@ angular.module('foxapp')
       }
     };
 
-    $interval($scope.savePosition, 15000);
+    var positionSaver = $interval($scope.savePosition, 15000);
     var notificationTime = 60 * 1000;
-    $interval($scope.notifyProximity, notificationTime);
+    var notifySaver = $interval($scope.notifyProximity, notificationTime);
+    var positionCenter = $interval($scope.center, 15000);
 
+    $scope.stopCenter = function(){
+      $interval.cancel(positionCenter);
+    };
+
+    $scope.resumeCenter = function(){
+      var positionCenter = $interval($scope.center, 15000);
+    };
 
     $scope.tinderise = function(){
       $scope.tinderswitch = false;
