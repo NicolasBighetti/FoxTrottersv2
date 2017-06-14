@@ -45,6 +45,7 @@
                 Danger: {{poi.dangerzone}}<br/>
                 Visitors: {{poi.people}}<br/>
                 Created by: {{poi.user.displayName}}<br/>
+                Score: {{poi.score}}<br/>
                 <img ng-src="{{dbpath}}{{poi.image}}" /><br/>
                 <div id="plant-info" ng-hide="poi.plant == null">
                     <h3>Plant informations:</h3>
@@ -66,15 +67,16 @@
                             <span ng-if="poi.plant.user"
                                   ng-bind="poi.plant.user.displayName"></span>
                             <span ng-if="!poi.plant.user">Deleted User</span>
+                            <a title="Up Votes" ng-click="vote(1)"  >+</a>
+                            {{poi.score}}
+                            <a title="Down Votes" ng-click="vote(0)"   >-</a><!-- class="glyphicon glyphicon-chevron-down"ng-class="{true:'down', false:''}[vote=='down']"-->
+
                         </em>
                     </small>
                 </div>
-                <div ng-controller="GMapController">
 
-                    <a title="Up Votes" ng-click="vote({{poi}},1)"  >+</a>
-                    {{poi.score}}
-                    <a title="Down Votes" ng-click="vote({{poi}},0)"   >-</a><!-- class="glyphicon glyphicon-chevron-down"ng-class="{true:'down', false:''}[vote=='down']"-->
-                </div>
+
+
             </div>
         </info-window>
     </ng-map>

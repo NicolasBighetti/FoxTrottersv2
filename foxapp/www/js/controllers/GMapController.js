@@ -123,9 +123,10 @@ angular.module('foxapp')
 
 
     $scope.URL = {
-      "plantinder": "dbPathapi/planders",
-      "poi": "dbPathapi/poi",
-      "planders" : "dbPathapi/planders/result/"
+      "plantinder": dbPath + "api/planders/",
+      "poi": dbPath + "api/poi/",
+      "planders" : dbPath + "api/planders/result/",
+      "vote" : dbPath + "api/poi/"
     };
 
     $scope.recognizePlant = function(promise){
@@ -133,6 +134,7 @@ angular.module('foxapp')
         function(data){
           var json = JSON.parse(data);
           console.log("been there");
+
           RESTService.get($scope.URL.planders+json._id).then(
             function(result){
               var jsson = JSON.parse(result);
@@ -192,11 +194,11 @@ angular.module('foxapp')
       $scope.map.hideInfoWindow('foo-iw');
     };
 
-    $scope.vote = function (poi,score) {
+    $scope.vote = function (score) {
       if (score == 1) {
-        RESTService.get($scope.URL.vote + poi._id + "/plus", poi);
+        RESTService.get($scope.URL.vote + $scope.poi._id + "/plus");
       } else {
-        RESTService.get($scope.URL.vote + poi._id + "/moins", poi);
+        RESTService.get($scope.URL.vote +$scope.poi._id + "/moins");
       }
     };
 

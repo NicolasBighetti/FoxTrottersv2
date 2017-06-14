@@ -36,9 +36,6 @@ angular.module('foxapp')
 
       $scope.sendPicture = function (URL, image) {
         return image.then(function (imageData) {
-
-            console.log(imageData);
-            console.log('hhhh');
             return PictureUploadService.upload(imageData, URL);
           }
         );
