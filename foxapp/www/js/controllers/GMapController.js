@@ -40,6 +40,9 @@ angular.module('foxapp')
       });
     };
 
+    $scope.centerAt = function(coords){
+        $scope.position = coords;
+    };
 
     $scope.center();
 
@@ -48,7 +51,7 @@ angular.module('foxapp')
       $scope.getGPSPosition(posOptions).then( function(coords){
         $scope.GPSTrace.push(
           [coords.lat, coords.lng]
-        )
+        );
       });
     };
 
@@ -93,7 +96,22 @@ angular.module('foxapp')
     };
 
     $scope.addPOI = function(){
-      $scope.creationPOI = !$scope.creationPOI;
+
+      var tempMarker = MarkerService.getOfflineList();
+      $scope.stopCenter();
+
+      for(var i in tempMarker){
+
+        $scope.centerAt(tempMarker[i].coords);
+
+        var alertPopup = $ionicPopup.alert({
+          title: 'Title',
+          template: 'Alert message'
+        });
+      }
+
+      $scope.resumeCenter();
+
     };
 
     $scope.swipeend = function(){
