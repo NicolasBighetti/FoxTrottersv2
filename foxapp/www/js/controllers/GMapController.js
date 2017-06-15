@@ -127,7 +127,7 @@ angular.module('foxapp')
       "plantinder": dbPath + "api/planders/",
       "poi": dbPath + "api/poi/",
       "planders" : dbPath + "api/planders/result/",
-      "vote" : dbPath + "api/poi/"
+      "vote" : dbPath + "api/pois/"
     };
 
 

@@ -17,7 +17,7 @@ module.exports = function(app) {
     .put(pois.update)
     .delete(pois.delete);
 
-  app.route('/api/pois/:poiId/plus').all(poisPolicy.isAllowed)
+  app.route('/api/pois/:poiId/plus')
       .get(pois.voteP);
 
   app.route('/api/pois/:poiId/moins').all(poisPolicy.isAllowed)

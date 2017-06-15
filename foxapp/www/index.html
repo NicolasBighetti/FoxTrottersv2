@@ -88,12 +88,14 @@
 
 <ion-pane ng-controller="SlideCtrl">
     <ion-slide-box style="height: 100%; width: 100%;" on-slide-changed="logSlideChanged($index)">
-      <ion-slide id="view/resultplant.html">
-        <div ng-include src="'view/resultplant.html'"></div>
-      </ion-slide>
+
 
         <ion-slide id="view/map.html">
             <div ng-include src="'view/map.html'"></div>
+        </ion-slide>
+
+        <ion-slide id="view/resultplant.html">
+            <div ng-include src="'view/resultplant.html'"></div>
         </ion-slide>
 
         <ion-slide>
