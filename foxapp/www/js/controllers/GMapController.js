@@ -8,15 +8,12 @@ angular.module('foxapp')
 
       // $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGMBQQC143VTbPWjLWEBJfB3LSzD0LnPw";
       // console.log(MarkerService.getMarkers());
-      console.log('dbPath');
-      console.log(dbPath);
 
       $scope.disableSwipe = function () {
         $ionicSlideBoxDelegate.enableSlide(false);
       };
 
       $scope.enableSwipe = function () {
-        console.log('Map : swipe on shaprr');
         $ionicSlideBoxDelegate.enableSlide(true);
       };
 
@@ -136,16 +133,13 @@ angular.module('foxapp')
       };
 
       NgMap.getMap().then(function (evtMap) {
-        console.log('setmap');
         $scope.map = evtMap;
         //interval = $interval(talk, 2000);
       });
 
       // Shows the informations of the marker once you clicked on it
       $scope.showDetail = function (e, poi) {
-        console.log($scope.map);
-        console.log('showing poi');
-        console.log(poi);
+
         $scope.poi = poi;
         $scope.map.showInfoWindow('foo-iw', poi._id);
       };

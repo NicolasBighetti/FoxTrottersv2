@@ -3,8 +3,6 @@ angular.module('foxapp')
   .controller('PlantinderController', ['$scope','$swipe','$ionicPopup','$ionicSlideBoxDelegate',
 
     function($scope, $swipe, $ionicPopup, $ionicSlideBoxDelegate){
-    console.log('start PlantinderController');
-
     $scope.isOver = false;
 
     $scope.size = {
@@ -74,10 +72,4 @@ angular.module('foxapp')
           $ionicSlideBoxDelegate.enableSlide(true);
         }
       };
-
-
-      console.log('start PlantinderController');
-
-
-
     }]);
