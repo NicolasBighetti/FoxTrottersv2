@@ -11,13 +11,14 @@ angular.module('foxapp')
     console.log('dbPath');
     console.log(dbPath);
 
-    $scope.dbPath = dbPath;
+
 
     $scope.disableSwipe = function(){
         $ionicSlideBoxDelegate.enableSlide(false);
     };
 
     $scope.enableSwipe = function(){
+        console.log('Map : swipe on shaprr');
         $ionicSlideBoxDelegate.enableSlide(true);
     };
 
@@ -129,46 +130,7 @@ angular.module('foxapp')
       "vote" : dbPath + "api/poi/"
     };
 
-    $scope.recognizePlant = function(promise){
-      promise.then(
-        function(data){
-          var json = JSON.parse(data);
-          console.log("been there");
 
-          RESTService.get($scope.URL.planders+json._id).then(
-            function(result){
-              var jsson = JSON.parse(result);
-
-              $scope.answerder = jsson.results[0].name;
-
-              var myPopup = $ionicPopup.show({
-                template: '<input type = "text" ng-model = "answerder">',
-                title: 'Résultat',
-                subTitle: 'Plander',
-                scope: $scope,
-
-                buttons: [
-                  { text: 'Cancel' }, {
-                    text: '<b>Save</b>',
-                    type: 'button-positive',
-                    onTap: function(e) {
-
-                      if (!$scope.data.model) {
-                        //don't allow the user to close unless he enters model...
-                        e.preventDefault();
-                      } else {
-                        return $scope.data.model;
-                      }
-                    }
-                  }
-                ]
-              });
-
-            }
-          );
-        }
-      );
-    };
 
 
     $scope.category = "";

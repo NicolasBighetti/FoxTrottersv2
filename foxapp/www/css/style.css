@@ -110,7 +110,7 @@ a svg {
 .touchMargin {
   width: 15%;
   height: 100%;
-  z-index: 3000000;
+  /*z-index: 3000000;*/
   position: absolute;
   right: 0px;
   /*margin-top: 8%;

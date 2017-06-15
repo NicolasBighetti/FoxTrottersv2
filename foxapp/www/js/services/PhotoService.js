@@ -24,13 +24,12 @@ angular.module('foxapp')
 
         readyCamera : function(){
           document.addEventListener("deviceready", function () {
-            //$scope.options = cameraDefault;
+
           }, false);
         },
         takePicture : function (options) {
         return $cordovaCamera.getPicture(options).then(function (imageData) {
-          //var image = document.getElementById('myImage');
-          //:image.src = /*"data:image/jpeg;base64," +*/ imageData;
+
           console.log(imageData);
 
           return imageData;
