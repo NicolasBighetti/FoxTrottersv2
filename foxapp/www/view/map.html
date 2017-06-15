@@ -3,9 +3,11 @@
 
     <div ng-controller="GMapController" style="height: 100%; width: 100%;"id="fox-map" map-lazy-load="https://maps.google.com/maps/api/js">
     <div class="touchMargin" on-touch="enableSwipe()" on-release="disableSwipe()">
+      <button style="width: 100%; height: 100%; background: blueviolet; z-index: 3">
 
+      </button>
     </div>
-  
+
       <ng-map disable-default-u-i="true"
             center="[{{position.lat}}, {{position.lng}}]"
             map-type-id="terrain"

@@ -2,7 +2,7 @@
 
 
 // Config
-var dbPath = "http://localhost/";
+var dbPath = "http://ns388671.ip-176-31-254.eu//";
 
 // Distance de déclenchement de notification en km
 var notifDistance = 0.15;
