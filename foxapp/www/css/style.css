@@ -189,6 +189,8 @@ a svg {
   border: 5px #a0522d solid;
 }
 
+
+
 .description{
   float: right;
   height : 100%;
@@ -214,11 +216,14 @@ a svg {
 }
 
 .quit{
-  width: 10%;
-  position: absolute;
-  margin-top: 90%;
-  margin-right: 50%;
-  margin-left: 50%;
+
+  width: 14%;
+  height: 8%;
+  position: fixed;
+  left: 50%;
+  bottom: 10px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
 }
 
 .quit *{
