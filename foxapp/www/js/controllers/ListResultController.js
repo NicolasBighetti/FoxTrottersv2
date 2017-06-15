@@ -7,7 +7,7 @@ angular.module('foxapp')
   function($scope, PhotoService, PictureUploadService, RESTService){
       $scope.listResult = [];
 
-      $scope.quantity = 4;
+      $scope.quantity = 3;
 
       $scope.showResults = true;
 
