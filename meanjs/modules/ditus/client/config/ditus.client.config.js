@@ -10,7 +10,7 @@
   function menuConfig(menuService) {
     // Set top bar menu items
     menuService.addMenuItem('topbar', {
-      title: 'Ditus',
+      title: 'Walks',
       state: 'ditus',
       type: 'dropdown',
       roles: ['*']
@@ -18,13 +18,13 @@
 
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'ditus', {
-      title: 'List Ditus',
+      title: 'List Walks',
       state: 'ditus.list'
     });
 
     // Add the dropdown create item
     menuService.addSubMenuItem('topbar', 'ditus', {
-      title: 'Create Ditu',
+      title: 'Crear Walks',
       state: 'ditus.create',
       roles: ['user']
     });
