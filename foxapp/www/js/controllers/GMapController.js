@@ -23,6 +23,12 @@ angular.module('foxapp')
 
       $scope.GPSTrace = [];
 
+      var coord2 = [];
+      coord2.lat = 43.6156;
+      coord2.lng = 7.0719;
+
+      $scope.position = coord2;
+
       $scope.getAllMarkers = function () {
         MarkerService.getAllMarkers().then(function (data) {
           $scope.foxMarkers = data;
@@ -168,6 +174,12 @@ angular.module('foxapp')
         }
       };
 
+      $scope.removeSlash = function (image) {
+        console.log('image');
+        console.log(image);
+        console.log(image.substring(1));
+        return dbPath+image.substring(1);
+      };
 
       $scope.form = {};
 

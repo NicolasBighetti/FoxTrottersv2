@@ -39,20 +39,19 @@
         </marker>
         <info-window id="foo-iw">
             <div ng-non-bindable="">
-                <img ng-src="{{poi.icon}}" />
                 Name: {{poi.name}}<br/>
                 Description: {{poi.desc}}<br/>
                 Danger: {{poi.dangerzone}}<br/>
                 Visitors: {{poi.people}}<br/>
                 Created by: {{poi.user.displayName}}<br/>
-
-
-                <img ng-src="{{dbpath}}{{poi.image}}" /><br/>
                 Score: {{poi.score}}<br/>
-
                 <div>
                 <button title="Up Votes" ng-click="vote(1)">+</button><br/>
                 <button title="Down Votes" ng-click="vote(0)">-</button>
+                </div>
+                <div>
+                    Image:
+                    <img ng-src="{{removeSlash(poi.image)}}" /><br/>
                 </div>
                 <div id="plant-info" ng-hide="poi.plant == null">
                     <h3>Plant informations:</h3>
