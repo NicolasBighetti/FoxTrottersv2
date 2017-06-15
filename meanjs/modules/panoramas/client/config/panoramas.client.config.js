@@ -10,7 +10,7 @@
   function menuConfig(menuService) {
     // Set top bar menu items
     menuService.addMenuItem('topbar', {
-      title: 'Reconnaissance',
+      title: 'Panoramas',
       state: 'panoramas',
       type: 'dropdown',
       roles: ['*']
