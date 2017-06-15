@@ -147,6 +147,7 @@ a svg {
   background: #53DF83;
   margin: 5px;
   height: 32%;
+  width: 96%;
 }
 
 .result *{
@@ -159,21 +160,57 @@ a svg {
   float: left;
   height: 65%;
   width: 35%;
+
 }
 
 .imageIcon > img{
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
+  border: 5px #6d8764 solid;
   /*object-fit: contain;*/
+}
+
+.result:first-child .imageIcon > img{
+  width: 100%;
+  height: 100%;
+  border: 5px #ffc107 solid;
+  /*object-fit: contain;*/
+}
+
+.result:nth-child(2) .imageIcon > img{
+  width: 100%;
+  height: 100%;
+  border: 5px #9e9e9e solid;
+}
+
+.result:nth-child(3) .imageIcon > img{
+  width: 100%;
+  height: 100%;
+  border: 5px #a0522d solid;
 }
 
 .description{
   float: right;
+  height : 100%;
+  width : 59%;
   font-size : 12px;
+  border: 3px #6d8764 solid;
+  border-radius: 25px;
+}
+
+.descripteurs{
+  margin : 25% 25% 25% 25%;
+
 }
 
 .description b{
   display:inline-block;
+
+}
+
+.description-content{
+  margin : 3px;
+  letter-spacing: -1px;
 }
 
 .quit{
