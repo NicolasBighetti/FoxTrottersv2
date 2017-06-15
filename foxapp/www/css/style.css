@@ -139,3 +139,13 @@ a svg {
   margin: auto;
 }
 
+.result{
+  display: inline-block;
+  size: auto;
+}
+
+.imageIcon > img{
+  width: 30%;
+  height: 30%;
+}
+
