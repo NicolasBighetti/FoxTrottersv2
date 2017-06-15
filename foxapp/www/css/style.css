@@ -141,11 +141,17 @@ a svg {
 
 .result{
   display: inline-block;
-  size: auto;
+  border: thick;
+  border-radius: 25px;
+}
+
+.result *{
+  position: relative;
 }
 
 .imageIcon > img{
   width: 30%;
   height: 30%;
+  object-fit: contain;
 }
 
