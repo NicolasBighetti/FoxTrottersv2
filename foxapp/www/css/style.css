@@ -140,18 +140,51 @@ a svg {
 }
 
 .result{
+  position: relative;
   display: inline-block;
-  border: thick;
+  border: 3px #6d8764 solid;
   border-radius: 25px;
+  background: #53DF83;
+  margin: 5px;
+  height: 32%;
 }
 
 .result *{
-  position: relative;
+  /*position: relative;*/
+  margin : 5px;
+  /*background: #006600;*/
+}
+
+.imageIcon{
+  float: left;
+  height: 65%;
+  width: 35%;
 }
 
 .imageIcon > img{
-  width: 30%;
-  height: 30%;
-  object-fit: contain;
+  width: 50%;
+  height: 50%;
+  /*object-fit: contain;*/
 }
 
+.description{
+  float: right;
+  font-size : 12px;
+}
+
+.description b{
+  display:inline-block;
+}
+
+.quit{
+  width: 10%;
+  position: absolute;
+  margin-top: 90%;
+  margin-right: 50%;
+  margin-left: 50%;
+}
+
+.quit *{
+  width: 100%;
+  height: 100%;
+}
