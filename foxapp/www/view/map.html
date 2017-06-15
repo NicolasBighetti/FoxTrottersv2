@@ -1,11 +1,9 @@
 <ion-content title="Map">
-    <ng-include src="'view/search.html'"></ng-include>
+
 
     <div ng-controller="GMapController" style="height: 100%; width: 100%;"id="fox-map">
+      <ng-include src="'view/search.html'"></ng-include>
     <div class="touchMargin" on-touch="enableSwipe()" on-release="disableSwipe()">
-      <button style="width: 100%; height: 100%; background: blueviolet; z-index: 3">
-
-      </button>
     </div>
 
       <ng-map disable-default-u-i="true"

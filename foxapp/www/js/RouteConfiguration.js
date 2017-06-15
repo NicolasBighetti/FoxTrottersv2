@@ -11,7 +11,6 @@ angular.module('foxapp')
         controller: 'GMapController'
       });
 
-    console.log('vrooom');
     $urlRouterProvider.otherwise("/");
 
   });

@@ -5,12 +5,13 @@ angular.module('foxapp')
 .filter('filterByCriteria', [function(){
 
   return function(items, criteria, category){
-  if(criteria === undefined)
+  if(criteria === undefined) {
     criteria = '';
+  }
 
-  if(category !== '')
+  if(category !== '') {
     items = filterByCategory(items, category);
-
+  }
   switch(criteria){
 
     default:
@@ -26,8 +27,9 @@ function filterByName(items, criteria){
     var filtered = [];
 
     for (var mrk in items) {
-      if (items[mrk].name.toLowerCase().indexOf(criteria.toLowerCase()) !== -1)
+      if (items[mrk].name.toLowerCase().indexOf(criteria.toLowerCase()) !== -1) {
         filtered.push(items[mrk]);
+      }
     }
 
     return filtered;
@@ -37,11 +39,12 @@ function filterByCategory(items, category){
   var filtered = [];
 
   for (var mrk in items) {
-    if (items[mrk].typep.toLowerCase().indexOf(category.toLowerCase()) !== -1)
+    if (items[mrk].typep.toLowerCase().indexOf(category.toLowerCase()) !== -1) {
       filtered.push(items[mrk]);
+    }
   }
 
   return filtered;
-}
+};
 
 }]);
