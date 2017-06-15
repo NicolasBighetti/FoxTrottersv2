@@ -20,7 +20,7 @@ module.exports = function(app) {
   app.route('/api/pois/:poiId/plus')
       .get(pois.voteP);
 
-  app.route('/api/pois/:poiId/moins').all(poisPolicy.isAllowed)
+  app.route('/api/pois/:poiId/moins')
       .get(pois.voteM);
       
 
