@@ -48,10 +48,10 @@ angular.module('foxapp')
       var dangerNotification = {
         "uuid": "",
         "readoutTitle": "Attention danger!",
-        "readout": "Attention danger!",
+        "readout": "Un ours vous poursuit!",
         "notificationTitle": "Attention danger!",
         "headerSizeType": undefined,
-        "primarySubHeader": "Attention danger!",
+        "primarySubHeader": "Un ours vous poursuit",
         "primaryBody": "",
         "primaryQRImage": "",
         "primaryBackgroundColor": "#800000",
@@ -110,8 +110,10 @@ angular.module('foxapp')
         getProximity: function(){
           return proximityNotification;
         },
+        getViewPoint: function(){
+          return viewPointNotification;
+        },
         notify: function(label, distance, opts){
-          opts.notificationTitle = label + " : " + distance + "m";
           this.notificate(opts);
         }
       };
